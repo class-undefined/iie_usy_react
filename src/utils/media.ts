@@ -1,7 +1,7 @@
 export enum OS  {
     mobile,
-    pc,
     pad,
+    pc
 }
 /**
  * 根据屏幕宽度获取设备
