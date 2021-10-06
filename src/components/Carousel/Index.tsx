@@ -14,7 +14,7 @@ export interface CarouselItemProps {
     url: string,
     description?: string
 }
-
+const mediaSize = [768, 1024]
 const Item = (props: { imageGroup: Array<CarouselItemProps> }) => {
     return (
         <Box className={'carousel-card'}
@@ -27,9 +27,9 @@ const Item = (props: { imageGroup: Array<CarouselItemProps> }) => {
              }}
         >
             {props.imageGroup.map((image, key) =>
-                <Paper key={key} className={'carousel-card-container'} elevation={2}>
-                    <CardMedia  component={'img'} className={'img'} src={image.url}/>
-                </Paper>,
+                <div key={key} className={'carousel-card-container'} >
+                    <CardMedia component={'img'} className={'img'} src={image.url}/>
+                </div>,
             )}
         </Box>
     )
@@ -56,11 +56,12 @@ export const CarouselComponent = (props: any) => {
             name: 'Random Name #2',
             url: img4,
             description: 'Hello World!',
-        },{
-            name: 'Random Name #2',
-            url: img5,
-            description: 'Hello World!',
         },
+        // {
+        //     name: 'Random Name #2',
+        //     url: img5,
+        //     description: 'Hello World!',
+        // },
     ]
     const getSize = (media: OS) => {
         if (media === OS.mobile) return 1
@@ -68,8 +69,8 @@ export const CarouselComponent = (props: any) => {
         else return 3
     }
     const getMedia = (width: number) => {
-        if (width <= 1230) return OS.mobile
-        else if(width < 1764) return OS.pad
+        if (width <= mediaSize[0]) return OS.mobile
+        else if(width < mediaSize[1]) return OS.pad
         else return OS.pc
     }
     const [media, setMedia] = useState(getMedia(window.outerWidth))
