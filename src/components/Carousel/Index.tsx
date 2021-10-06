@@ -24,11 +24,12 @@ const Item = (props: { imageGroup: Array<CarouselItemProps> }) => {
                  '& > :not(style)': {
                      m: 1,
                  },
-             }}
-        >
+             }}>
             {props.imageGroup.map((image, key) =>
                 <div key={key} className={'carousel-card-container'} >
-                    <CardMedia component={'img'} className={'img'} src={image.url}/>
+                    <CardMedia component={'img'} className={'img'}
+                               src = {image.url}
+                    />
                 </div>,
             )}
         </Box>
@@ -57,11 +58,11 @@ export const CarouselComponent = (props: any) => {
             url: img4,
             description: 'Hello World!',
         },
-        // {
-        //     name: 'Random Name #2',
-        //     url: img5,
-        //     description: 'Hello World!',
-        // },
+        {
+            name: 'Random Name #2',
+            url: img5,
+            description: 'Hello World!',
+        },
     ]
     const getSize = (media: OS) => {
         if (media === OS.mobile) return 1

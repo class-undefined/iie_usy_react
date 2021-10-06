@@ -5,6 +5,7 @@ import './NavBar.scss'
 import {getMedia, OS} from '../utils/media';
 import {Button, IconButton} from '@mui/material';
 import {Menu} from '@mui/icons-material';
+import TemporaryDrawer from './MediaNavBar';
 
 const navBarConfig: Array<NavBarItemProps> = [
     {
@@ -178,7 +179,7 @@ export const NavBar = () => {
     return (
         <div className={'nav'}>
             <div className={'nav-bar-item'} style={{width: '0px', height: '100%'}}></div>
-            {media === OS.pc || <MenuBtn/>}
+            {media === OS.pc || <TemporaryDrawer/>}
             {media !== OS.pc || navBarConfig.map((barItem, key) => (<NavBarItem key={key} {...barItem} />)).reverse()}
         </div>
     );
