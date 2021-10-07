@@ -1,5 +1,3 @@
-import {NavBarItemProps} from '../layout/NavBarItem';
-
 export interface RouteConfig {
     name: string,
     path: string,

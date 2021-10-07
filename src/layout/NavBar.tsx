@@ -4,7 +4,7 @@ import {NavBarItem} from './NavBarItem';
 import './NavBar.scss'
 import {getMedia, OS} from '../utils/media';
 import TemporaryDrawer from './MediaNavBar';
-import {navBarConfig, RouteConfig} from '../route/config';
+import {navBarConfig} from '../route/config';
 
 
 export const NavBar = () => {
