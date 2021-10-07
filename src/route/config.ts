@@ -9,7 +9,7 @@ export interface RouteConfig {
 export const navBarConfig: Array<RouteConfig> = [
     {
         name: '学院概况',
-        path: 'info',
+        path: '/info',
         exact: true,
         meta: {},
         children: [
@@ -37,7 +37,7 @@ export const navBarConfig: Array<RouteConfig> = [
     },
     {
         name: '学术科研',
-        path: 'scientific',
+        path: '/scientific',
         exact: true,
         children: [
             {
@@ -64,7 +64,7 @@ export const navBarConfig: Array<RouteConfig> = [
     },
     {
         name: '教育教学',
-        path: 'education',
+        path: '/education',
         exact: true,
         children: [
             {
@@ -101,7 +101,7 @@ export const navBarConfig: Array<RouteConfig> = [
     },
     {
         name: '党团建设',
-        path: 'organization',
+        path: '/organization',
         exact: true,
         children: [
             {
@@ -123,7 +123,7 @@ export const navBarConfig: Array<RouteConfig> = [
     },
     {
         name: '招生就业',
-        path: 'zsjy',
+        path: '/zsjy',
         exact: true,
         children: [
             {
@@ -145,7 +145,7 @@ export const navBarConfig: Array<RouteConfig> = [
     },
     {
         name: '学生天地',
-        path: 'student',
+        path: '/student',
         exact: true,
         children: [
             {
@@ -172,7 +172,7 @@ export const navBarConfig: Array<RouteConfig> = [
     },
     {
         name: '基地建设',
-        path: 'build',
+        path: '/build',
         exact: true,
         children: [
             {

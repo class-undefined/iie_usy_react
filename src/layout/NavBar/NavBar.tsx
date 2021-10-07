@@ -1,11 +1,12 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {NavBarItem} from './components/NavBarItem';
+import {NavBarItem} from './components/NavBarItem/NavBarItem';
 import './NavBar.scss'
 import {getMedia, OS} from '../../utils/media';
 import {navBarConfig} from '../../route/config';
-import MediaNavBar from './components/MediaNavBar';
-
+import MediaNavBar from './components/MediaNavBar/MediaNavBar';
+import {BreadCrumbs} from './components/BreadCrumbs/BreadCrumbs';
+import { withRouter } from "react-router";
 
 export const NavBar = () => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))
@@ -19,8 +20,8 @@ export const NavBar = () => {
     }, [media])
     return (
         <div className={'nav'}>
-            <div className={'nav-bar-item'} style={{width: '0px', height: '100%'}}/>
             {media === OS.pc || <MediaNavBar/>}
+            <BreadCrumbs/>
             {
                 media !== OS.pc || navBarConfig.map((barItem, key) => (
                     <NavBarItem key={key} {...barItem} />)
@@ -29,3 +30,4 @@ export const NavBar = () => {
         </div>
     );
 }
+export const Nav = withRouter(NavBar)

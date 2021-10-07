@@ -7,9 +7,9 @@ import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import {MouseEventHandler} from 'react';
-import {Logo} from '../../../components/Logo/Logo';
-import {navBarConfig} from '../../../route/config';
-import ExtendGroup from '../../../components/ExtendGroup/ExtendGroup';
+import {Logo} from '../../../../components/Logo/Logo';
+import {navBarConfig} from '../../../../route/config';
+import ExtendGroup from '../../../../components/ExtendGroup/ExtendGroup';
 import './MediaNavBar.scss'
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -65,7 +65,7 @@ export default function MediaNavBar() {
     );
     const anchor = 'left'
     return (
-        <div>
+        <div className={'MediaNavBar-container'}>
             <React.Fragment key={anchor}>
                 <MenuBtn onClick={toggleDrawer(anchor, true)}/>
                 <Drawer

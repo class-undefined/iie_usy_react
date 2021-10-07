@@ -17,7 +17,7 @@ export default function ExtendGroup(props: ExtendGroupProps) {
             <div>
                 {
                     props.children && props.children.map(routeConfig => {
-                        return <Button className={'typography-detail-btn'} onClick={props.onClick}>{routeConfig.name}</Button>
+                        return <Button key={routeConfig.name} className={'typography-detail-btn'} onClick={props.onClick}>{routeConfig.name}</Button>
                     })
                 }
             </div>

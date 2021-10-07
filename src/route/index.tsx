@@ -6,6 +6,7 @@ import {
     Link,
 } from 'react-router-dom';
 import {Home} from '../view/Home/Home';
+import {Nav} from '../layout/NavBar/NavBar';
 
 const routes = [
 
@@ -32,13 +33,16 @@ const routes = [
 export const SidebarExample = () => {
     return (
         <Router>
-            <Switch>
-                {routes.map((route, index) => {
-                    return (
-                        <Route key={index} path={route.path} exact={route.exact} children={<route.main/>}/>
-                    )
-                })}
-            </Switch>
+            <Nav/>
+            <main className={'main'}>
+                <Switch>
+                    {routes.map((route, index) => {
+                        return (
+                            <Route key={index} path={route.path} exact={route.exact} children={<route.main/>}/>
+                        )
+                    })}
+                </Switch>
+            </main>
         </Router>
     )
 }

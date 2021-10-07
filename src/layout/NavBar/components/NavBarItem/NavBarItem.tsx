@@ -3,12 +3,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBarItem.scss'
-import {RouteConfig} from '../../../route/config';
+import {RouteConfig} from '../../../../route/config';
 
-export interface NavBarItemProps {
-    title: string,
-    menuItems: Array<RouteConfig>
-}
 export const NavBarItem = (props: RouteConfig) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
