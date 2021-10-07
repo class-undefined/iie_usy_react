@@ -3,13 +3,11 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBarItem.scss'
-export interface MenuItemsProps {
-    name: string,
-    url: string
-}
+import {RouteConfig} from '../route/config';
+
 export interface NavBarItemProps {
     title: string,
-    menuItems: Array<MenuItemsProps>
+    menuItems: Array<RouteConfig>
 }
 export const NavBarItem = (props: NavBarItemProps) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
