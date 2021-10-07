@@ -19,7 +19,7 @@ export const NavBar = () => {
     }, [media])
     return (
         <div className={'nav'}>
-            <div className={'nav-bar-item'} style={{width: '0px', height: '100%'}}></div>
+            <div className={'nav-bar-item'} style={{width: '0px', height: '100%'}}/>
             {media === OS.pc || <TemporaryDrawer/>}
             {
                 media !== OS.pc || navBarConfig.map((barItem, key) => (
