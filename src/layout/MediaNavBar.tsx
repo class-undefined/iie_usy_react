@@ -12,7 +12,10 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import {MouseEventHandler} from 'react';
-
+import {Logo} from '../components/Logo/Logo';
+import {navBarConfig} from '../route/config';
+import ExtendGroup from '../components/ExtendGroup/ExtendGroup';
+import './MediaNavBar.scss'
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const MenuBtn = (props: {onClick: MouseEventHandler<any>}) => {
@@ -52,27 +55,14 @@ export default function TemporaryDrawer() {
         <Box
             sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+            <Logo/>
             <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
+                {navBarConfig.map((route, index) => (
+                    <ListItem className={'mui-list-item'} button key={route.name}>
+                        <ExtendGroup {...route} onClick={toggleDrawer(anchor, false)}/>
                     </ListItem>
                 ))}
             </List>
@@ -87,6 +77,10 @@ export default function TemporaryDrawer() {
                     anchor={anchor}
                     open={state[anchor]}
                     onClose={toggleDrawer(anchor, false)}
+                    variant="temporary"
+                    ModalProps={{
+                        keepMounted: true,
+                    }}
                 >
                     {list(anchor)}
                 </Drawer>

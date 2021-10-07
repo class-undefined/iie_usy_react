@@ -1,0 +1,13 @@
+.accordion-container {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #ccc;
+}
+.typography {
+  @import "src/common/utils";
+  @include font(0.775rem);
+}
+
+.typography-detail-btn {
+  color: black !important;
+}
