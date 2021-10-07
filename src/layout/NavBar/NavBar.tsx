@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {NavBarItem} from './NavBarItem';
+import {NavBarItem} from './components/NavBarItem';
 import './NavBar.scss'
-import {getMedia, OS} from '../utils/media';
-import TemporaryDrawer from './MediaNavBar';
-import {navBarConfig} from '../route/config';
+import {getMedia, OS} from '../../utils/media';
+import {navBarConfig} from '../../route/config';
+import MediaNavBar from './components/MediaNavBar';
 
 
 export const NavBar = () => {
@@ -20,7 +20,7 @@ export const NavBar = () => {
     return (
         <div className={'nav'}>
             <div className={'nav-bar-item'} style={{width: '0px', height: '100%'}}/>
-            {media === OS.pc || <TemporaryDrawer/>}
+            {media === OS.pc || <MediaNavBar/>}
             {
                 media !== OS.pc || navBarConfig.map((barItem, key) => (
                     <NavBarItem key={key} {...barItem} />)

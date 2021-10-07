@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-} from 'react-router-dom';
 import {SidebarExample} from './route';
-import {NavBar} from './layout/NavBar'
+import {NavBar} from './layout/NavBar/NavBar'
 import './App.scss'
 
 function App() {
