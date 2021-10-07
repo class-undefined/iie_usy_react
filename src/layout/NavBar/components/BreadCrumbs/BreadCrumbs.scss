@@ -1,0 +1,14 @@
+@import "src/common/utils";
+.BreadCrumbs-container {
+  display: inline-block;
+  height: 100%;
+  margin-left: 20px;
+  @include font(0.775rem);
+}
+.BreadCrumbs-container-children {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100%;
+}
