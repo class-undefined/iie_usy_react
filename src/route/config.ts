@@ -1,4 +1,5 @@
 import {NavBarItemProps} from '../layout/NavBarItem';
+
 export interface RouteConfig {
     name: string,
     path: string,
@@ -6,6 +7,7 @@ export interface RouteConfig {
     meta?: any,
     children?: Array<RouteConfig>
 }
+
 export const navBarConfig: Array<RouteConfig> = [
     {
         name: '学院概况',
@@ -16,22 +18,22 @@ export const navBarConfig: Array<RouteConfig> = [
             {
                 name: '学院简介',
                 path: 'aaa',
-                exact: true
+                exact: true,
             },
             {
                 name: '专业介绍',
                 path: 'bbb',
-                exact: true
+                exact: true,
             },
             {
                 name: '领导团队',
                 path: 'bbb',
-                exact: true
+                exact: true,
             },
             {
                 name: '师资力量',
                 path: 'bbb',
-                exact: true
+                exact: true,
             },
         ],
     },
