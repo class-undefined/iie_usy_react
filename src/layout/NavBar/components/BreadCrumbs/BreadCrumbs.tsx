@@ -3,10 +3,11 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import './BreadCrumbs.scss'
 import {useLocation, useHistory} from 'react-router-dom';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import {makeStyles} from '@mui/styles';
 import {Button, Chip, emphasize, styled} from '@mui/material';
+import {splitRoutePath} from '../../../../utils/router';
 const useTextStyle = makeStyles({
     li: {
         fontFamily: `"Roboto","Helvetica","Arial",sans-serif `,
@@ -41,9 +42,15 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 export const BreadCrumbs = () => {
     const textStyle = useTextStyle()
     const history = useHistory()
+    const {pathname} = history.location
+    const paths = splitRoutePath(pathname)
+    const [pathLabels, setPathLabels] = useState(paths)// 各层级的路由名称
     useEffect(() => {
-        console.log(history)
-    }, [history])
+        setPathLabels(pathLabels)
+    }, [pathLabels, paths])
+    const Children = () => {
+        return <Breadcrumbs>{(pathLabels.length === 0 &&  <StyledBreadcrumb label={'首页'}/>) || pathLabels.map((path, index) => <StyledBreadcrumb key={index} label={path}/>)}</Breadcrumbs>
+    }
     return (
         <div className={'BreadCrumbs-container'} role="presentation" onClick={handleClick}>
             <div className={'BreadCrumbs-container-children'}>
@@ -51,9 +58,7 @@ export const BreadCrumbs = () => {
                     maxItems={2}
                     className={textStyle.li}
                     aria-label="breadcrumb">
-                    <StyledBreadcrumb label={'Mui'}/>
-                    <StyledBreadcrumb label={'Core'}/>
-                    <StyledBreadcrumb label={'Breadcrumbs'}/>
+                    <Children/>
                 </Breadcrumbs>
             </div>
         </div>

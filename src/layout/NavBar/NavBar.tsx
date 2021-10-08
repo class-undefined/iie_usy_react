@@ -8,7 +8,7 @@ import MediaNavBar from './components/MediaNavBar/MediaNavBar';
 import {BreadCrumbs} from './components/BreadCrumbs/BreadCrumbs';
 import { withRouter } from "react-router";
 
-export const NavBar = () => {
+export const NavBar = (props: any) => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))
     useEffect(() => {
         window.addEventListener('resize', (e: Event) => {
@@ -16,7 +16,8 @@ export const NavBar = () => {
             const {outerWidth} = currentTarget as any
             setMedia(getMedia(outerWidth))
         })
-        console.log(media);
+        console.log(props);
+        console.log(`设备类型: ${media}`);
     }, [media])
     return (
         <div className={'nav'}>
