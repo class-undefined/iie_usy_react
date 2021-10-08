@@ -4,6 +4,10 @@
   height: 100%;
   margin-left: 20px;
   @include font(0.775rem);
+  @media screen and (max-width: 293px){
+    //设备宽度小于293像素的话就不显示面包屑
+    display: none;
+  }
 }
 .BreadCrumbs-container-children {
   display: flex;
