@@ -8,6 +8,11 @@ export interface RouteConfig {
 
 export const navBarConfig: Array<RouteConfig> = [
     {
+        name: '首页',
+        path: '/',
+        exact: true
+    },
+    {
         name: '学院概况',
         path: '/info',
         exact: true,
@@ -15,22 +20,22 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '学院简介',
-                path: 'aaa',
+                path: '/introduction',
                 exact: true,
             },
             {
                 name: '专业介绍',
-                path: 'bbb',
+                path: '/structure',
                 exact: true,
             },
             {
                 name: '领导团队',
-                path: 'bbb',
+                path: '/leadership',
                 exact: true,
             },
             {
                 name: '师资力量',
-                path: 'bbb',
+                path: '/teachers',
                 exact: true,
             },
         ],
@@ -42,22 +47,22 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '科研管理',
-                path: 'ccc',
+                path: '/management',
                 exact: true,
             },
             {
                 name: '科研动态',
-                path: 'dddd',
+                path: '/dynamic',
                 exact: true,
             },
             {
                 name: '学科前沿',
-                path: 'dddd',
+                path: '/advanced',
                 exact: true,
             },
             {
                 name: '科研成果',
-                path: 'dddd',
+                path: '/achievement',
                 exact: true,
             },
         ],
@@ -69,32 +74,32 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '管理制度',
-                path: 'ccc',
+                path: '/management',
                 exact: true,
             },
             {
                 name: '专业建设',
-                path: 'dddd',
+                path: '/pro-build',
                 exact: true,
             },
             {
                 name: '课程建设',
-                path: 'dddd',
+                path: '/class-build',
                 exact: true,
             },
             {
                 name: '教学改革',
-                path: 'dddd',
+                path: '/reform',
                 exact: true,
             },
             {
                 name: '教学成果',
-                path: 'dddd',
+                path: '/achievement',
                 exact: true,
             },
             {
                 name: '实验室 ',
-                path: 'dddd',
+                path: '/laboratory',
                 exact: true,
             },
         ],
@@ -106,17 +111,17 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '党建工作',
-                path: 'ccc',
+                path: '/party-work',
                 exact: true,
             },
             {
                 name: '共青团工作',
-                path: 'dddd',
+                path: '/youth-work',
                 exact: true,
             },
             {
                 name: '工会活动',
-                path: 'dddd',
+                path: '/union-activity',
                 exact: true,
             },
         ],
@@ -128,17 +133,17 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '招生信息',
-                path: 'ccc',
+                path: '/info',
                 exact: true,
             },
             {
                 name: '就业动态',
-                path: 'dddd',
+                path: '/activity',
                 exact: true,
             },
             {
                 name: '校友会',
-                path: 'dddd',
+                path: '/alumni-association',
                 exact: true,
             },
         ],
@@ -150,22 +155,22 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '学生活动',
-                path: 'ccc',
+                path: '/activity',
                 exact: true,
             },
             {
                 name: '学习风采',
-                path: 'dddd',
+                path: '/highlight',
                 exact: true,
             },
             {
                 name: '学科竞赛',
-                path: 'dddd',
+                path: '/competition',
                 exact: true,
             },
             {
                 name: '学生社团',
-                path: 'dddd',
+                path: '/societies',
                 exact: true,
             },
         ],
@@ -177,22 +182,22 @@ export const navBarConfig: Array<RouteConfig> = [
         children: [
             {
                 name: '网课基地',
-                path: 'ccc',
+                path: '/online-class',
                 exact: true,
             },
             {
                 name: '实训基地',
-                path: 'dddd',
+                path: '/training-base',
                 exact: true,
             },
             {
                 name: '双创基地',
-                path: 'dddd',
+                path: '/innovation-base',
                 exact: true,
             },
             {
                 name: '应用研发',
-                path: 'dddd',
+                path: '/app-dev',
                 exact: true,
             },
         ],

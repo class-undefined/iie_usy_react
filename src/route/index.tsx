@@ -9,7 +9,6 @@ import {Home} from '../view/Home/Home';
 import {Nav} from '../layout/NavBar/NavBar';
 
 const routes = [
-
     {
         path: '/bubblegum',
         exact: true,
@@ -30,19 +29,26 @@ const routes = [
     },
 
 ]
+const Main = (props: any) => {
+    return (
+        <div>
+            <Nav/>
+            <main className={'main'}>
+                {props.children}
+            </main>
+        </div>
+    )
+}
 export const SidebarExample = () => {
     return (
         <Router>
-            <Nav/>
-            <main className={'main'}>
-                <Switch>
-                    {routes.map((route, index) => {
-                        return (
-                            <Route key={index} path={route.path} exact={route.exact} children={<route.main/>}/>
-                        )
-                    })}
-                </Switch>
-            </main>
+            <Switch>
+                {routes.map((route, index) => {
+                    return (
+                        <Route key={index} path={route.path} exact={route.exact} children={<Main><route.main/></Main>}/>
+                    )
+                })}
+            </Switch>
         </Router>
     )
 }

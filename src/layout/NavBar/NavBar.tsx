@@ -24,7 +24,7 @@ export const NavBar = (props: any) => {
             {media === OS.pc || <MediaNavBar/>}
             <BreadCrumbs/>
             {
-                media !== OS.pc || navBarConfig.map((barItem, key) => (
+                media !== OS.pc || navBarConfig.filter(barItem => {return barItem.children && barItem.children.length !== 0}).map((barItem, key) => (
                     <NavBarItem key={key} {...barItem} />)
                 ).reverse()
             }

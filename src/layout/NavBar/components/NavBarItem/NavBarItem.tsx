@@ -8,8 +8,16 @@ import {RouteConfig} from '../../../../route/config';
 export const NavBarItem = (props: RouteConfig) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        if (!anchorEl) setAnchorEl(event.currentTarget);
+
+    const showMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+        if (!anchorEl) setAnchorEl(event.currentTarget)
+    }
+    const redirect = (path: string) => {
+        return null
+    }
+    const handleClick = (props: RouteConfig) => {
+        if (props.children && props.children.length !== 0) return showMenu
+        return () => {redirect(props.path)}
     }
     const handleClose = (event: React.MouseEvent<HTMLDivElement> | any) => {
         if (anchorEl) setAnchorEl(null);
@@ -21,20 +29,18 @@ export const NavBarItem = (props: RouteConfig) => {
                 aria-controls="basic-menu"
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
+                onClick={handleClick(props)}
             >
                 {props.name}
             </Button>
             <Menu
-                id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
                 onClick={(e) => {return handleClose(e)}}
                 MenuListProps={{
                     'aria-labelledby': 'basic-button',
-                }}
-            >
-                {(props.children as RouteConfig[]).map((menuItem, index) => {
+                }}>
+                {props.children && (props.children as RouteConfig[]).map((menuItem, index) => {
                     return (
                         <MenuItem className={'menu-item'} style={{textAlign: 'center'}} sx={{ width: 100 }} key={index} onClick={(e) => {return handleClose(e)}}>
                             {menuItem.name}
