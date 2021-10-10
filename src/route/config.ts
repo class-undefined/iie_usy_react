@@ -1,8 +1,12 @@
+import React from 'react';
+import {Home} from '../view/Home/Home';
+
 export interface RouteConfig {
     name: string,
     path: string,
     exact: boolean,
     meta?: any,
+    component?: React.Component | React.FC,
     children?: Array<RouteConfig>
 }
 
@@ -10,12 +14,13 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '首页',
         path: '/',
-        exact: true
+        exact: true,
+        component: Home
     },
     {
         name: '学院概况',
         path: '/info',
-        exact: true,
+        exact: false,
         meta: {},
         children: [
             {
@@ -43,7 +48,7 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '学术科研',
         path: '/scientific',
-        exact: true,
+        exact: false,
         children: [
             {
                 name: '科研管理',
@@ -70,7 +75,7 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '教育教学',
         path: '/education',
-        exact: true,
+        exact: false,
         children: [
             {
                 name: '管理制度',
@@ -107,7 +112,7 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '党团建设',
         path: '/organization',
-        exact: true,
+        exact: false,
         children: [
             {
                 name: '党建工作',
@@ -129,7 +134,7 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '招生就业',
         path: '/zsjy',
-        exact: true,
+        exact: false,
         children: [
             {
                 name: '招生信息',
@@ -151,7 +156,7 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '学生天地',
         path: '/student',
-        exact: true,
+        exact: false,
         children: [
             {
                 name: '学生活动',
@@ -178,7 +183,7 @@ export const navBarConfig: Array<RouteConfig> = [
     {
         name: '基地建设',
         path: '/build',
-        exact: true,
+        exact: false,
         children: [
             {
                 name: '网课基地',

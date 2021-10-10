@@ -1,54 +1,14 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
+    BrowserRouter as Router
 } from 'react-router-dom';
-import {Home} from '../view/Home/Home';
-import {Nav} from '../layout/NavBar/NavBar';
+import {NavigationGuards} from './NavigationGuards';
+import {navBarConfig} from './config';
 
-const routes = [
-    {
-        path: '/bubblegum',
-        exact: true,
-        sidebar: () => <div>bubblegum!</div>,
-        main: () => <h2>Bubblegum</h2>,
-    },
-    {
-        path: '/shoelaces',
-        exact: true,
-        sidebar: () => <div>shoelaces!</div>,
-        main: () => <h2>Shoelaces</h2>,
-    },
-    {
-        path: '/',
-        exact: true,
-        sidebar: () => <div>home!</div>,
-        main: () => <Home/>,
-    },
-
-]
-const Main = (props: any) => {
-    return (
-        <div>
-            <Nav/>
-            <main className={'main'}>
-                {props.children}
-            </main>
-        </div>
-    )
-}
 export const SidebarExample = () => {
     return (
         <Router>
-            <Switch>
-                {routes.map((route, index) => {
-                    return (
-                        <Route key={index} path={route.path} exact={route.exact} children={<Main><route.main/></Main>}/>
-                    )
-                })}
-            </Switch>
+            <NavigationGuards routes={navBarConfig}/>
         </Router>
     )
 }
