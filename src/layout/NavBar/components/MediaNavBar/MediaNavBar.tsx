@@ -55,11 +55,14 @@ export default function MediaNavBar() {
             <Logo/>
             <Divider />
             <List>
-                {navBarConfig.map((route, index) => (
-                    <ListItem className={'mui-list-item'} button key={route.name}>
-                        <ExtendGroup {...route} onClick={toggleDrawer(anchor, false)}/>
-                    </ListItem>
-                ))}
+                {navBarConfig.map((route, index) => {
+                    const Children = route.children && route.children.length !== 0 ? <ExtendGroup {...route} onClick={toggleDrawer(anchor, false)}/> : null
+                    return (
+                        <ListItem className={'mui-list-item'} button key={route.name}>
+                            <ExtendGroup {...route} onClick={toggleDrawer(anchor, false)}/>
+                        </ListItem>
+                    )
+                })}
             </List>
         </Box>
     );
