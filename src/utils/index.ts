@@ -14,5 +14,15 @@ export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
             pack = [] as Array<T>
         }
     }
-    return ans
+    /* 出现空白元素填充null */
+    return ans.map(array => {
+        const {length} = array
+        if (size === 3) {
+            if (length === 1) return [null, array[0], null]
+            else if (length === 2) return [array[0], null, array[1]]
+        } else if(size === 2) {
+            if (length === 1) return [...array, null]
+        }
+        return array
+    })
 }

@@ -10,12 +10,9 @@ const isPass = (route: RouteConfig | undefined) => {
 }
 const Main = (props: {component: React.Component | React.FC}) => {
     return (
-        <div>
-            <Nav/>
-            <main className={'main'}>
-                {props.component}
-            </main>
-        </div>
+        <main className={'main'}>
+            {props.component}
+        </main>
     )
 }
 export const NavigationGuards = (props: {routes: Array<RouteConfig>}) => {

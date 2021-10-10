@@ -1,6 +1,20 @@
-@mixin font($fontSize:0.875rem) {
+@mixin font($fontSize:0.875rem, $color: #000) {
   font-family: "Roboto","Helvetica","Arial",sans-serif !important;
   font-weight: 500 !important;
   font-size: $fontSize !important;
   line-height: 1.75 !important;
+  color: $color !important;
+}
+@mixin block() {
+  margin-top: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+}
+.font-large {
+  @include font(1rem)
+}
+
+.font-primary {
+  @include font(0.875rem, #3a3a3a)
 }

@@ -1,9 +1,8 @@
+@import "src/common/utils";
 .carousel-container {
   margin: 0 auto;
   margin-top: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  border-radius: 3px;
+  @include block();
 }
 @mixin media {
   @media screen and (min-width: 1024px){
@@ -24,9 +23,9 @@
   display: flex;
   justify-content: center;
 }
-.img {
+.img, .img-fill {
   display: inline-block;
-  object-fit: fill;
+  object-fit: fill !important;
   border-radius: 5px;
   @include media ;
 }

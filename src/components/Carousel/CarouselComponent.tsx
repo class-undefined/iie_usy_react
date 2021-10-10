@@ -9,13 +9,15 @@ import img2 from '../../img/a8b5410360d15171e5c316b8198e51e5.jpg'
 import img3 from '../../img/c4594b90050984601f0e44b9d286bfb1.jpg'
 import img4 from '../../img/e02f5dd454704d3006a7c9d858db1ec0.jpg'
 import img5 from '../../img/ee6521226e4d4438b42a7b0da5058c68.jpg'
+
 export interface CarouselItemProps {
     name?: string,
     url: string,
     description?: string
 }
+
 const mediaSize = [768, 1024]
-const Item = (props: { imageGroup: Array<CarouselItemProps> }) => {
+const Item = (props: { imageGroup: Array<CarouselItemProps | null> }) => {
     return (
         <Box className={'carousel-card'}
              sx={{
@@ -25,13 +27,22 @@ const Item = (props: { imageGroup: Array<CarouselItemProps> }) => {
                      m: 1,
                  },
              }}>
-            {props.imageGroup.map((image, key) =>
-                <div key={key} className={'carousel-card-container'} >
-                    <CardMedia component={'img'} className={'img'}
-                               src = {image.url}
-                    />
-                </div>,
-            )}
+            {
+                props.imageGroup.map((image, key) => {
+                    if (image) return (
+                        <div key={key} className={'carousel-card-container'}>
+                            <CardMedia component={'img'} className={'img'}
+                                       src={image.url}
+                            />
+                        </div>
+                    )
+                    return (
+                        <div key={key} className={'carousel-card-container'}>
+                            <div className={'img'}/>
+                        </div>
+                    )
+                })
+            }
         </Box>
     )
 }
@@ -66,12 +77,12 @@ export const CarouselComponent = (props: any) => {
     ]
     const getSize = (media: OS) => {
         if (media === OS.mobile) return 1
-        else if(media === OS.pad) return 2
+        else if (media === OS.pad) return 2
         else return 3
     }
     const getMedia = (width: number) => {
         if (width <= mediaSize[0]) return OS.mobile
-        else if(width < mediaSize[1]) return OS.pad
+        else if (width < mediaSize[1]) return OS.pad
         else return OS.pc
     }
     const [media, setMedia] = useState(getMedia(window.outerWidth))
