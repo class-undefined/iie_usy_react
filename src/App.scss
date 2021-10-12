@@ -4,6 +4,9 @@ body {
 .App {}
 .main {
   margin: 0 auto;
+  position: absolute;
+  top: 60px;
+  left: 2%;
   //background-color: #fff;
   border-radius: 5px;
   height: calc(100vh - 60px);

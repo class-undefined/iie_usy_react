@@ -1,7 +1,10 @@
 .nav {
   height: 60px;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
   border-bottom: 1px solid rgba(224, 224, 224, 1);
   border-radius: 3px;
   background-color: #fff;
-  padding: 0 2% 0 2%;
+  //padding: 0 2% 0 2%;
 }
