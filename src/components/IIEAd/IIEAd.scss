@@ -1,0 +1,13 @@
+.iie-ad-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 1024px){
+    width: 90% !important;
+    height: 50% !important;
+  }
+  @media screen and (min-width: 1024px){
+    width: 800px !important;
+    height: 460px !important;
+  }
+}

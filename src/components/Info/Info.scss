@@ -1,0 +1,18 @@
+.galaxy-info {
+  //background-color: #000 !important;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.galaxy-info svg {
+  font-size: 100px !important;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}

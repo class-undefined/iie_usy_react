@@ -15,7 +15,7 @@ export const CardContainer = (props: CardContainerProps) => {
             <Button className={'card-container-title'}>{props.title}</Button>
             <div className={'card-container-body'}>
                 {
-                    props.images.map(image => {return <ActionAreaCard key={image.description} {...image} height={120} maxWidth={210} className={'card-container-body-item'} />})
+                    props.images.map(image => {return <ActionAreaCard key={image.description} {...image} className={'card-container-body-item'} />})
                 }
             </div>
         </Box>

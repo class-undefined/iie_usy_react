@@ -9,6 +9,7 @@ import img2 from '../../img/a8b5410360d15171e5c316b8198e51e5.jpg'
 import img3 from '../../img/c4594b90050984601f0e44b9d286bfb1.jpg'
 import img4 from '../../img/e02f5dd454704d3006a7c9d858db1ec0.jpg'
 import img5 from '../../img/ee6521226e4d4438b42a7b0da5058c68.jpg'
+import {Info} from '../Info/Info';
 
 export interface CarouselItemProps {
     name?: string,
@@ -38,7 +39,7 @@ const Item = (props: { imageGroup: Array<CarouselItemProps | null> }) => {
                     )
                     return (
                         <div key={key} className={'carousel-card-container'}>
-                            <div className={'img'}/>
+                            <Info/>
                         </div>
                     )
                 })

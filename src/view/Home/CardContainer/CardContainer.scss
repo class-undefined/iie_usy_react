@@ -2,17 +2,25 @@
 .card-container {
   @include block();
   padding: 0 20px 20px 20px;
+  @media screen and (min-width: 768px){
+    max-width: 720px;
+  }
 }
 .card-container-title {
   @include font();
-  //font-weight: 300 !important;
   margin-left: 20px;
 }
 .card-container-body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media screen and (max-width: 768px){
+    flex-direction: column;
+  }
 }
 .card-container-body-item {
   flex: 1 1 !important;
+  @media screen and (max-width: 768px){
+    max-width: none !important;
+  }
 }
