@@ -10,14 +10,20 @@
   border-radius: 3px;
 }
 @mixin block() {
-  margin-top: 5px;
+  margin-top: 10px;
   background-color: #fff;
   @include radius()
 }
 .font-large {
-  @include font(1rem)
+  @include font(1rem);
+  @media screen and (max-width: 281px){
+    @include font(0.3rem);
+  }
 }
 
 .font-primary {
-  @include font(0.875rem, #3a3a3a)
+  @include font(0.875rem, #3a3a3a);
+  @media screen and (max-width: 281px){
+    @include font(0.2rem, #3a3a3a);
+  }
 }

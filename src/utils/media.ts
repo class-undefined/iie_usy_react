@@ -1,4 +1,5 @@
 export enum OS  {
+    iphoneX,
     mobile,
     pad,
     pc
@@ -8,7 +9,8 @@ export enum OS  {
  * @param width
  */
 export const getMedia = (width: number) => {
-    if (width <= 768) return OS.mobile
+    if (width <= 375) return OS.iphoneX
+    else if (width <= 768) return OS.mobile
     else if(width < 1024) return OS.pad
     else return OS.pc
 }
