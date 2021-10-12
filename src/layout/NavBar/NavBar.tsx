@@ -20,7 +20,7 @@ export const NavBar = (props: any) => {
         console.log(`设备类型: ${media}`);
     }, [media])
     return (
-        <div className={'nav'}>
+        <nav className={'nav'}>
             {media === OS.pc || <MediaNavBar/>}
             <BreadCrumbs/>
             {
@@ -28,7 +28,7 @@ export const NavBar = (props: any) => {
                     <NavBarItem key={key} {...barItem} />)
                 ).reverse()
             }
-        </div>
+        </nav>
     );
 }
 export const Nav = withRouter(NavBar)

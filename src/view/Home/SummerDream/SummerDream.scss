@@ -1,0 +1,13 @@
+@import "src/common/utils";
+.SummerDream {
+  @include block();
+  padding: 0 20px 20px 20px;
+  height: 257px;
+  display: inline-block;
+  vertical-align:top;
+  margin-left: 20px;
+  @media screen and (max-width: 759px){
+    display: none;
+  }
+
+}

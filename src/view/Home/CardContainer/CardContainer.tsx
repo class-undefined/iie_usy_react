@@ -3,6 +3,7 @@ import {ActionAreaCard} from '../../../components/ActionAreaCard/ActionAreaCard'
 import './CardContainer.scss'
 import {useEffect, useState} from 'react';
 import {getMedia, OS} from '../../../utils/media';
+import {SummerDream} from '../SummerDream/SummerDream';
 
 export interface ImageProps {
     src: string,
@@ -10,7 +11,8 @@ export interface ImageProps {
 }
 export interface CardContainerProps {
     title: string,
-    images: Array<ImageProps>
+    images: Array<ImageProps>,
+    className?: string
 }
 export const CardContainer = (props: CardContainerProps) => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))
@@ -38,7 +40,7 @@ export const CardContainer = (props: CardContainerProps) => {
         })
     }, [media])
     return (
-        <Box className={'card-container'}>
+        <Box className={`card-container ${props.className}`}>
             <Button className={'card-container-title'}>{props.title}</Button>
             <div className={'card-container-body'}>
                 {

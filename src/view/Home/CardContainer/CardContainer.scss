@@ -2,8 +2,13 @@
 .card-container {
   @include block();
   padding: 0 20px 20px 20px;
+  display: block;
+  vertical-align:top;
   @media screen and (min-width: 769px){
-    max-width: 720px;
+    display: inline-block;
+    flex: 1 1;
+    width: 720px;
+    height: 267px;
   }
 }
 .card-container-title {

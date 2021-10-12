@@ -1,6 +1,7 @@
 import {CarouselComponent} from '../../components/Carousel/CarouselComponent';
 import {CardContainer, CardContainerProps} from './CardContainer/CardContainer';
-
+import {SummerDream} from './SummerDream/SummerDream';
+import './Home.scss'
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -24,6 +25,7 @@ export const Home = () => {
         <div>
             <CarouselComponent/>
             <CardContainer {...cardContainerProps}/>
+            <SummerDream height={267}/>
         </div>
     )
 }
