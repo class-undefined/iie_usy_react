@@ -1,0 +1,9 @@
+.list-item-text {
+  .MuiListItemText-primary {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: 300;
+    font-size: 15px;
+  }
+}
