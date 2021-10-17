@@ -26,3 +26,58 @@ export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
         return array
     })
 }
+
+/**
+ * 堆排序
+ * @param items 需要排序的数组
+ * @param compare 比较器
+ */
+export const sort = <T>(items: Array<T>, compare: (a: T, b:T) => boolean) => {
+    const array = [] as Array<T>
+    const swap = (i: number, j: number) => {
+        const t = array[i]
+        array[i] = array[j]
+        array[j] = t
+    }
+    const up = (k: number) => {
+        while (k > 0 && compare(array[k], array[parseInt((((k + 1) >> 1) - 1 ) + '')])) { // 右移一位是 / 2
+            swap(k , parseInt((((k + 1) >> 1) - 1) + ''))
+            k = parseInt((((k + 1) >> 1) - 1 ) + '')
+        }
+    }
+    const down = (k: number) => {
+        while ((k << 1) + 1 < array.length) {
+            let i  = (k << 1) + 1 // 左移 1 是乘以两倍
+            if (i < array.length - 1 && !compare(array[i], array[i + 1])) i++ // 当前为 k 的左节点，若右节点比他大 则游标右移
+            if (compare(array[k], array[i])) break
+            swap(k, i)
+            k = i
+        }
+    }
+    const insert = (e: T) => {
+        array.push(e)
+        up(array.length - 1)
+    }
+    const pop = () => {
+        const item = array[0]
+        swap(0, array.length - 1)
+        array.pop()
+        down(0)
+        return item
+    }
+    items.forEach(item => insert(item))
+    const ans = [] as Array<T>
+    const {length} = array
+    while (ans.length !== length){
+        ans.push(pop())
+    }
+    return ans
+}
+
+export const ArrayEqual = <T>(s1: Array<T>, s2: Array<T>) => {
+    if (s1.length !== s2.length) return false
+    for (let i = 0; i < s1.length; i++) {
+        if (s1[i] !== s2[i]) return false
+    }
+    return true
+}
