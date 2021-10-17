@@ -4,6 +4,18 @@ import {ActiveList, ActiveListItem} from '../../../components/ActiveList/ActiveL
 
 const activeList: Array<ActiveListItem> = [{
     content: '信息与智能工程学院——最美程序员线上评比活动  ',
+    date: 'Oct 17, 2021',
+    link: 'https://www.baidu.com/',
+}, {
+    content: '你好',
+    date: 'Jan 9, 2014',
+    link: 'https://www.baidu.com/',
+}, {
+    content: '你好',
+    date: 'Jan 9, 2014',
+    link: 'https://www.baidu.com/',
+}, {
+    content: '你好',
     date: 'Jan 9, 2014',
     link: 'https://www.baidu.com/',
 }, {
