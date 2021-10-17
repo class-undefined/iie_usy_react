@@ -4,11 +4,21 @@
   padding: 0 20px 20px 20px;
   display: block;
   vertical-align:top;
-  @media screen and (min-width: 769px){
+
+  @media screen and (min-width: 769px){  /*>=769px*/
     display: inline-block;
-    flex: 1 1;
+    flex: 4 1;
     width: 720px;
     height: 267px;
+    .card-container-body-item:nth-child(2) {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+  }
+  @media screen and (max-width: 1024px) { /* <= 1023px*/
+    //width: 95.5%;
+    width: auto;
   }
 }
 .card-container-title {

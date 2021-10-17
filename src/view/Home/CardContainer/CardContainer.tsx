@@ -17,6 +17,7 @@ export interface CardContainerProps {
 export const CardContainer = (props: CardContainerProps) => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))
     const getWidth = (width: number) => {
+        if (width > 1200) return 275
         if (width > 768) return 220
         else return undefined
     }

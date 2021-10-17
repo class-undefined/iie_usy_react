@@ -6,8 +6,11 @@
   display: inline-block;
   vertical-align:top;
   margin-left: 20px;
-  @media screen and (max-width: 759px){
+  @media screen and (max-width: 1601px){
     display: none;
+  }
+  @media screen and (min-width: 760px) and (max-width: 1025px){
+    width: 200px;
   }
 
 }

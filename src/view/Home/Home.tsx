@@ -2,6 +2,7 @@ import {CarouselComponent} from '../../components/Carousel/CarouselComponent';
 import {CardContainer, CardContainerProps} from './CardContainer/CardContainer';
 import {SummerDream} from './SummerDream/SummerDream';
 import './Home.scss'
+import {MoreActivity} from './MoreActivity/MoreActivity';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -24,8 +25,12 @@ export const Home = () => {
     return (
         <div>
             <CarouselComponent/>
-            <CardContainer {...cardContainerProps}/>
-            <SummerDream height={267}/>
+            <div className={'home-group1'}>
+                <CardContainer {...cardContainerProps}/>
+                <SummerDream height={267}/>
+                <MoreActivity/>
+            </div>
+
         </div>
     )
 }
