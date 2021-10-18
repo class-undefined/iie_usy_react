@@ -10,6 +10,7 @@ import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Typography from '@mui/material/Typography';
 import {ListItemButton, styled, Tooltip, tooltipClasses, TooltipProps} from '@mui/material';
 import './ActiveList.scss'
+import {useKTooltip} from '../KTooltip/KTooltip';
 
 export interface ActiveListItem {
     status?: string, // 状态：置顶、热门？
@@ -36,8 +37,9 @@ const BootstrapTooltip = styled(({className, ...props}: TooltipProps) => (
 
 export const ActiveList = (props: ActiveListProps) => {
     /* 数组权重排序 */
+    const DarkTooltip = useKTooltip('light')
     return (
-        <List className={'active-list'} sx={{width: '100%', bgcolor: 'background.paper', overflow: 'auto', maxHeight: 200}}>
+        <List className={'active-list'} sx={{width: '100%', bgcolor: 'background.paper', overflow: 'auto', maxHeight: 204}}>
             {
                 props.items.map((activeListItem, index) => {
                     return (
@@ -48,10 +50,10 @@ export const ActiveList = (props: ActiveListProps) => {
                                         <ImageIcon/>
                                     </Avatar>
                                 </ListItemAvatar>
-                                <BootstrapTooltip title={activeListItem.content} placement="top">
+                                <DarkTooltip title={activeListItem.content} placement="top">
                                     <ListItemText className={'list-item-text'} primary={activeListItem.content}
                                                   secondary={activeListItem.date || 'Oct 17, 2021'}/>
-                                </BootstrapTooltip>
+                                </DarkTooltip>
                             </ListItemButton>
                             {index === props.items.length - 1 ? false : <Divider variant="inset" component="li"/>}
                         </div>
