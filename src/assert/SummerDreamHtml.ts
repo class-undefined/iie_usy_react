@@ -31,7 +31,7 @@ export const SummerDreamHtml = `<!DOCTYPE html>
 
         .sea {
             position: absolute;
-            left: -170px;
+            left: -155px;
             top: -100px;
         }
         .sea .surface {
