@@ -50,7 +50,7 @@ export const ActiveList = (props: ActiveListProps) => {
                                         <ImageIcon/>
                                     </Avatar>
                                 </ListItemAvatar>
-                                <DarkTooltip title={activeListItem.content} placement="top">
+                                <DarkTooltip title={activeListItem.content} placement="top-start">
                                     <ListItemText className={'list-item-text'} primary={activeListItem.content}
                                                   secondary={activeListItem.date || 'Oct 17, 2021'}/>
                                 </DarkTooltip>
