@@ -3,6 +3,8 @@ import {CardContainer, CardContainerProps} from './CardContainer/CardContainer';
 import {SummerDream} from './SummerDream/SummerDream';
 import './Home.scss'
 import {MoreActivity} from './MoreActivity/MoreActivity';
+import {Chip, Divider} from '@mui/material';
+import {SloganDivider} from './SloganDivider/SloganDivider';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -30,7 +32,7 @@ export const Home = () => {
                 <SummerDream height={267}/>
                 <MoreActivity/>
             </div>
-
+            <SloganDivider/>
         </div>
     )
 }
