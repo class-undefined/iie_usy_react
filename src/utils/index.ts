@@ -27,6 +27,11 @@ export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
     })
 }
 
+const baseTitle = 'Dev - 信息与智能工程学院'
+
+export const setTitle = (title: string) => {
+    document.title = `${baseTitle} - ${title}`
+}
 /**
  * 堆排序
  * @param items 需要排序的数组

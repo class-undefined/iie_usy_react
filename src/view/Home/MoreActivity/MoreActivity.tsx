@@ -7,15 +7,11 @@ const activeList: Array<ActiveListItem> = [{
     date: 'Oct 17, 2021',
     link: 'https://www.baidu.com/',
 }, {
-    content: '你好',
-    date: 'Jan 9, 2014',
+    content: '创建 USY-React-Pro',
+    date: 'Oct 4, 2021',
     link: 'https://www.baidu.com/',
 }, {
-    content: '你好',
-    date: 'Jan 9, 2014',
-    link: 'https://www.baidu.com/',
-}, {
-    content: '你好',
+    content: 'Hello Word',
     date: 'Jan 9, 2014',
     link: 'https://www.baidu.com/',
 }, {

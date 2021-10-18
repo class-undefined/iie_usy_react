@@ -3,6 +3,7 @@ import {Route, useLocation} from 'react-router-dom';
 import {NotFind} from '../view/404/NotFind';
 import {Nav} from '../layout/NavBar/NavBar';
 import React from 'react';
+import {setTitle} from '../utils';
 
 const isPass = (route: RouteConfig | undefined) => {
     if (route && route.component) return true
@@ -24,6 +25,8 @@ export const NavigationGuards = (props: {routes: Array<RouteConfig>}) => {
     console.log(`路由守卫检测路由是否匹配：route: 【${pathname}】 | ${pass}`);
     if (pass) {
         const Component = (targetRoute as RouteConfig).component// 如果pass 则不会为空
+        // @ts-ignore
+        setTitle(targetRoute.name)
         // @ts-ignore
         return <Route exact={targetRoute.exact} path={targetRoute.path} render={() => <Main component={<Component/>}/>}/>
     }
