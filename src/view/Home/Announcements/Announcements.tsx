@@ -1,9 +1,6 @@
-import {Box, Button} from '@mui/material';
-import './MoreActivity.scss'
-import {ActiveList, ActiveListItem} from '../../../components/ActiveList/ActiveList';
 import {ListCard, ListCardProps} from '../../../components/ListCard/ListCard';
-
-const activeList: Array<ActiveListItem> = [{
+import {ActiveListItem} from '../../../components/ActiveList/ActiveList';
+const items: Array<ActiveListItem> = [{
     content: '信息与智能工程学院——最美程序员线上评比活动 ',
     date: 'Oct 17, 2021',
     link: 'https://www.baidu.com/',
@@ -21,9 +18,9 @@ const activeList: Array<ActiveListItem> = [{
     link: 'https://www.baidu.com/',
 }]
 const data: ListCardProps = {
-    title: '更多动态',
-    items: activeList
+    title: '通知公告',
+    items
 }
-export const MoreActivity = () => {
-    return <ListCard className={'more-activity'} {...data}/>
+export const Announcements = () => {
+    return <ListCard {...data}/>
 }

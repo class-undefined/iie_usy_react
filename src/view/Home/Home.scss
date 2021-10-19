@@ -1,8 +1,22 @@
-.home-group1 {
+.home-group {
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 1024px){
     display: flex;
     flex-direction: row;
+  }
+}
+
+.home-cards {
+  margin-top: 5px;
+  @media screen and (min-width: 1024px){
+    justify-content: space-between;
+  }
+}
+
+.home-cards-items {
+  @media screen and (min-width: 1024px){
+    flex: 1;
+    max-width: 500px;
   }
 }

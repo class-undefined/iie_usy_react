@@ -5,6 +5,9 @@ import './Home.scss'
 import {MoreActivity} from './MoreActivity/MoreActivity';
 import {Chip, Divider} from '@mui/material';
 import {SloganDivider} from './SloganDivider/SloganDivider';
+import {Announcements} from './Announcements/Announcements';
+import {HomeData} from './data';
+import {ListCard} from '../../components/ListCard/ListCard';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -21,18 +24,26 @@ const cardContainerProps: CardContainerProps = {
             description: '信息与智能工程学院——最美程序员线上评比活动',
         },
     ],
-
 }
 export const Home = () => {
     return (
         <div>
             <CarouselComponent/>
-            <div className={'home-group1'}>
+            <div className={'home-group'}>
                 <CardContainer {...cardContainerProps}/>
                 <SummerDream height={267}/>
                 <MoreActivity/>
             </div>
             <SloganDivider/>
+            <div className={'home-group home-cards'}>
+                {
+                    HomeData.map((card, index) => {
+                        return (
+                            <ListCard className={'home-cards-items'} key={card.title} {...card}/>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }
