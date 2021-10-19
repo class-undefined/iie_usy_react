@@ -1,0 +1,20 @@
+@import "src/common/utils";
+.list-card {
+  @include block();
+  padding: 0 20px 20px 20px;
+  vertical-align:top;
+  display: block;
+  height: 267px;
+  @media screen and (min-width: 1024px){
+    max-width: 420px;
+    margin-left: 20px;
+  }
+  @media screen and (min-width: 769px){
+    display: inline-block;
+    flex: 1 1;
+  }
+}
+.list-card-title {
+  @include font();
+  margin-left: 10px;
+}
