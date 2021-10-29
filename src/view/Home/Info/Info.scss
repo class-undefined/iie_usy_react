@@ -4,9 +4,17 @@
   @include radius();
   background-color: rgb(23, 35, 56) !important;
   width: 100%;
+  display: flex;
+  @media screen and (min-width: 1024px){
+    flex-direction: row;
+  }
+  @media screen and (max-width: 1025px){
+    flex-direction: column;
+  }
 }
 .college-profile-main {
   padding: 1px 10%;
+  flex: 2 1;
 }
 .college-profile-title {
   @include font(16px, #84a5b4);
@@ -14,4 +22,16 @@
 }
 .college-profile-detail {
   @include font(13px, #b2bec2);
+}
+.college-tell-me {
+  flex: 1 1;
+  padding: 0 20px 0 0;
+}
+.college-tell-me-list {
+  display: flex;
+  flex-direction: column;
+}
+.college-tell-me-list-item {
+  justify-content: start !important;
+  text-transform: none !important;
 }
