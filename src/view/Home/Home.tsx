@@ -3,11 +3,10 @@ import {CardContainer, CardContainerProps} from './CardContainer/CardContainer';
 import {SummerDream} from './SummerDream/SummerDream';
 import './Home.scss'
 import {MoreActivity} from './MoreActivity/MoreActivity';
-import {Chip, Divider} from '@mui/material';
 import {SloganDivider} from './SloganDivider/SloganDivider';
-import {Announcements} from './Announcements/Announcements';
 import {HomeData} from './data';
 import {ListCard} from '../../components/ListCard/ListCard';
+import Divider from '@mui/material/Divider';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -43,6 +42,11 @@ export const Home = () => {
                         )
                     })
                 }
+            </div>
+
+            <div className={'home-group-top'}>
+                <Divider/>
+                111
             </div>
         </div>
     )

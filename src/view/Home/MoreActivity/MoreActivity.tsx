@@ -1,6 +1,5 @@
-import {Box, Button} from '@mui/material';
 import './MoreActivity.scss'
-import {ActiveList, ActiveListItem} from '../../../components/ActiveList/ActiveList';
+import {ActiveListItem} from '../../../components/ActiveList/ActiveList';
 import {ListCard, ListCardProps} from '../../../components/ListCard/ListCard';
 
 const activeList: Array<ActiveListItem> = [{

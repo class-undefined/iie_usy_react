@@ -45,6 +45,7 @@ const slogans: Array<{ Icon: ReactJSXElement, tip: string, color: Color | undefi
     tip: '泛IT',
     color: undefined,
 }]
+/* 带口号的分割线 */
 export const SloganDivider = () => {
     const LightTooltip = useKTooltip('light')
     const Dot = () => {
@@ -59,7 +60,7 @@ export const SloganDivider = () => {
             {
                 slogans.map((slogan, index) => {
                     return (
-                        <div style={{display: 'inline-block'}}>
+                        <div style={{display: 'inline-block'}} key={slogan.tip}>
                             <LightTooltip TransitionComponent={Zoom} title={slogan.tip} sx={{fontSize: '20px'}}>
                                 <Icon color={slogan.color} fontSize={'large'}>
                                     {slogan.Icon}

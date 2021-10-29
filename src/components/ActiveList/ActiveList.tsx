@@ -5,9 +5,6 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import Typography from '@mui/material/Typography';
 import {ListItemButton, styled, Tooltip, tooltipClasses, TooltipProps} from '@mui/material';
 import './ActiveList.scss'
 import {useKTooltip} from '../KTooltip/KTooltip';

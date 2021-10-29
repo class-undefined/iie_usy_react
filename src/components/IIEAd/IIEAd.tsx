@@ -9,7 +9,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import {IconButton} from '@mui/material';
 import './IIEAd.scss'
 import {makeStyles} from '@mui/styles';
-export default function ResponsiveDialog() {
+export default function IIEAd() {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
