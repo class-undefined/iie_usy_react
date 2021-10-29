@@ -12,7 +12,7 @@
 @mixin block() {
   margin-top: 10px;
   background-color: #fff;
-  @include radius()
+  @include radius();
 }
 .font-large {
   @include font(1rem);

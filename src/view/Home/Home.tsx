@@ -7,6 +7,7 @@ import {SloganDivider} from './SloganDivider/SloganDivider';
 import {HomeData} from './data';
 import {ListCard} from '../../components/ListCard/ListCard';
 import Divider from '@mui/material/Divider';
+import {Info} from './Info/Info';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -43,11 +44,10 @@ export const Home = () => {
                     })
                 }
             </div>
-
             <div className={'home-group-top'}>
                 <Divider/>
-                111
             </div>
+            <Info/>
         </div>
     )
 }

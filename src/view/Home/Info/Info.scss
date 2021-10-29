@@ -1,0 +1,17 @@
+@import "src/common/utils";
+.college-profile {
+  margin-top: 25px;
+  @include radius();
+  background-color: rgb(23, 35, 56) !important;
+  width: 100%;
+}
+.college-profile-main {
+  padding: 1px 10%;
+}
+.college-profile-title {
+  @include font(16px, #84a5b4);
+  font-weight: 300;
+}
+.college-profile-detail {
+  @include font(13px, #b2bec2);
+}
