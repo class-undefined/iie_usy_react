@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {NavBarItem} from './components/NavBarItem/NavBarItem';
 import './NavBar.scss'
 import {getMedia, OS} from '../../utils/media';
 import {navBarConfig} from '../../route/config';
 import MediaNavBar from './components/MediaNavBar/MediaNavBar';
 import {BreadCrumbs} from './components/BreadCrumbs/BreadCrumbs';
 import { withRouter } from "react-router";
+import {NavBarItem} from './components/NavBarItem/NavBarItem';
 
 export const NavBar = (props: any) => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))

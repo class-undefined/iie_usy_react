@@ -17,11 +17,11 @@
   flex: 2 1;
 }
 .college-profile-title {
-  @include font(16px, #84a5b4);
+  @include font(16px, rgb(200,200,169));
   font-weight: 300;
 }
 .college-profile-detail {
-  @include font(13px, #b2bec2);
+  @include font(13px, rgb(210, 210, 140));
 }
 .college-tell-me {
   flex: 1 1;
@@ -34,4 +34,5 @@
 .college-tell-me-list-item {
   justify-content: start !important;
   text-transform: none !important;
+  color: rgb(200,200,169) !important;
 }
