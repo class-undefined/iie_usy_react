@@ -26,6 +26,9 @@
 .college-tell-me {
   flex: 1 1;
   padding: 0 20px 0 0;
+  @media screen and (max-width: 1025px){
+    padding: 1px 10%;
+  }
 }
 .college-tell-me-list {
   display: flex;
