@@ -3,6 +3,8 @@
  * @param nDArray 需要升维的数组
  * @param size 组成一组需要的元素个数
  */
+import Notify from './Notify';
+
 export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
     const ans = [] as Array<Array<T>>
     let pack = [] as Array<T>
@@ -20,7 +22,7 @@ export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
         if (size === 3) {
             if (length === 1) return [null, array[0], null]
             else if (length === 2) return [array[0], null, array[1]]
-        } else if(size === 2) {
+        } else if (size === 2) {
             if (length === 1) return [...array, null]
         }
         return array
@@ -37,7 +39,7 @@ export const setTitle = (title: string) => {
  * @param items 需要排序的数组
  * @param compare 比较器
  */
-export const sort = <T>(items: Array<T>, compare: (a: T, b:T) => boolean) => {
+export const sort = <T>(items: Array<T>, compare: (a: T, b: T) => boolean) => {
     const array = [] as Array<T>
     const swap = (i: number, j: number) => {
         const t = array[i]
@@ -45,14 +47,14 @@ export const sort = <T>(items: Array<T>, compare: (a: T, b:T) => boolean) => {
         array[j] = t
     }
     const up = (k: number) => {
-        while (k > 0 && compare(array[k], array[parseInt((((k + 1) >> 1) - 1 ) + '')])) { // 右移一位是 / 2
-            swap(k , parseInt((((k + 1) >> 1) - 1) + ''))
-            k = parseInt((((k + 1) >> 1) - 1 ) + '')
+        while (k > 0 && compare(array[k], array[parseInt((((k + 1) >> 1) - 1) + '')])) { // 右移一位是 / 2
+            swap(k, parseInt((((k + 1) >> 1) - 1) + ''))
+            k = parseInt((((k + 1) >> 1) - 1) + '')
         }
     }
     const down = (k: number) => {
         while ((k << 1) + 1 < array.length) {
-            let i  = (k << 1) + 1 // 左移 1 是乘以两倍
+            let i = (k << 1) + 1 // 左移 1 是乘以两倍
             if (i < array.length - 1 && !compare(array[i], array[i + 1])) i++ // 当前为 k 的左节点，若右节点比他大 则游标右移
             if (compare(array[k], array[i])) break
             swap(k, i)
@@ -73,7 +75,7 @@ export const sort = <T>(items: Array<T>, compare: (a: T, b:T) => boolean) => {
     items.forEach(item => insert(item))
     const ans = [] as Array<T>
     const {length} = array
-    while (ans.length !== length){
+    while (ans.length !== length) {
         ans.push(pop())
     }
     return ans
@@ -85,4 +87,23 @@ export const ArrayEqual = <T>(s1: Array<T>, s2: Array<T>) => {
         if (s1[i] !== s2[i]) return false
     }
     return true
+}
+
+export const copyToClipboard = (content: string) => {
+    const textarea = document.createElement('textarea')
+    textarea.disabled = false
+    const root = document.getElementById('root')
+    if (root) {
+        root.appendChild(textarea)
+        textarea.value = content
+        textarea.select()
+        document.execCommand('Copy')
+        root.removeChild(textarea)
+        Notify.success('复制成功', {
+            anchorOrigin: {
+                vertical: 'bottom',
+                horizontal: 'right',
+            },
+        })
+    }
 }

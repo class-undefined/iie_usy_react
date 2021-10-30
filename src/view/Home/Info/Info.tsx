@@ -6,6 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import React, {MouseEvent} from 'react';
 import {ButtonBaseActions} from '@mui/material';
+import {copyToClipboard} from '../../../utils';
 const tellMessage: Array<{icon: React.FC, content: string}> = [
     {
         icon: LocalPhoneIcon,
@@ -21,11 +22,9 @@ const tellMessage: Array<{icon: React.FC, content: string}> = [
 ]
 export const Info = () => {
     /* TODO: 单击复制 */
-    const copyToClipboard = (content: string) => {
+    const copy = (content: string) => {
         return (event: MouseEvent<HTMLButtonElement>) => {
-            const {target} = event
-            console.log(target);
-            event.preventDefault()
+            copyToClipboard(content)
         }
     }
     return (
@@ -42,7 +41,7 @@ export const Info = () => {
                     {
                         tellMessage.map((item, index) => {
                             return (
-                                <Button onClick={copyToClipboard(item.content)} className={'college-tell-me-list-item'} key={index} startIcon={<item.icon/>}>
+                                <Button onClick={copy(item.content)} className={'college-tell-me-list-item'} key={index} startIcon={<item.icon/>}>
                                     {item.content}
                                 </Button>
                             )

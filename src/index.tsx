@@ -4,9 +4,14 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Test} from './test';
+import {SnackbarProvider} from 'notistack';
+import {SnackbarUtilsConfigurator} from './utils/Notify';
 
 ReactDOM.render(
   <React.StrictMode>
+    <SnackbarProvider hideIconVariant={false}>
+      <SnackbarUtilsConfigurator/>
+    </SnackbarProvider>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
