@@ -73,6 +73,7 @@ const test5 = () => {
     console.assert(!ArrayEqual(source, target), 'ArrayEqualExample5');
 }
 export const ArrayEqualExample = () => {
+    console.log('ArrayEqualExample')
     test1()
     test2()
     test3()
