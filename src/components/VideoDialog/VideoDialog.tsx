@@ -1,7 +1,6 @@
 import React from 'react';
-import {Box, NoSsr} from '@mui/material'
+import {Box} from '@mui/material'
 import './VideoDialog.scss'
-import {Win} from '../Win/Win';
 import IIEAd from '../IIEAd/IIEAd';
 interface GalaxyInfoProps {
     className?: string

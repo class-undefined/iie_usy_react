@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Carousel from 'react-material-ui-carousel'
-import {Paper, CardMedia, Box} from '@mui/material'
+import {CardMedia, Box} from '@mui/material'
 import './carousel.scss'
 import {OS} from '../../utils/media';
 import {packedArray} from '../../utils';

@@ -8,7 +8,6 @@ import { useTheme } from '@mui/material/styles';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import {IconButton} from '@mui/material';
 import './IIEAd.scss'
-import {makeStyles} from '@mui/styles';
 export default function IIEAd() {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
@@ -31,7 +30,7 @@ export default function IIEAd() {
                 onClose={handleClose}
             >
                 <DialogContent className={'iie-ad-dialog'}>
-                    <iframe className={'iie-ad-dialog'} src="//player.bilibili.com/player.html?aid=973729704&cid=357367201&page=1"
+                    <iframe title={'bilibili'} className={'iie-ad-dialog'} src="//player.bilibili.com/player.html?aid=973729704&cid=357367201&page=1"
                             scrolling="no" frameBorder="no" />
                 </DialogContent>
                 <DialogActions>

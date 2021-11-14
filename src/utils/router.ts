@@ -1,5 +1,3 @@
-import {RouteConfig} from '../route/config';
-
 /**
  * 分割路由
  * @param pathname 路由地址

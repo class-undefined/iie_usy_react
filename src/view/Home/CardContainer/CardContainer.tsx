@@ -2,8 +2,7 @@ import {Box, Button} from '@mui/material';
 import {ActionAreaCard} from '../../../components/ActionAreaCard/ActionAreaCard';
 import './CardContainer.scss'
 import {useEffect, useState} from 'react';
-import {getMedia, OS} from '../../../utils/media';
-import {SummerDream} from '../SummerDream/SummerDream';
+import {getMedia} from '../../../utils/media';
 
 export interface ImageProps {
     src: string,

@@ -18,7 +18,7 @@ export const NavBar = (props: any) => {
         })
         console.log(props);
         console.log(`设备类型: ${media}`);
-    }, [media])
+    }, [media, props])
     return (
         <nav className={'nav'}>
             {media === OS.pc || <MediaNavBar/>}

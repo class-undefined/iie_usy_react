@@ -5,7 +5,6 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import React, {MouseEvent} from 'react';
-import {ButtonBaseActions} from '@mui/material';
 import {copyToClipboard} from '../../../utils';
 const tellMessage: Array<{icon: React.FC, content: string}> = [
     {

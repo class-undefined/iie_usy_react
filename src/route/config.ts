@@ -1,16 +1,27 @@
 import React from 'react';
 import {Home} from '../view/Home/Home';
-
-export interface RouteConfig {
-    name: string,
+export interface BaseRoute {
     path: string,
-    exact: boolean,
     meta?: any,
+}
+
+export interface RouteConfig extends BaseRoute{
+    name: string,
+    exact: boolean,
     component?: React.Component | React.FC,
     children?: Array<RouteConfig>
 }
 
-export const navBarConfig: Array<RouteConfig> = [
+export type RouterMap = RouteConfig[]
+
+/* 路由name对应的路由组合的映射表 */
+export interface RouterPathMap {
+    [path: string] : string
+}
+
+/* 路由组合对应路由name的映射表 */
+
+export const navBarConfig: RouterMap = [
     {
         name: '首页',
         path: '/',
@@ -208,3 +219,35 @@ export const navBarConfig: Array<RouteConfig> = [
         ],
     },
 ]
+
+/* 回溯获取单条route下的所有路由组合 */
+export const getSinglePath = (route: RouteConfig) => {
+    const ans: Array<[string, string]> = []
+    const dfs = (_route: RouteConfig, _path: string) => {
+        const {name, path} = _route
+        ans.push([name, _path + path])
+        if (!_route.children) return
+        for (const __route of _route.children) {
+            dfs(__route, _path + path)
+        }
+    }
+    dfs(route, '')
+    return ans
+}
+
+
+
+/* 得到面包屑参数 */
+export const getBreadListParam = (routes: RouterMap) => {
+    const routeMap: RouterPathMap = {}
+    for (const routeConfig of routes) {
+        const paths = getSinglePath(routeConfig) // 单条路由下的所有路径组合
+        for (const _path of paths) {
+            const [title, path] = _path
+            routeMap[path] = title
+        }
+    }
+    return routeMap
+}
+/* 路由各路径与名称的映射表 */
+export const routePathMap = getBreadListParam(navBarConfig)

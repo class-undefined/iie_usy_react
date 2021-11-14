@@ -1,6 +1,5 @@
 import React from 'react';
 import {SidebarExample} from './route';
-import {Nav, NavBar} from './layout/NavBar/NavBar'
 import './App.scss'
 
 function App() {

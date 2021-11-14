@@ -8,7 +8,7 @@ interface SummerDreamProps {
 export const SummerDream = (props: SummerDreamProps) => {
     return (
         <Box className={`SummerDream ${props.className}`} style={{height: props.height}}>
-            <iframe style={{display: 'block'}} height={props.height || 257} srcDoc={SummerDreamHtml} frameBorder="no"/>
+            <iframe title={'summer'} style={{display: 'block'}} height={props.height || 257} srcDoc={SummerDreamHtml} frameBorder="no"/>
         </Box>
     )
 }

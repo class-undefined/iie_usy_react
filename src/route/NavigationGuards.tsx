@@ -1,7 +1,6 @@
 import {RouteConfig} from './config';
 import {Route, useLocation} from 'react-router-dom';
 import {NotFind} from '../view/404/NotFind';
-import {Nav} from '../layout/NavBar/NavBar';
 import React from 'react';
 import {setTitle} from '../utils';
 
