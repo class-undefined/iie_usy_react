@@ -1,5 +1,4 @@
 import {RouteConfig} from '../../route/config';
-import {useHistory} from 'react-router-dom';
 import * as H from 'history';
 
 const PreRoutePath = class {
@@ -12,7 +11,7 @@ const PreRoutePath = class {
         this.prePath = ''
     }
 }
-export const preRoutePath = new PreRoutePath()
+const preRoutePath = new PreRoutePath()
 
 /**
  * 使用页面跳转函数
@@ -37,9 +36,40 @@ export const useJumpToView = (history: H.History) => {
         return
     }
 }
+/**
+ * 适用于二级导航栏，更新路由前缀
+ */
 export const useUpdatePrePath = () => {
     return (route: RouteConfig) => {
         preRoutePath.clear()
         preRoutePath.setPrePath(route.path)
     }
+}
+
+/**
+ * 分割路由
+ * @Example path: '/abc/def' -> ['/abc', '/def']
+ * @param path
+ */
+export const spliceRoutePath = (path: string) => {
+    let s = ''
+    if (path === '/') return ['/']
+    else s = path[0]
+    let right = path.length - 1
+
+    /* 去除尾部非法的斜杠/ */
+    while (right > 0 && path[right] === '/') right--
+    path = path.substr(0, right + 1)
+
+    const paths = [] as string[]
+    /* 从第二个字符开始遍历 */
+    for (let i = 1; i < path.length; i++) {
+        if (i === path.length - 1) s += path[i]
+        if (path[i] === '/' || i === path.length - 1) {
+            paths.push(s)
+            s = ''
+        }
+        s += path[i]
+    }
+    return paths
 }
