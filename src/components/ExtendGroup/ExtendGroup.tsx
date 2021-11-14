@@ -8,16 +8,20 @@ import {RouteConfig} from '../../route/config';
 import {AccordionActions, Button} from '@mui/material';
 import {MouseEventHandler} from 'react';
 import './ExtendGroup.scss'
+import {useJumpToView, useUpdatePrePath} from '../../layout/NavBar/config';
+import {useHistory} from 'react-router-dom';
 interface ExtendGroupProps extends RouteConfig {
     onClick?: MouseEventHandler
 }
 export default function ExtendGroup(props: ExtendGroupProps) {
+    const jumpToView = useJumpToView(useHistory())
+    const updatePrePath = useUpdatePrePath()
     const Children = () => {
         return (
             <AccordionDetails>
                 {
                     props.children && props.children.map(routeConfig => {
-                        return <Button key={routeConfig.name} className={'typography-detail-btn'} onClick={props.onClick}>{routeConfig.name}</Button>
+                        return <Button key={routeConfig.name} className={'typography-detail-btn'} onClick={() => {jumpToView(routeConfig, false)}}>{routeConfig.name}</Button>
                     })
                 }
             </AccordionDetails>
@@ -30,6 +34,7 @@ export default function ExtendGroup(props: ExtendGroupProps) {
             return (
                 <Accordion className={'accordion-container'}>
                     <AccordionSummary
+                        onClick={() => updatePrePath(props as RouteConfig)}
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content">
                         <Typography className={'typography'}>{props.name}</Typography>
@@ -39,8 +44,8 @@ export default function ExtendGroup(props: ExtendGroupProps) {
             )
         }
         return (
-            <Accordion className={'accordion-container'}>
-                <AccordionActions className={'accordion-signal-item'}>
+            <Accordion className={'accordion-container'} onClick={() => {jumpToView(props as RouteConfig, true)}}>
+                <AccordionActions className={'accordion-signal-item'} >
                     <Typography className={'typography'}>{props.name}</Typography>
                 </AccordionActions>
             </Accordion>

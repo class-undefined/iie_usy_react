@@ -44,6 +44,7 @@ export const BreadCrumbs = () => {
     const paths = splitRoutePath(pathname)
     const [pathLabels, setPathLabels] = useState(paths)// 各层级的路由名称
     useEffect(() => {
+        console.log(pathname);
         setPathLabels(pathLabels)
     }, [pathLabels, paths])
     const Children = () => {
