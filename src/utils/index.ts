@@ -80,11 +80,18 @@ export const sort = <T>(items: Array<T>, compare: (a: T, b: T) => boolean) => {
     }
     return ans
 }
-
-export const ArrayEqual = <T>(s1: Array<T>, s2: Array<T>) => {
+/* 检查数组是否相等 */
+export const ArrayEqual = (s1: Array<any>, s2: Array<any>):boolean => {
     if (s1.length !== s2.length) return false
     for (let i = 0; i < s1.length; i++) {
-        if (s1[i] !== s2[i]) return false
+        if (!(s1[i] instanceof Array) && !(s2[i] instanceof Array)) {
+            if (s1[i] !== s2[i]) return false
+        }
+        if (s1[i] instanceof Array && !(s2[i] instanceof Array)) return false
+        if (s2[i] instanceof Array && !(s1[i] instanceof Array)) return false
+        if (s1[i] instanceof Array && s2[i] instanceof Array) {
+            if(!ArrayEqual(s1[i], s2[i])) return false
+        }
     }
     return true
 }
