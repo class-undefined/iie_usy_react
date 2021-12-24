@@ -7,7 +7,6 @@ import {ArrayEqualExample} from './function/ArrayEqualExample';
 export const Test = () => {
     sortExample()
     storeExample()
-    console.log(getBreadListParam(navBarConfig));
     routeExample()
     ArrayEqualExample()
 }

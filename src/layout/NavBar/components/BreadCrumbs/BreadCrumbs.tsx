@@ -6,19 +6,23 @@ import {useEffect, useState} from 'react';
 import {makeStyles} from '@mui/styles';
 import {Chip, emphasize, styled} from '@mui/material';
 import {splitRoutePath} from '../../../../utils/router';
+import {RouteUtils} from '../../../../route/utils';
+
 const useTextStyle = makeStyles({
     li: {
         fontFamily: `"Roboto","Helvetica","Arial",sans-serif `,
         fontWeight: 400,
         fontSize: '0.795rem',
-        lineHeight: 1.75
-    }
+        lineHeight: 1.75,
+    },
 })
+
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
 }
-const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+
+const StyledBreadcrumb = styled(Chip)(({theme}) => {
     const backgroundColor =
         theme.palette.mode === 'light'
             ? theme.palette.grey[100]
@@ -37,6 +41,8 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
         },
     };
 })
+
+
 export const BreadCrumbs = () => {
     const textStyle = useTextStyle()
     const history = useHistory()
@@ -44,11 +50,13 @@ export const BreadCrumbs = () => {
     const paths = splitRoutePath(pathname)
     const [pathLabels, setPathLabels] = useState(paths)// 各层级的路由名称
     useEffect(() => {
-        console.log(pathname);
         setPathLabels(pathLabels)
     }, [pathLabels, paths])
+    console.log(pathLabels);
+    const pathName = RouteUtils.getRouteNames(paths)
     const Children = () => {
-        return <Breadcrumbs>{(pathLabels.length === 0 &&  <StyledBreadcrumb label={'首页'}/>) || pathLabels.map((path, index) => <StyledBreadcrumb key={index} label={path}/>)}</Breadcrumbs>
+        return <Breadcrumbs>{pathName.map((path, index) => <StyledBreadcrumb key={index}
+                                                                                                   label={path}/>)}</Breadcrumbs>
     }
     return (
         <div className={'BreadCrumbs-container'} role="presentation" onClick={handleClick}>

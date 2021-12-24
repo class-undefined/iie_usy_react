@@ -238,7 +238,7 @@ export const getSinglePath = (route: RouteConfig) => {
 
 
 /* 得到面包屑参数 */
-export const getBreadListParam = (routes: RouterMap) => {
+export const getBreadListParam = (routes: RouterMap): RouterPathMap => {
     const routeMap: RouterPathMap = {}
     for (const routeConfig of routes) {
         const paths = getSinglePath(routeConfig) // 单条路由下的所有路径组合
@@ -249,5 +249,8 @@ export const getBreadListParam = (routes: RouterMap) => {
     }
     return routeMap
 }
+
+
 /* 路由各路径与名称的映射表 */
-export const routePathMap = getBreadListParam(navBarConfig)
+// export const routePathMap = getBreadListParam(navBarConfig)
+// console.log(routePathMap);

@@ -1,10 +1,13 @@
+import Notify from './Notify';
+import {RouterPathMap} from '../route/config';
+interface ReverseMap {
+    [key: string] : any
+}
 /**
  * 将一维数组升维，每 size 个元素为一组
  * @param nDArray 需要升维的数组
  * @param size 组成一组需要的元素个数
  */
-import Notify from './Notify';
-
 export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
     const ans = [] as Array<Array<T>>
     let pack = [] as Array<T>
@@ -81,7 +84,7 @@ export const sort = <T>(items: Array<T>, compare: (a: T, b: T) => boolean) => {
     return ans
 }
 /* 检查数组是否相等 */
-export const ArrayEqual = (s1: Array<any>, s2: Array<any>):boolean => {
+export const ArrayEqual = (s1: Array<any>, s2: Array<any>): boolean => {
     if (s1.length !== s2.length) return false
     for (let i = 0; i < s1.length; i++) {
         if (!(s1[i] instanceof Array) && !(s2[i] instanceof Array)) {
@@ -90,12 +93,16 @@ export const ArrayEqual = (s1: Array<any>, s2: Array<any>):boolean => {
         if (s1[i] instanceof Array && !(s2[i] instanceof Array)) return false
         if (s2[i] instanceof Array && !(s1[i] instanceof Array)) return false
         if (s1[i] instanceof Array && s2[i] instanceof Array) {
-            if(!ArrayEqual(s1[i], s2[i])) return false
+            if (!ArrayEqual(s1[i], s2[i])) return false
         }
     }
     return true
 }
 
+/**
+ * 赋值内容置用户剪切板
+ * @param content 欲赋值的字符串
+ */
 export const copyToClipboard = (content: string) => {
     const textarea = document.createElement('textarea')
     textarea.disabled = false
@@ -113,4 +120,37 @@ export const copyToClipboard = (content: string) => {
             },
         })
     }
+}
+
+export const trim = (s: string): string => {
+    /**
+     * 从后往前清除不属于route规则的字符
+     * @param ch
+     */
+    const isAllow = (ch: string): boolean => {
+        const ascii: number = ch.charCodeAt(0)
+        const isNumber: boolean = ascii >= 48 && ascii <= 57 // 是否为数字
+        const isChar: boolean = (ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122) //是否为a-z or A-Z
+        return isNumber || isChar
+    }
+    let right = s.length - 1
+    while (!isAllow(s.charAt(right))) {
+        right--
+    }
+    return s.substring(0, right + 1)
+}
+
+/**
+ * 生成一个与target的键值相反的对象
+ * @param target object
+ * @example
+ *     const target = {"a": 1}
+ *     const source = reverseMap(obj) // source: {"1": "a"}
+ */
+export const reverseMap = (target: ReverseMap): ReverseMap => {
+    const ans: ReverseMap = {}
+    for (const path in target) {
+        ans[target[path]] = path
+    }
+    return ans
 }

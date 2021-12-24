@@ -29,5 +29,6 @@ export const NavigationGuards = (props: {routes: Array<RouteConfig>}) => {
         // @ts-ignore
         return <Route exact={targetRoute.exact} path={targetRoute.path} render={() => <Main component={<Component/>}/>}/>
     }
-    return <NotFind/>
+    // @ts-ignore
+    return <Main component={<NotFind/>}/>
 }
