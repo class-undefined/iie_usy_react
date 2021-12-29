@@ -122,23 +122,6 @@ export const copyToClipboard = (content: string) => {
     }
 }
 
-export const trim = (s: string): string => {
-    /**
-     * 从后往前清除不属于route规则的字符
-     * @param ch
-     */
-    const isAllow = (ch: string): boolean => {
-        const ascii: number = ch.charCodeAt(0)
-        const isNumber: boolean = ascii >= 48 && ascii <= 57 // 是否为数字
-        const isChar: boolean = (ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122) //是否为a-z or A-Z
-        return isNumber || isChar
-    }
-    let right = s.length - 1
-    while (!isAllow(s.charAt(right))) {
-        right--
-    }
-    return s.substring(0, right + 1)
-}
 
 /**
  * 生成一个与target的键值相反的对象

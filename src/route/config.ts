@@ -1,12 +1,12 @@
 import React from 'react';
 import {Home} from '../view/Home/Home';
 import {Introduction} from '../view/Info/Introduction';
-import {RouteConfig, RouterConfigArray, RouterPathMap} from './types';
+import {RouteConfig, RouteConfigArray, RouterPathMap} from './types';
 
 
 /* 路由组合对应路由name的映射表 */
 
-export const navBarConfig: RouterConfigArray = [
+export const navBarConfig: RouteConfigArray = [
     {
         name: '首页',
         path: '/',
@@ -224,7 +224,7 @@ export const getSinglePath = (route: RouteConfig) => {
 
 
 /* 得到面包屑参数 */
-export const getBreadListParam = (routes: RouterConfigArray): RouterPathMap => {
+export const getBreadListParam = (routes: RouteConfigArray): RouterPathMap => {
     const routeMap: RouterPathMap = {}
     for (const routeConfig of routes) {
         const paths = getSinglePath(routeConfig) // 单条路由下的所有路径组合

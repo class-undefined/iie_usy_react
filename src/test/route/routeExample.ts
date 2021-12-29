@@ -1,6 +1,7 @@
-import {spliceRoutePath} from '../../layout/NavBar/config';
-import {ArrayEqual, trim} from '../../utils';
+import {ArrayEqual} from '../../utils';
+import {trim} from '../../utils/StringUtils';
 import {RouteUtils} from '../../route/utils';
+import { spliceRoutePath } from '../../utils/router';
 
 const test1 = () => {
     const param = '/abc/'
@@ -40,10 +41,24 @@ const test5 = () => {
     }
 }
 
+const test6 = (isLog: boolean=false) => {
+    const param = '/info/introduction'
+    const target = RouteUtils.getRoute(param)
+    if (isLog) console.log(target);
+}
+
+const test7= (isLog: boolean=false) => {
+    const param = '/info/introduction'
+    const target = RouteUtils.getRoutes(param)
+    if (isLog) console.log(target);
+}
+
 export const routeExample = () => {
     test1()
     test2()
     test3()
     test4()
     test5()
+    test6()
+    test7()
 }

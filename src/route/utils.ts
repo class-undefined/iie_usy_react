@@ -1,12 +1,14 @@
 import {getBreadListParam, navBarConfig} from './config';
-import {RouterConfigArray, RouterPathMap} from './types';
-import {reverseMap, trim} from '../utils';
+import {RouteConfig, RouteConfigArray, RouterPathMap} from './types';
+import {reverseMap} from '../utils';
+import {trim} from '../utils/StringUtils';
+import {spliceRoutePath} from '../utils/router';
 
 /* 路由各路径与名称的映射表 */
 class _RouteUtils {
     private routePathMap: RouterPathMap = getBreadListParam(navBarConfig) // k: routePath v: routeName
     private pathNameMap: RouterPathMap = reverseMap(this.routePathMap) // k: routeName v: routePath
-    private routeMap: RouterConfigArray = navBarConfig
+    private routeMap: RouteConfigArray = navBarConfig
     /**
      * 通过路径名快速获取路由路径名称
      * @param _path 路由路径
@@ -93,6 +95,63 @@ class _RouteUtils {
      */
     public getRoutePaths = (): string[] => {
         return Object.keys(this.routePathMap)
+    }
+
+    /**
+     * 根据路由配置搜索pathname获取RouteConfig, 若路由配置中不包含pathname，则抛出异常
+     * @param pathname
+     * @example
+     * const param = '/info/introduction'
+     * const target: RouteConfig = RouteUtils.getRouter(param)
+     * console.log(target);
+     */
+    public getRoute = (pathname: string): RouteConfig => {
+        const paths = spliceRoutePath(pathname) // 作为队列使用
+        /**
+         * 逐级寻找navRouterConfig里面的路由，返回最后一级RouteConfig
+         * @param routes: RouteConfigArray
+         */
+        const dfs = (routes: RouteConfigArray): RouteConfig | undefined => {
+            console.assert(paths.length !== 0, "数组长度出现异常，不应该出现0长度的数组")
+            const route = routes.find((route) => {return route.path === paths[0]})
+            // base case
+            if (route === undefined) return undefined
+            if (route.children === undefined || route.children.length === 0) return route
+            paths.shift() // 出队
+            return dfs(route.children)
+        }
+        const route = dfs(navBarConfig)
+        console.assert(route !== undefined, `RouteUtils.getRouter 获取路由失败，未查找到路由`)
+        return <RouteConfig>route
+    }
+    /**
+     * 逐级寻找navRouterConfig里面的路由，返回整个路由段上的RouteConfig
+     * @param pathname
+     * @example
+     * const param = '/info/introduction'
+     * const target: RouteConfigArray = RouteUtils.getRouters(param)
+     * console.log(target);
+     */
+    public getRoutes = (pathname: string): RouteConfigArray => {
+        const paths = spliceRoutePath(pathname) // 作为队列使用
+        const routeConfigArray = [] as RouteConfigArray
+        /**
+         * 递归获取路由对象，将其添加到routeConfigArray中
+         * @param routes: RouteConfigArray => RouteConfig.children
+         */
+        const dfs = (routes: RouteConfigArray): void => {
+            console.assert(paths.length !== 0, "数组长度出现异常，不应该出现0长度的数组")
+            const route = routes.find((route) => {return route.path === paths[0]})
+            // base case
+            if (route === undefined) return undefined
+            routeConfigArray.push(route)
+            if (route.children === undefined || route.children.length === 0) return ;
+            paths.shift() // 出队
+            dfs(route.children)
+        }
+        dfs(navBarConfig)
+        console.assert(routeConfigArray.length !==  0, `RouteUtils.getRoutes 获取路由失败，未查找到路由 ${pathname}`)
+        return routeConfigArray
     }
 }
 
