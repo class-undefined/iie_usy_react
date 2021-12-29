@@ -1,4 +1,4 @@
-import {RouteConfig} from '../../route/config';
+import {RouteConfig} from '../../route/types';
 import * as H from 'history';
 
 const PreRoutePath = class {

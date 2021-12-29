@@ -7,7 +7,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import './NavBarItem.scss'
-import {RouteConfig, RouterMap} from '../../../../route/config';
+import {RouteConfig, RouterMap} from '../../../../route/types';
 import {useJumpToView, useUpdatePrePath} from '../../config';
 import {useHistory} from 'react-router-dom';
 

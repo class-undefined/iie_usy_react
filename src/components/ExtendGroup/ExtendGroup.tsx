@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {RouteConfig} from '../../route/config';
+import {RouteConfig} from '../../route/types';
 import {AccordionActions, Button} from '@mui/material';
 import {MouseEventHandler} from 'react';
 import './ExtendGroup.scss'

@@ -1,5 +1,5 @@
 import Notify from './Notify';
-import {RouterPathMap} from '../route/config';
+import {RouterPathMap} from '../route/types';
 interface ReverseMap {
     [key: string] : any
 }

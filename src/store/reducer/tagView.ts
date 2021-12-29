@@ -1,4 +1,4 @@
-import {BaseRoute} from '../../route/config';
+import {BaseRoute} from '../../route/types';
 
 export interface TagViewState{
     visitedViews: Array<BaseRoute>

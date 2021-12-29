@@ -1,9 +1,10 @@
-import {getBreadListParam, navBarConfig, RouterMap, RouterPathMap} from './config';
+import {getBreadListParam, navBarConfig} from './config';
+import {RouterMap, RouterPathMap} from './types';
 import {reverseMap, trim} from '../utils';
 
 /* 路由各路径与名称的映射表 */
 class _RouteUtils {
-    private routePathMap = getBreadListParam(navBarConfig) // k: routePath v: routeName
+    private routePathMap: RouterPathMap = getBreadListParam(navBarConfig) // k: routePath v: routeName
     private pathNameMap: RouterPathMap = reverseMap(this.routePathMap) // k: routeName v: routePath
     private routeMap: RouterMap = navBarConfig
     /**
@@ -83,6 +84,15 @@ class _RouteUtils {
         }
         if (typeof pathsOrString === 'string') return stringFun()
         return stringArrayFun()
+    }
+
+    /**
+     * 获取路由列表的所有路由名称
+     * @example
+     * ['/', '/info/introduction', '/info/leadership', ...]
+     */
+    public getRoutePaths = (): string[] => {
+        return Object.keys(this.routePathMap)
     }
 }
 

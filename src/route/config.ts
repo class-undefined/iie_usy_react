@@ -1,23 +1,8 @@
 import React from 'react';
 import {Home} from '../view/Home/Home';
-export interface BaseRoute {
-    path: string,
-    meta?: any,
-}
+import {Introduction} from '../view/Info/Introduction';
+import {RouteConfig, RouterMap, RouterPathMap} from './types';
 
-export interface RouteConfig extends BaseRoute{
-    name: string,
-    exact: boolean,
-    component?: React.Component | React.FC,
-    children?: Array<RouteConfig>
-}
-
-export type RouterMap = RouteConfig[]
-
-/* 路由name对应的路由组合的映射表 */
-export interface RouterPathMap {
-    [path: string] : string
-}
 
 /* 路由组合对应路由name的映射表 */
 
@@ -38,6 +23,7 @@ export const navBarConfig: RouterMap = [
                 name: '学院简介',
                 path: '/introduction',
                 exact: true,
+                component: Introduction
             },
             {
                 name: '专业介绍',
