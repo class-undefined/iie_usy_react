@@ -34,7 +34,9 @@ export const Home = () => {
                 <SummerDream height={267}/>
                 <MoreActivity/>
             </div>
+            {/* 带图标的分割线 */}
             <SloganDivider/>
+            {/* 通知公告 - 教学科研 - 学生风采 */}
             <div className={'home-group home-cards'}>
                 {
                     HomeData.map((card, index) => {

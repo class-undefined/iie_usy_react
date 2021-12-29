@@ -1,0 +1,5 @@
+@import "src/common/utils";
+.base-layout-container {
+  @include block();
+
+}
