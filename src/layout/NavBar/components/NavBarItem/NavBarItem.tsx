@@ -7,7 +7,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import './NavBarItem.scss'
-import {RouteConfig, RouterMap} from '../../../../route/types';
+import {RouteConfig, RouterConfigArray} from '../../../../route/types';
 import {useJumpToView, useUpdatePrePath} from '../../config';
 import {useHistory} from 'react-router-dom';
 
@@ -101,7 +101,7 @@ export const NavBarItem = (props: RouteConfig) => {
                                     aria-labelledby="composition-button"
                                     onKeyDown={handleListKeyDown}
                                 >
-                                    {props.children && (props.children as RouterMap).map((menuItem, index) => {
+                                    {props.children && (props.children as RouterConfigArray).map((menuItem, index) => {
                                         return (
                                             <MenuItem className={'menu-item'} style={{textAlign: 'center'}}
                                                       sx={{width: 100}} key={index} onClick={(e) => {

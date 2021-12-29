@@ -1,12 +1,12 @@
 import {getBreadListParam, navBarConfig} from './config';
-import {RouterMap, RouterPathMap} from './types';
+import {RouterConfigArray, RouterPathMap} from './types';
 import {reverseMap, trim} from '../utils';
 
 /* 路由各路径与名称的映射表 */
 class _RouteUtils {
     private routePathMap: RouterPathMap = getBreadListParam(navBarConfig) // k: routePath v: routeName
     private pathNameMap: RouterPathMap = reverseMap(this.routePathMap) // k: routeName v: routePath
-    private routeMap: RouterMap = navBarConfig
+    private routeMap: RouterConfigArray = navBarConfig
     /**
      * 通过路径名快速获取路由路径名称
      * @param _path 路由路径
