@@ -1,0 +1,19 @@
+/* 大屏容器自适应 */
+@mixin page() {
+  margin: 0 auto;
+  /* width >= 1600 */
+  @media screen and (min-width: 1600px) {
+    width: 1600px;
+  }
+  /* width >= 1024 */
+  @media screen and (min-width: 1024px) {
+    width: auto;
+    padding: 0 100px;
+  }
+
+  /* width < 1024*/
+  @media screen and (min-width: 1024px) {
+    width: auto;
+    padding: 0 10px;
+  }
+}

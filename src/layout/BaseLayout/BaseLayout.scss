@@ -1,5 +1,6 @@
 @import "src/common/utils";
+@import "src/common/device";
 .base-layout-container {
   @include block();
-
+  @include page();
 }

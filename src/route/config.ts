@@ -1,4 +1,3 @@
-import React from 'react';
 import {Home} from '../view/Home/Home';
 import {Introduction} from '../view/Info/Introduction';
 import {RouteConfig, RouteConfigArray, RouterPathMap} from './types';
