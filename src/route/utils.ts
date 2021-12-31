@@ -131,7 +131,7 @@ class _RouteUtils {
         // console.assert(route !== undefined, `RouteUtils.getRouter 获取路由失败，未查找到路由`)
         return route
     }
-    /** TODO 得到的route列表需要更新其中的path
+    /**
      * 逐级寻找navRouterConfig里面的路由，查找成功返回整个路由段上的RouteConfig，否则返回null
      * @param pathname
      * @example
@@ -146,17 +146,18 @@ class _RouteUtils {
         /**
          * 递归获取路由对象，将其添加到routeConfigArray中
          * @param routes: RouteConfigArray => RouteConfig.children
+         * @param path
          */
-        const dfs = (routes: RouteConfigArray): void => {
+        const dfs = (routes: RouteConfigArray, path: string): void => {
             const route = routes.find((route) => {return route.path === paths[0]})
             // base case
             if (route === undefined) return undefined
-            routeConfigArray.push(route)
+            routeConfigArray.push({...route, path: path + route.path})
             if (route.children === undefined || route.children.length === 0) return ;
             paths.shift() // 出队
-            dfs(route.children)
+            dfs(route.children, path + route.path)
         }
-        dfs(navBarConfig)
+        dfs(navBarConfig, '')
         if (routeConfigArray.length === 0) return null // 说明没有找到路由
         // console.assert(routeConfigArray.length !==  0, `RouteUtils.getRoutes 获取路由失败，未查找到路由 ${pathname}`)
         return routeConfigArray
