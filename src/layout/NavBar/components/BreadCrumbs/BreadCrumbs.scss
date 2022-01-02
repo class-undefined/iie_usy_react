@@ -3,7 +3,7 @@
   display: inline-block;
   height: 100%;
   margin-left: 20px;
-  @include font(0.775rem);
+  padding: 10px 0;
   @media screen and (max-width: 293px){
     //设备宽度小于293像素的话就不显示面包屑
     display: none;
@@ -15,4 +15,8 @@
   align-items: center;
   margin: 0 auto;
   height: 100%;
+}
+.Breadcrumbs {
+  @include font(1rem);
+  font-weight: 300 !important;
 }

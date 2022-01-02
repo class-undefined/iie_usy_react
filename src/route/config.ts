@@ -1,6 +1,7 @@
 import {Home} from '../view/Home/Home';
 import {Introduction} from '../view/Info/Introduction';
 import {RouteConfig, RouteConfigArray, RouterPathMap} from './types';
+import {NotFind} from '../view/404/NotFind';
 
 
 /* 路由组合对应路由name的映射表 */
@@ -10,7 +11,12 @@ export const navBarConfig: RouteConfigArray = [
         name: '首页',
         path: '/',
         exact: true,
-        component: Home
+        component: Home,
+        meta: {
+            config: {
+                isShowLayout: false
+            }
+        }
     },
     {
         name: '学院概况',
@@ -203,6 +209,15 @@ export const navBarConfig: RouteConfigArray = [
             },
         ],
     },
+    {
+        name: 'Not Found',
+        path: '/404',
+        exact: true,
+        component: NotFind,
+        meta: {
+            config: {isAddNavBar: false, isShowLayout: false}
+        }
+    }
 ]
 
 /* 回溯获取单条route下的所有路由组合 */

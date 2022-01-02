@@ -46,3 +46,23 @@ export const useUpdatePrePath = () => {
     }
 }
 
+/* 路由过滤器 */
+const Fitter = class {
+    /**
+     * 如果route具备route.meta.config.isAddNavBar属性且值为false，则返回true
+     * @param route
+     */
+    public isAddNavBar(route: RouteConfig) {
+        return route.meta && route.meta.config && route.meta.config.isAddNavBar === false
+    }
+
+    /**
+     * 如果route具备route.meta.config.isShowLayout属性且值为false，则返回true
+     * @param route
+     */
+    public isShowLayout(route: RouteConfig) {
+        return route.meta && route.meta.config && route.meta.config.isShowLayout === false
+    }
+}
+
+export const RouteConfigFitter = new Fitter()

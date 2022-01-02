@@ -11,6 +11,8 @@ import {Logo} from '../../../../components/Logo/Logo';
 import {navBarConfig} from '../../../../route/config';
 import ExtendGroup from '../../../../components/ExtendGroup/ExtendGroup';
 import './MediaNavBar.scss'
+import {RouteConfig} from '../../../../route/types';
+import {RouteConfigFitter} from '../../config';
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 const MenuBtn = (props: {onClick: MouseEventHandler<any>}) => {
@@ -45,7 +47,6 @@ export default function MediaNavBar() {
 
                 setState({ ...state, [anchor]: open });
             };
-
     const list = (anchor: Anchor) => (
         <Box
             sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -55,7 +56,7 @@ export default function MediaNavBar() {
             <Logo/>
             <Divider />
             <List>
-                {navBarConfig.map((route, index) => {
+                {navBarConfig.filter(route => !RouteConfigFitter.isAddNavBar(route)).map((route, index) => {
                     return (
                         <ListItem className={'mui-list-item'} button key={route.name}>
                             <ExtendGroup {...route} onClick={toggleDrawer(anchor, false)}/>

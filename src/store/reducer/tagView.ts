@@ -27,7 +27,7 @@ export const tagReducer = (state: TagViewState = initState, action: TagAction): 
             if (state.visitedViews.some((v: any) => v.path === action.view.path)) return initState
             state.visitedViews.push(
                 Object.assign({}, action.view, {
-                    title: action.view.meta.title || 'no-name',
+                    title: (action.view.meta && action.view.meta.title) || 'no-name',
                 }),
             )
             return state

@@ -6,6 +6,8 @@ import {navBarConfig} from '../../route/config';
 import MediaNavBar from './components/MediaNavBar/MediaNavBar';
 import { withRouter } from "react-router";
 import {NavBarItem} from './components/NavBarItem/NavBarItem';
+import {RouteConfig} from '../../route/types';
+import {RouteConfigFitter} from './config';
 
 export const NavBar = (props: any) => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))
@@ -22,7 +24,7 @@ export const NavBar = (props: any) => {
         <nav className={'nav'}>
             {media === OS.pc || <MediaNavBar/>}
             {
-                media !== OS.pc || navBarConfig.map((barItem, key) => (
+                media !== OS.pc || navBarConfig.filter(route => !RouteConfigFitter.isAddNavBar(route)).map((barItem, key) => (
                     <NavBarItem key={key} {...barItem} />)
                 ).reverse()
             }

@@ -12,7 +12,7 @@ const useTextStyle = makeStyles({
     li: {
         fontFamily: `"Roboto","Helvetica","Arial",sans-serif `,
         fontWeight: 400,
-        fontSize: '0.795rem',
+        fontSize: '1.895rem',
         lineHeight: 1.75,
     },
 })
@@ -56,8 +56,12 @@ export const BreadCrumbs = () => {
     const pathRoutes = RouteUtils.getRoutes(pathname)
     if (pathRoutes == null) return null
     const Children = () => {
-        return <Breadcrumbs>{pathRoutes.map((route) => <StyledBreadcrumb key={route.path}
-                                                                                                   label={route.name}/>)}</Breadcrumbs>
+        return (
+            <Breadcrumbs>
+                {pathRoutes.map((route) => <StyledBreadcrumb className={'Breadcrumbs'} key={route.path}
+                                                             label={route.name}/>)}
+            </Breadcrumbs>
+        )
     }
     return (
         <div className={'BreadCrumbs-container'} role="presentation" onClick={handleClick}>
