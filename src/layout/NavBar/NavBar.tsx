@@ -4,7 +4,6 @@ import './NavBar.scss'
 import {getMedia, OS} from '../../utils/media';
 import {navBarConfig} from '../../route/config';
 import MediaNavBar from './components/MediaNavBar/MediaNavBar';
-import {BreadCrumbs} from './components/BreadCrumbs/BreadCrumbs';
 import { withRouter } from "react-router";
 import {NavBarItem} from './components/NavBarItem/NavBarItem';
 
@@ -22,7 +21,6 @@ export const NavBar = (props: any) => {
     return (
         <nav className={'nav'}>
             {media === OS.pc || <MediaNavBar/>}
-            <BreadCrumbs/>
             {
                 media !== OS.pc || navBarConfig.map((barItem, key) => (
                     <NavBarItem key={key} {...barItem} />)

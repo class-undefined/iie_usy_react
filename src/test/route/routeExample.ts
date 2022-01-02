@@ -47,11 +47,19 @@ const test6 = (isLog: boolean=false) => {
     if (isLog) console.log(target);
 }
 
-const test7= (isLog: boolean=false) => {
+const test7 = (isLog: boolean=false) => {
     const param = '/info/introduction'
     const target = RouteUtils.getRoutes(param)
     if (isLog) console.log(target);
 }
+
+/* 不存在的路径则返回null */
+const test8 = (isLog: boolean=true) => {
+    const param = '/info/1'
+    const target = RouteUtils.getRoutes(param)
+    if (isLog) console.log(target);
+}
+
 
 export const routeExample = () => {
     test1()
@@ -61,4 +69,5 @@ export const routeExample = () => {
     test5()
     test6()
     test7()
+    test8()
 }

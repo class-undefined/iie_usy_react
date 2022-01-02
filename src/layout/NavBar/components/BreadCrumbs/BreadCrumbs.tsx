@@ -53,10 +53,11 @@ export const BreadCrumbs = () => {
         setPathLabels(pathLabels)
     }, [pathLabels, paths])
     console.log(pathLabels);
-    const pathName = RouteUtils.getRouteNames(paths)
+    const pathRoutes = RouteUtils.getRoutes(pathname)
+    if (pathRoutes == null) return null
     const Children = () => {
-        return <Breadcrumbs>{pathName.map((path, index) => <StyledBreadcrumb key={index}
-                                                                                                   label={path}/>)}</Breadcrumbs>
+        return <Breadcrumbs>{pathRoutes.map((route) => <StyledBreadcrumb key={route.path}
+                                                                                                   label={route.name}/>)}</Breadcrumbs>
     }
     return (
         <div className={'BreadCrumbs-container'} role="presentation" onClick={handleClick}>

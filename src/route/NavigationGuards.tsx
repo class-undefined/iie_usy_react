@@ -24,7 +24,6 @@ const WrapComponent = (props: { component: React.FC}) => {
 export const NavigationGuards = (props: { routes: Array<RouteConfig> }) => {
     const location = useLocation()
     const {pathname} = location
-    console.log(pathname)
     const targetRoute = RouteUtils.getRoute(pathname)
     const pass = isPass(targetRoute)
     console.log(`路由守卫检测路由是否匹配：route: 【${pathname}】 | ${pass}`);

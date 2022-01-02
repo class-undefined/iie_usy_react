@@ -152,13 +152,14 @@ class _RouteUtils {
             const route = routes.find((route) => {return route.path === paths[0]})
             // base case
             if (route === undefined) return undefined
+            if (route.path === paths[0]) paths.shift() // 当前路由与队首路径一致则出队，否则不出队
             routeConfigArray.push({...route, path: path + route.path})
             if (route.children === undefined || route.children.length === 0) return ;
-            paths.shift() // 出队
+
             dfs(route.children, path + route.path)
         }
         dfs(navBarConfig, '')
-        if (routeConfigArray.length === 0) return null // 说明没有找到路由
+        if (paths.length !== 0||routeConfigArray.length === 0) return null // 说明没有找到路由
         // console.assert(routeConfigArray.length !==  0, `RouteUtils.getRoutes 获取路由失败，未查找到路由 ${pathname}`)
         return routeConfigArray
     }
