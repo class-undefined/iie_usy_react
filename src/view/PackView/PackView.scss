@@ -1,0 +1,8 @@
+@import "src/common/utils";
+.PackView-title {
+  @include font(1.5rem, #000, 300);
+  margin-left: 20px;
+}
+.PackView-body {
+  margin-left: 20px;
+}

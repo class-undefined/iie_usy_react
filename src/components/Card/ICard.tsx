@@ -6,8 +6,18 @@ import Typography from '@mui/material/Typography';
 import {Button, CardActionArea, CardActions} from '@mui/material';
 import {OverridableStringUnion} from '@mui/types';
 import {ButtonPropsColorOverrides} from '@mui/material/Button/Button';
+import './ICard.scss'
 
-interface ICardProps {
+type ColorType = OverridableStringUnion<'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+    ButtonPropsColorOverrides>
+
+interface LinkAction {
+    name: string, // 链接标题
+    color?: ColorType
+    onClick?: (props?: ICardProps) => void, //点击该链接触发的回调函数
+}
+
+export interface ICardProps {
     className?: string,
     image: string,
     height?: number
@@ -16,26 +26,29 @@ interface ICardProps {
     content: string // 摘要
 }
 
+
+export const createAction = (_name: string, _color?: ColorType, _onClick?: (props?: ICardProps) => void): LinkAction => {
+    const color = _color || 'primary'
+    const f = () => {
+        console.log('createActionOnclick')
+    }
+    const onClick = _onClick || f
+    return {name: _name, color, onClick}
+}
 const defaultProps = {
     className: '',
     height: 140,
 }
 
-interface LinkAction {
-    name: string, // 链接标题
-    color?: OverridableStringUnion<'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
-        ButtonPropsColorOverrides>
-    onClick?: (props: ICardProps) => void, //点击该链接触发的回调函数
-}
 
 export const ICard = (props: ICardProps) => {
     const {image, actions, title, content} = props
     return (
-        <Card sx={{maxWidth: 345}}>
+        <Card sx={{maxWidth: 345}} className={'ICard'}>
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height={props.className || defaultProps.className}
+                    height={props.height || defaultProps.height}
                     image={image}
                     alt="green iguana"
                 />
@@ -55,7 +68,9 @@ export const ICard = (props: ICardProps) => {
                             <Button key={index}
                                     size="small"
                                     color={action.color || 'primary'}
-                                    onClick={(event) => action.onClick}>
+                                    onClick={(event) => {
+                                        if (action.onClick) action.onClick()
+                                    }}>
                                 {action.name}
                             </Button>
                         )

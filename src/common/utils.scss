@@ -1,7 +1,7 @@
 /* 指定字体大小 */
-@mixin font($fontSize:0.875rem, $color: #000) {
+@mixin font($fontSize:0.875rem, $color: #000, $fontWeight: 500) {
   font-family: "Roboto","Helvetica","Arial",sans-serif !important;
-  font-weight: 500 !important;
+  font-weight: $fontWeight !important;
   font-size: $fontSize !important;
   line-height: 1.75 !important;
   color: $color !important;
