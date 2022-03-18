@@ -19,9 +19,15 @@ const tocNode = (tocItem: ListItemNode, heading: HtmlElementNode) => {
     for (const node of list || []) {
         const tagName = (node.tagName as unknown) as string
         const { properties } = node
-        if (tagName === "a") {
-            properties.target = "_self"
-        }
+        // if (tagName === "a") {
+        //     properties.id = properties.href + "-toc"
+        //     const dom = document.getElementById(properties.id || "") as HTMLLinkElement
+        //     setTimeout(() => {
+        //         console.log(dom)
+        //         // dom.target = "_self"
+        //         // properties.target = "_self"
+        //     })
+        // }
 
     }
     // properties.onclick = undefined

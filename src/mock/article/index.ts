@@ -18,15 +18,15 @@ import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'
 
 ReactDOM.render(
-    <ReactMarkdown rehypePlugins= { [rehypeHighlight] } > { '# Your markdown here'} < /ReactMarkdown>,
-  document.querySelector('#content')
+    <ReactMarkdown 
+        rehypePlugins= {[rehypeHighlight]} > { # Your markdown here } </ReactMarkdown>, document.querySelector('#content')
 )
  \`\`\`
 <iframe src="//player.bilibili.com/player.html?aid=973729704&bvid=BV1644y1B7Et&cid=357367201&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 `
 export const createArticle = (id: ArticleId): IArticle => {
     return {
-        id: id,
+        id: Random.id(),
         content: markdown,//Random.cparagraph(10),
         title: Random.title(),
         releaseTime: Random.date(),
