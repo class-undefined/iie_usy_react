@@ -1,0 +1,29 @@
+.release-time {
+	color: darkgrey;
+	font-size: 14px;
+}
+
+.code-style {
+	border-radius: 3px;
+}
+
+.id-link {
+}
+.toc {
+	ol {
+		list-style: none;
+		padding-inline-start: 1.5em;
+	}
+	ol li {
+		padding-left: 0;
+	}
+	a {
+		text-decoration: none;
+		color: #74818d;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	a:hover {
+		color: #3884ff;
+	}
+}

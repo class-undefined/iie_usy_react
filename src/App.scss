@@ -1,17 +1,18 @@
 body {
-  background-color: rgb(245,246,247);
+	background-color: rgb(245, 246, 247);
 }
-.App {}
+.App {
+}
 .main {
-  margin: 0 auto;
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 5px;
-  height: calc(100vh - 60px);
-  @media screen and (min-width: 1024px) {
-    padding: 0 5%;
-  }
+	margin: 0 auto;
+	position: absolute;
+	top: 70px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 5px;
+	// height: calc(100vh - 60px);
+	@media screen and (min-width: 1024px) {
+		padding: 0 5%;
+	}
 }

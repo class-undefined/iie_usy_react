@@ -1,4 +1,7 @@
-import {createAction, ICard, ICardProps} from '../../components/Card/ICard'
+import { useEffect } from 'react'
+import { Article } from '../../components/Article'
+import { createAction, ICard, ICardProps } from '../../components/Card/ICard'
+import { createArticle } from '../../mock/article'
 
 export const Introduction = () => {
     const action = createAction('SHARE')
@@ -8,10 +11,13 @@ export const Introduction = () => {
         content: '三亚学院信息与智能工程学院教师招聘公告balabala',
         actions: [action]
     }
+    useEffect(() => { }, [])
     return (
         <div>
-            <ICard {...iCardProps}/>
-            Introduction
+            <Article article={createArticle(1)} />
+            {/* <ICard {...iCardProps}/>
+            
+            Introduction */}
         </div>
     )
 }

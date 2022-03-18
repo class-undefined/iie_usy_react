@@ -1,36 +1,37 @@
 /* 指定字体大小 */
-@mixin font($fontSize:0.875rem, $color: #000, $fontWeight: 500) {
-  font-family: "Roboto","Helvetica","Arial",sans-serif !important;
-  font-weight: $fontWeight !important;
-  font-size: $fontSize !important;
-  line-height: 1.75 !important;
-  color: $color !important;
+@mixin font($fontSize: 0.875rem, $color: #000, $fontWeight: 500) {
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif !important;
+	font-weight: $fontWeight !important;
+	font-size: $fontSize !important;
+	line-height: 1.75 !important;
+	color: $color !important;
 }
 /* 圆角 + 阴影 */
 @mixin radius() {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-  border-radius: 3px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+	border-radius: 3px;
 }
 
 /* 块级元素 */
 @mixin block() {
-  margin-top: 10px;
-  background-color: #fff;
-  @include radius();
+	margin-top: 10px;
+	background-color: #fff;
+	padding: 10px;
+	@include radius();
 }
 
 /* 大号字体 */
 .font-large {
-  @include font(1rem);
-  @media screen and (max-width: 281px){
-    @include font(0.3rem);
-  }
+	@include font(1rem);
+	@media screen and (max-width: 281px) {
+		@include font(0.3rem);
+	}
 }
 
 /* 正常字体 */
 .font-primary {
-  @include font(0.875rem, #3a3a3a);
-  @media screen and (max-width: 281px){
-    @include font(0.2rem, #3a3a3a);
-  }
+	@include font(0.875rem, #3a3a3a);
+	@media screen and (max-width: 281px) {
+		@include font(0.2rem, #3a3a3a);
+	}
 }
