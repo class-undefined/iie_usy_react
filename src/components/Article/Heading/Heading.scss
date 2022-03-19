@@ -6,6 +6,9 @@
 		opacity: 0;
 		margin-left: -20px;
 		padding-right: 4px;
+		height: 100%;
+		display: inline-block;
+		user-select: none;
 	}
 	.md-title {
 		code {
@@ -14,6 +17,10 @@
 			padding: 5px;
 		}
 		// text-indent: 1em;
+	}
+	.anchor {
+		display: inline-flex;
+		cursor: pointer;
 	}
 	.octicon {
 		vertical-align: middle;

@@ -1,5 +1,8 @@
+export type HeadingElement = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+export type NodeLevel = 1 | 2 | 3 | 4 | 5 | 6
+export type RootLevel = 0
 export interface VFileData {
-    depth: number,
+    depth: NodeLevel | RootLevel,
     value: string
 }
 
@@ -8,8 +11,8 @@ export interface TocNode extends VFileData {
     parent: TocNode | null
 }
 /** 构建一颗tocNodeTree */
-export const createTocNodeTree = (heading: VFileData[]) => {
-    const createNode = (depth: number, value: string, parent: TocNode | null): TocNode => {
+export const createTocNodeTree = (heading: VFileData[]): TocNode => {
+    const createNode = (depth: NodeLevel | RootLevel, value: string, parent: TocNode | null): TocNode => {
         return {
             depth, value, parent, children: []
         }
@@ -18,7 +21,6 @@ export const createTocNodeTree = (heading: VFileData[]) => {
     let cursor = root
     for (let i = 0; i < heading.length; i++) {
         const { depth, value } = heading[i]
-        console.log(depth, value)
         if (cursor.depth < depth) {
             const node = createNode(depth, value, cursor)
             cursor.children.push(node)
@@ -33,4 +35,12 @@ export const createTocNodeTree = (heading: VFileData[]) => {
         }
     }
     return root
+}
+
+export const cutParent = (node: TocNode) => {
+    node.parent = null
+    for (const n of node.children) {
+        cutParent(n)
+    }
+    return node
 }
