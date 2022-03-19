@@ -10,6 +10,11 @@ const markdown = `
 ## 标题23
 ### 标题3
 ### 标题31
+> \`\`\`javascript
+> function sum(num1, num2) {
+>     return num1 + num2;
+> }
+> \`\`\`
 # 标题1-1
 ## 标题2-1
 \`\`\`javascript

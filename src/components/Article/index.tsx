@@ -10,6 +10,7 @@ import "./index.scss"
 import { MouseEventHandler, useEffect } from "react";
 import { dummyAnchorPrefix, HeadingBlock, idPrefix } from "./Heading/Heading";
 import { scrollToAnchor } from "../../utils/dom";
+import "./markdown-style.scss"
 interface ArticleProps {
     className?: string,
     article: Readonly<IArticle>,
@@ -60,6 +61,7 @@ export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
             </header>
             <ReactMarkdown
                 children={content}
+                className={"markdown-privew"}
                 components={{
                     code({ node, inline, className, children, ...props }) {
                         const match = /language-(\w+)/.exec(className || '')
