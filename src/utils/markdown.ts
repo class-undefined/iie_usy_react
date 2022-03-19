@@ -37,6 +37,7 @@ export const createTocNodeTree = (heading: VFileData[]): TocNode => {
     return root
 }
 
+/** 切断父级prent的联系 */
 export const cutParent = (node: TocNode) => {
     node.parent = null
     for (const n of node.children) {

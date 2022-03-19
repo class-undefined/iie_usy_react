@@ -5,8 +5,10 @@ import remarkHeadings from '@vcarl/remark-headings';
 import "./Toc.scss"
 import { createTocNodeTree, cutParent, NodeLevel, RootLevel, TocNode, VFileData } from "../../../utils/markdown";
 import { useEffect, useState } from "react";
+import { linkHandle } from "../Heading/Heading";
 interface TocProps {
-    markdown: string
+    markdown: string,
+    className?: string
 }
 
 interface TocItemProps {
@@ -17,34 +19,53 @@ interface TocItemProps {
 interface AnchorProps {
     className?: string,
     depth: NodeLevel | RootLevel,
-    value: string
+    value: string,
+    control: boolean,
+    isClose?: boolean,
+    onClick?: () => void
 }
 // http://localhost:3000/info/introduction#bravo
 const Anchor = (props: AnchorProps) => {
-    const { className, depth, value } = props
+    const { depth, value, control, isClose } = props
+    const onClick = props.onClick ? props.onClick : undefined
+    let text = isClose ? "-" : "+"
+    text = control ? text : ""
+    const className = props.className ? `toc-anchor-contaienr ${props.className}` : "toc-anchor-contaienr"
     return (
         <div className={className}>
-            <span></span>
-            <a href="javascript(void);">{value}</a>
+            <span onClick={onClick} className={`${control ? "toc-anchor" : "toc-expander"}`}>{text}</span>
+            <a className="toc-anchor-link" onClick={e => linkHandle(e, value)}>{value}</a>
         </div>
     )
 }
+
+const tocListSwitch = (isClose: boolean) => {
+    return isClose ? "toc-list-close" : "toc-list-open"
+}
+
 const TocItem: React.FC<TocItemProps> = (props: TocItemProps) => {
     const { className, node } = props
     const { depth, value } = node
+    const [isClose, setClose] = useState(false)
+    const control = node.children.length !== 0
     if (node.children.length === 0) {
         return (
-            <li>
-                <Anchor depth={depth} value={value} />
+            <li className="toc-li">
+                <Anchor control={control} depth={depth} value={value} />
             </li>
         )
     }
+
+    const listClassName = tocListSwitch(isClose)
+    const handle = () => {
+        setClose(!isClose)
+    }
     return (
-        <li>
-            <Anchor depth={depth} value={value} />
-            <ul>
+        <li className="toc-li">
+            {depth === 0 ? null : <Anchor onClick={handle} isClose={isClose} control={control} depth={depth} value={value} />}
+            <ul className={listClassName}>
                 {
-                    node.children.map(nodeProps => (<TocItem node={nodeProps} />))
+                    node.children.map((nodeProps, index) => (<TocItem key={index} node={nodeProps} />))
                 }
             </ul>
         </li>
@@ -54,6 +75,7 @@ const TocItem: React.FC<TocItemProps> = (props: TocItemProps) => {
 export const Toc = (props: TocProps) => {
     const [tocNode, setTocNode] = useState({ depth: 0, value: "", children: [], parent: null } as TocNode)
     const { markdown } = props
+    const className = props.className ? props.className : ""
     const processor = unified()
         .use(remarkParse)
         .use(remarkStringify)
@@ -67,6 +89,8 @@ export const Toc = (props: TocProps) => {
     }, [tocNode.children.length])
 
     return (
-        <TocItem node={tocNode} />
+        <div className={"toc-tree-container " + className}>
+            <TocItem node={tocNode} />
+        </div>
     )
 }

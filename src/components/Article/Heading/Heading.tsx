@@ -16,8 +16,8 @@ export const Heading = ({ type, children, ...props }: HeadingProps) => {
     return React.createElement(type, props, children)
 }
 
-const linkHandle = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
-    scrollToAnchor(dummyAnchorPrefix + id)
+export const linkHandle = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+    scrollToAnchor(dummyAnchorPrefix + idPrefix + id)
     e.preventDefault()
 }
 
@@ -33,7 +33,7 @@ export const HeadingBlock = (props: HeadingType) => {
         const nodeValue = `${idPrefix}${id}`
         return (
             <Heading type={element} id={nodeValue} className={`md-heading`}>
-                <a onClick={e => linkHandle(e, nodeValue)} target="_self" className={`md-anchor md-anchor-${element}`}>
+                <a onClick={e => linkHandle(e, id)} target="_self" className={`md-anchor md-anchor-${element}`}>
                     <div className="anchor">
                         🔥
                     </div>

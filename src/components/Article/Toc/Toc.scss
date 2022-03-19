@@ -1,2 +1,49 @@
 .toc-tree-container {
+	a {
+		text-decoration: none;
+	}
+}
+.toc-li {
+	list-style-type: none;
+	ul {
+		padding-inline-start: 20px;
+	}
+}
+.toc-tree-container > .toc-li > ul {
+	padding-inline-start: 0;
+}
+
+.toc-anchor-link {
+	color: #74818d;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.toc-anchor-link:hover {
+	color: #3884ff;
+}
+.toc-anchor {
+	opacity: 0;
+	margin-left: -10px;
+	padding-right: 4px;
+	height: 100%;
+	display: inline-block;
+	user-select: none;
+	cursor: pointer;
+}
+.toc-anchor-contaienr:hover {
+	.toc-anchor {
+		opacity: 1;
+	}
+}
+.toc-expander {
+	padding-right: 5px;
+}
+
+.toc-list-open {
+	display: block;
+}
+
+.toc-list-close {
+	display: none;
 }
