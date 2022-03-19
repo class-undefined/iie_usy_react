@@ -28,12 +28,14 @@ interface AnchorProps {
 const Anchor = (props: AnchorProps) => {
     const { depth, value, control, isClose } = props
     const onClick = props.onClick ? props.onClick : undefined
-    let text = isClose ? "-" : "+"
+    let text = isClose ? "➕" : "➖"
     text = control ? text : ""
     const className = props.className ? `toc-anchor-contaienr ${props.className}` : "toc-anchor-contaienr"
+    let menuClassName = control ? "toc-anchor" : "toc-expander"
+    if (control && isClose) menuClassName += " toc-anchor-close"
     return (
         <div className={className}>
-            <span onClick={onClick} className={`${control ? "toc-anchor" : "toc-expander"}`}>{text}</span>
+            <span onClick={onClick} className={menuClassName}>{text}</span>
             <a className="toc-anchor-link" onClick={e => linkHandle(e, value)}>{value}</a>
         </div>
     )
