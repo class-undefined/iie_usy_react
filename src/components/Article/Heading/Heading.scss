@@ -1,0 +1,27 @@
+.md-heading {
+	.md-anchor {
+		text-decoration: none;
+		color: green;
+		font-size: 25px;
+		opacity: 0;
+		margin-left: -20px;
+		padding-right: 4px;
+	}
+	.md-title {
+		code {
+			background-color: rgba(175, 184, 193, 0.2);
+			border-radius: 4px;
+			padding: 5px;
+		}
+		// text-indent: 1em;
+	}
+	.octicon {
+		vertical-align: middle;
+		cursor: pointer;
+	}
+}
+.md-heading:hover {
+	.md-anchor {
+		opacity: 1;
+	}
+}
