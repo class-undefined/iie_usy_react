@@ -4,12 +4,12 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {RouteConfig} from '../../route/types';
-import {AccordionActions, Button} from '@mui/material';
-import {MouseEventHandler} from 'react';
+import { RouteConfig } from '../../route/types';
+import { AccordionActions, Button } from '@mui/material';
+import { MouseEventHandler } from 'react';
 import './ExtendGroup.scss'
-import {useJumpToView, useUpdatePrePath} from '../../layout/NavBar/config';
-import {useHistory} from 'react-router-dom';
+import { useJumpToView, useUpdatePrePath } from '../../layout/NavBar/config';
+import { useHistory } from 'react-router-dom';
 interface ExtendGroupProps extends RouteConfig {
     onClick?: MouseEventHandler
 }
@@ -21,7 +21,7 @@ export default function ExtendGroup(props: ExtendGroupProps) {
             <AccordionDetails>
                 {
                     props.children && props.children.map(routeConfig => {
-                        return <Button key={routeConfig.name} className={'typography-detail-btn'} onClick={() => {jumpToView(routeConfig, false)}}>{routeConfig.name}</Button>
+                        return <Button key={routeConfig.name} className={'typography-detail-btn'} onClick={() => { jumpToView(routeConfig, false) }}>{routeConfig.name}</Button>
                     })
                 }
             </AccordionDetails>
@@ -29,6 +29,7 @@ export default function ExtendGroup(props: ExtendGroupProps) {
     }
     const MenuItem = (props: ExtendGroupProps) => {
         /* 是否为需要扩展的元素 */
+        // 拓展元素有一个bug，应该在展开状态栏时将上一级route.path加入当前path
         const isExtend = props.children && props.children.length !== 0
         if (isExtend) {
             return (
@@ -39,17 +40,17 @@ export default function ExtendGroup(props: ExtendGroupProps) {
                         aria-controls="panel1a-content">
                         <Typography className={'typography'}>{props.name}</Typography>
                     </AccordionSummary>
-                    <Children/>
+                    <Children />
                 </Accordion>
             )
         }
         return (
-            <Accordion className={'accordion-container'} onClick={() => {jumpToView(props as RouteConfig, true)}}>
+            <Accordion className={'accordion-container'} onClick={() => { jumpToView(props as RouteConfig, true) }}>
                 <AccordionActions className={'accordion-signal-item'} >
                     <Typography className={'typography'}>{props.name}</Typography>
                 </AccordionActions>
             </Accordion>
         )
     }
-    return <MenuItem {...props}/>
+    return <MenuItem {...props} />
 }
