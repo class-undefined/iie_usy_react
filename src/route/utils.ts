@@ -164,6 +164,9 @@ class _RouteUtils {
         // console.assert(routeConfigArray.length !==  0, `RouteUtils.getRoutes 获取路由失败，未查找到路由 ${pathname}`)
         return routeConfigArray
     }
+
 }
 
 export const RouteUtils = new _RouteUtils()
+
+// 准备一次Route数据结构重构，根据RouteConfig构建一颗RouteNode
