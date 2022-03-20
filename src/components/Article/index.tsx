@@ -10,6 +10,7 @@ import { dummyAnchorPrefix, HeadingBlock, idPrefix, toc } from "./Heading/Headin
 import { scrollToAnchor } from "../../utils/dom";
 import "./markdown-style.scss"
 import { Toc } from "./Toc/Toc";
+import { Divider } from "../Divider/Divider";
 interface ArticleProps {
     className?: string,
     article: Readonly<IArticle>,
@@ -17,7 +18,7 @@ interface ArticleProps {
 
 export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
     const { className, article } = props
-    const { title, content, updateTime, releaseTime, id } = article
+    const { title, content, updateTime, releaseTime, id, pv } = article
     useEffect(() => {
         /* 根据hash更新定位锚点 */
         // console.log(toc.length)
@@ -72,13 +73,13 @@ export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
                         linkTarget='_blank'
                         rehypePlugins={[[slug]]} // preventDefault
                         remarkPlugins={[[remarkGfm]]} />
+                    <Divider />
                     <footer>
-                        <span className={"release-time"}>编辑于: {releaseTime}</span>
+                        <p className={"note pv"}>浏览次数: {pv}</p>
+                        <p className={"note release-time"}>编辑于: {releaseTime}</p>
                     </footer>
                 </main>
-
             </div>
-
         </article>
     )
 }

@@ -1,35 +1,39 @@
 @import "src/common/utils";
 .carousel-container {
-  margin: 0 auto;
-  margin-top: 5px;
-  @include block();
+	margin: 0 auto;
+	margin-top: 5px;
+	@include block();
+	// .CarouselItem {
+	//   height: ;
+	// }
 }
 @mixin media {
-  @media screen and (min-width: 1024px){
-    max-width: 600px;
-    max-height: 380px;
-  }
+	@media screen and (min-width: 1024px) {
+		max-width: 600px;
+		max-height: 380px;
+	}
 }
 .carousel-card-container {
-  margin: 0 auto;
-  border-radius: 5px;
-  flex: 1;
-  max-height: 500px;
-  flex-direction: row;
-  @include media;
+	margin: 0 auto;
+	border-radius: 5px;
+	flex: 1;
+	max-height: 500px;
+	flex-direction: row;
+	@include media;
 }
 .carousel-card {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
 }
-.img, .img-fill {
-  display: inline-block;
-  object-fit: fill !important;
-  border-radius: 5px;
-  @include media ;
+.img,
+.img-fill {
+	display: inline-block;
+	object-fit: fill !important;
+	border-radius: 5px;
+	@include media;
 }
 .img:hover {
-  transform: scale(1.03);
-  transition: .8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	transform: scale(1.03);
+	transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

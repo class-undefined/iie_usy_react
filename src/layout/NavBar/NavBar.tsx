@@ -1,12 +1,9 @@
-import * as React from 'react';
 import { useEffect, useState } from 'react';
 import './NavBar.scss'
 import { getMedia, OS } from '../../utils/media';
 import { navBarConfig } from '../../route/config';
 import MediaNavBar from './components/MediaNavBar/MediaNavBar';
-import { withRouter } from "react-router";
 import { NavBarItem } from './components/NavBarItem/NavBarItem';
-import { RouteConfig } from '../../route/types';
 import { RouteConfigFitter } from './config';
 
 export const NavBar = (props: any) => {

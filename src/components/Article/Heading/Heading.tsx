@@ -16,7 +16,7 @@ export const Heading = ({ type, children, ...props }: HeadingProps) => {
     return React.createElement(type, props, children)
 }
 
-export const linkHandle = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
+export const linkHandle = (e: MouseEvent<HTMLAnchorElement | HTMLLinkElement | MouseEvent | HTMLSpanElement>, id: string) => {
     scrollToAnchor(dummyAnchorPrefix + idPrefix + id)
     e.preventDefault()
 }

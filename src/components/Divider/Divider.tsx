@@ -29,7 +29,7 @@ export const Divider = (props: DividerProps) => {
     }
     return (
         <div className={rootClassName}>
-            <div className={"divider"}>
+            <div className={"divider-component"}>
                 <Children />
             </div>
         </div>
