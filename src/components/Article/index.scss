@@ -9,27 +9,38 @@
 
 // .id-link {
 // }
-.toc {
-	ol {
-		list-style: none;
-		padding-inline-start: 1.5em;
-	}
-	ol li {
-		padding-left: 0;
-	}
-	a {
-		text-decoration: none;
-		color: #74818d;
-		font-size: 14px;
-		font-weight: bold;
-	}
-	a:hover {
-		color: #3884ff;
-	}
-	position: absolute;
-}
 
 .article {
-	font-weight: 300;
-	padding: 0 0.5em;
+	width: 100%;
+	.grid-container {
+		margin: 0 auto;
+		max-width: 1200px;
+		@media screen and (min-width: 769px) {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 6fr);
+			grid-gap: 3rem;
+			gap: 3rem;
+			grid-template-areas: "toc main";
+			padding-left: 1rem;
+			padding-right: 1rem;
+		}
+		.toc {
+			display: none;
+			@media screen and (min-width: 769px) {
+				grid-area: toc;
+				display: block;
+				position: sticky;
+				top: 70px;
+				height: 100vh;
+				.toc-tree-container {
+					border-right: 1px solid #666;
+				}
+			}
+		}
+		main {
+			@media screen and (min-width: 769px) {
+				grid-area: main;
+			}
+		}
+	}
 }

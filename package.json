@@ -39,6 +39,7 @@
     "rehype-slug": "^5.0.1",
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
     "remark-toc": "^8.0.1",
     "sass-node": "^4.11.2",
     "styled-components": "^5.3.1",

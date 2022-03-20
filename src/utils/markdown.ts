@@ -45,3 +45,4 @@ export const cutParent = (node: TocNode) => {
     }
     return node
 }
+

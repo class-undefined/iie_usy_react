@@ -4,6 +4,7 @@ import { getBreadListParam, navBarConfig } from '../route/config';
 import { routeExample } from './route/routeExample';
 import { ArrayEqualExample } from './function/ArrayEqualExample';
 import { tempTest } from './temp/tempTest';
+import { StringTest } from './function/stringUtilsTest';
 
 export const Test = () => {
     sortExample()
@@ -11,4 +12,5 @@ export const Test = () => {
     routeExample()
     ArrayEqualExample()
     tempTest()
+    StringTest()
 }
