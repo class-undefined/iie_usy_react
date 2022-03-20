@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import MUIBreadcrumbs from '@mui/material/Breadcrumbs';
 import './BreadCrumbs.scss'
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ import { makeStyles } from '@mui/styles';
 import { Chip, emphasize, styled } from '@mui/material';
 import { splitRoutePath } from '../../../../utils/router';
 import { RouteUtils } from '../../../../route/utils';
+import { RouteConfig } from '../../../../route/types';
 
 const useTextStyle = makeStyles({
     li: {
@@ -17,10 +18,7 @@ const useTextStyle = makeStyles({
     },
 })
 
-function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    event.preventDefault();
-    console.info('You clicked a breadcrumb.');
-}
+
 
 const StyledBreadcrumb = styled(Chip)(({ theme }) => {
     const backgroundColor =
@@ -54,25 +52,32 @@ export const BreadCrumbs = () => {
     }, [pathname])
     console.log(pathLabels);
     const pathRoutes = RouteUtils.getRoutes(pathname)
+    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, route: RouteConfig) => {
+        history.push(route.path)
+        console.log(route.path)
+        event.preventDefault();
+        console.info('You clicked a breadcrumb.');
+    }
     if (pathRoutes === null) return null
     if (pathRoutes.find(route => route.path === "/404")) return null
-    const Children = () => {
-        return (
-            <Breadcrumbs>
-                {pathRoutes.map((route) => <StyledBreadcrumb className={'Breadcrumbs'} key={route.path}
-                    label={route.name} />)}
-            </Breadcrumbs>
-        )
-    }
     return (
-        <div className={'BreadCrumbs-container'} role="presentation" onClick={handleClick}>
+        <div className={'BreadCrumbs-container'} role="presentation">
             <div className={'BreadCrumbs-container-children'}>
-                <Breadcrumbs
+                <MUIBreadcrumbs
                     maxItems={2}
                     className={textStyle.li}
                     aria-label="breadcrumb">
-                    <Children />
-                </Breadcrumbs>
+                    {
+                        pathRoutes.map((route) => {
+                            return (
+                                <StyledBreadcrumb className={'Breadcrumbs'}
+                                    onClick={(e) => handleClick(e, route)}
+                                    key={route.path}
+                                    label={route.name} />
+                            )
+                        })
+                    }
+                </MUIBreadcrumbs>
             </div>
         </div>
     );

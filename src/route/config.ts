@@ -1,12 +1,12 @@
-import {Home} from '../view/Home/Home';
-import {Introduction} from '../view/Info/Introduction';
-import {RouteConfig, RouteConfigArray, RouterPathMap} from './types';
-import {NotFind} from '../view/404/NotFind';
+import { Home } from '../view/Home/Home';
+import { Introduction } from '../view/Info/Introduction';
+import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
+import { NotFind } from '../view/404/NotFind';
 
 
 /* 路由组合对应路由name的映射表 */
 
-export const navBarConfig: RouteConfigArray = [
+export const navBarConfig: RouteConfig[] = [
     {
         name: '首页',
         path: '/',
@@ -23,6 +23,7 @@ export const navBarConfig: RouteConfigArray = [
         path: '/info',
         exact: false,
         meta: {},
+        redirect: '/info/introduction',
         children: [
             {
                 name: '学院简介',
@@ -215,7 +216,7 @@ export const navBarConfig: RouteConfigArray = [
         exact: true,
         component: NotFind,
         meta: {
-            config: {isAddNavBar: false, isShowLayout: false}
+            config: { isAddNavBar: false, isShowLayout: false }
         }
     }
 ]
@@ -224,7 +225,7 @@ export const navBarConfig: RouteConfigArray = [
 export const getSinglePath = (route: RouteConfig) => {
     const ans: Array<[string, string]> = []
     const dfs = (_route: RouteConfig, _path: string) => {
-        const {name, path} = _route
+        const { name, path } = _route
         ans.push([name, _path + path])
         if (!_route.children) return
         for (const __route of _route.children) {

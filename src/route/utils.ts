@@ -1,8 +1,8 @@
-import {getBreadListParam, navBarConfig} from './config';
-import {RouteConfig, RouteConfigArray, RouterPathMap} from './types';
-import {reverseMap} from '../utils';
-import {trim} from '../utils/StringUtils';
-import {spliceRoutePath} from '../utils/router';
+import { getBreadListParam, navBarConfig } from './config';
+import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
+import { reverseMap } from '../utils';
+import { trim } from '../utils/StringUtils';
+import { spliceRoutePath } from '../utils/router';
 
 /* 路由各路径与名称的映射表 */
 class _RouteUtils {
@@ -116,12 +116,13 @@ class _RouteUtils {
         const dfs = (routes: RouteConfigArray): RouteConfig | undefined => {
             // console.assert(paths.length !== 0, "数组长度出现异常，不应该出现0长度的数组")
             // 从routes中找出与paths队列的队首元素相匹配的route
-            const route = routes.find((route) => {return paths[0] === route.path})
+            const route = routes.find((route) => { return paths[0] === route.path })
             // base case
             if (route === undefined) return undefined
             merge_path += route.path
-            if (route.children === undefined || route.children.length === 0) {
-                return {...route, path: merge_path} // 返回一个拷贝 不能修改源RouteConfig
+            // 如果paths为1，则命中route即可返回
+            if (route.children === undefined || route.children.length === 0 || paths.length === 1) {
+                return { ...route, path: merge_path } // 返回一个拷贝 不能修改源RouteConfig
             }
             paths.shift() // 出队
             return dfs(route.children)
@@ -149,17 +150,17 @@ class _RouteUtils {
          * @param path
          */
         const dfs = (routes: RouteConfigArray, path: string): void => {
-            const route = routes.find((route) => {return route.path === paths[0]})
+            const route = routes.find((route) => { return route.path === paths[0] })
             // base case
             if (route === undefined) return undefined
             if (route.path === paths[0]) paths.shift() // 当前路由与队首路径一致则出队，否则不出队
-            routeConfigArray.push({...route, path: path + route.path})
-            if (route.children === undefined || route.children.length === 0) return ;
+            routeConfigArray.push({ ...route, path: path + route.path })
+            if (route.children === undefined || route.children.length === 0) return;
 
             dfs(route.children, path + route.path)
         }
         dfs(navBarConfig, '')
-        if (paths.length !== 0||routeConfigArray.length === 0) return null // 说明没有找到路由
+        if (paths.length !== 0 || routeConfigArray.length === 0) return null // 说明没有找到路由
         // console.assert(routeConfigArray.length !==  0, `RouteUtils.getRoutes 获取路由失败，未查找到路由 ${pathname}`)
         return routeConfigArray
     }

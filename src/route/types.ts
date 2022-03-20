@@ -30,6 +30,8 @@ export interface RouteConfig extends BaseRoute {
     component?: React.FC,
     // 子路由
     children?: Array<RouteConfig>,
+    // 重定向
+    redirect?: string
 }
 
 export type RouteConfigArray = RouteConfig[]

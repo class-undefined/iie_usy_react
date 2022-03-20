@@ -1,6 +1,6 @@
-import {ArrayEqual} from '../../utils';
-import {trim} from '../../utils/StringUtils';
-import {RouteUtils} from '../../route/utils';
+import { ArrayEqual } from '../../utils';
+import { trim } from '../../utils/StringUtils';
+import { RouteUtils } from '../../route/utils';
 import { spliceRoutePath } from '../../utils/router';
 
 const test1 = () => {
@@ -31,6 +31,13 @@ const test4 = () => {
     console.assert(source === target, 'routeExample4')
 }
 
+const test41 = () => {
+    const param = '/info'
+    const target = ['/info']
+    const source = spliceRoutePath(param)
+    console.assert(ArrayEqual(source, target), 'routeExample41')
+}
+
 const test5 = () => {
     const param: Array<string[] | string> = [['info', 'leadership'], '/scientific/achievement']
     const target = [['学院概况', '领导团队'], ['学术科研', '科研成果']]
@@ -41,20 +48,20 @@ const test5 = () => {
     }
 }
 
-const test6 = (isLog: boolean=false) => {
+const test6 = (isLog: boolean = false) => {
     const param = '/info/introduction'
     const target = RouteUtils.getRoute(param)
     if (isLog) console.log(target);
 }
 
-const test7 = (isLog: boolean=false) => {
-    const param = '/info/introduction'
-    const target = RouteUtils.getRoutes(param)
+const test7 = (isLog: boolean = false) => {
+    const param = '/info'
+    const target = RouteUtils.getRoute(param)
     if (isLog) console.log(target);
 }
 
 /* 不存在的路径则返回null */
-const test8 = (isLog: boolean=true) => {
+const test8 = (isLog: boolean = true) => {
     const param = '/info/1'
     const target = RouteUtils.getRoutes(param)
     if (isLog) console.log(target);
@@ -66,6 +73,7 @@ export const routeExample = () => {
     test2()
     test3()
     test4()
+    test41()
     test5()
     test6()
     test7()

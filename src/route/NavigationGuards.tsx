@@ -6,10 +6,19 @@ import { setTitle } from '../utils';
 import { BaseLayout } from '../layout/BaseLayout/BaseLayout';
 import { RouteUtils } from './utils';
 import { PackView } from '../view/PackView/PackView';
+import { navBarConfig } from './config';
 
 export const isPass = (route: RouteConfig | undefined | null) => {
     if (route && route.component) return true
     return false
+}
+
+export const routePath = (route: RouteConfig | undefined | null) => {
+    if (!route) return "/404"
+    if (route.component) return route.path
+    console.log(route, route.component, route.redirect)
+    if (!route.component && route.redirect) return route.redirect
+    return "/404"
 }
 
 const WrapComponent = (props: { component: React.FC }) => {
@@ -27,7 +36,8 @@ export const NavigationGuards = () => {
     const { pathname } = location
     const targetRoute = RouteUtils.getRoute(pathname)
     const pass = isPass(targetRoute)
-    console.log(`路由守卫检测路由是否匹配：route: 【${pathname}】 | ${pass}`);
+    console.log(`路由守卫检测路由是否匹配：route: 【${pathname}】 | ${pass}`, targetRoute);
+    if (targetRoute?.redirect) return <Redirect to={targetRoute?.redirect} />
     if (targetRoute && pass) {
         if (targetRoute.path === '/404') {
             const LostPage = targetRoute.component as React.FC
@@ -46,5 +56,7 @@ export const NavigationGuards = () => {
         return <Route exact={targetRoute.exact} path={targetRoute.path}
             render={() => pathname === '/' ? <Component /> : <WrapComponent component={F} />} />
     }
-    return <Redirect to={'/404'} />
+    const path = routePath(targetRoute)
+    console.log(path)
+    return <Redirect to={path} />
 }

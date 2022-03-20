@@ -36,10 +36,9 @@ const Anchor = (props: AnchorProps) => {
     if (control && isClose) menuClassName += " toc-anchor-close"
     return (
         <div className={className}>
-            <span onClick={onClick} className={menuClassName}>{text}</span>
-            {/* <Link className={"toc-anchor-link"} href="#" underline="none" onClick={e => linkHandle(e, value)}>
-                {value}
-            </Link> */}
+            <span onClick={onClick} className={menuClassName}>
+                {text}
+            </span>
             <a className="toc-anchor-link" onClick={e => linkHandle(e, value)}>{value}</a>
         </div>
     )
