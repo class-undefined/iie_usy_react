@@ -28,7 +28,7 @@ interface AnchorProps {
 const Anchor = (props: AnchorProps) => {
     const { depth, value, control, isClose } = props
     const onClick = props.onClick ? props.onClick : undefined
-    let text = isClose ? "➕" : "➖"
+    let text = isClose ? "+" : "-"
     text = control ? text : ""
     const className = props.className ? `toc-anchor-contaienr ${props.className}` : "toc-anchor-contaienr"
     let menuClassName = control ? "toc-anchor" : "toc-expander"

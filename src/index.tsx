@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {Test} from './test';
-import {SnackbarProvider} from 'notistack';
-import {SnackbarUtilsConfigurator} from './utils/Notify';
-
+import { Test } from './test';
+import { SnackbarProvider } from 'notistack';
+import { SnackbarUtilsConfigurator } from './utils/Notify';
 ReactDOM.render(
   <React.StrictMode>
     <SnackbarProvider hideIconVariant={false}>
-      <SnackbarUtilsConfigurator/>
+      <SnackbarUtilsConfigurator />
     </SnackbarProvider>
     <App />
   </React.StrictMode>,

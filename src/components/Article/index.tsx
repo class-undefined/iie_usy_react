@@ -30,7 +30,7 @@ export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
     }, [])
     // toc.length = 0
     return (
-        <article key={id} className={className ? className : ""}>
+        <article key={id} className={className ? "article " + className : "article"}>
             <header>
                 <p>{title}</p>
             </header>

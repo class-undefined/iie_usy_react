@@ -24,9 +24,10 @@
 }
 .toc-anchor {
 	opacity: 0;
-	margin-left: -10px;
-	padding-right: 4px;
+	margin-left: -1em;
+	// padding-right: 4px;
 	height: 100%;
+	width: 1em;
 	display: inline-block;
 	user-select: none;
 	cursor: pointer;
@@ -40,7 +41,7 @@
 	// padding-right: 0.5em;
 }
 .toc-expander {
-	padding-right: 1em;
+	// padding-right: 1em;
 }
 
 .toc-list-open {
