@@ -1,4 +1,4 @@
-import {RouteConfig} from '../../route/types';
+import { RouteConfig } from '../../route/types';
 import * as H from 'history';
 
 const PreRoutePath = class {
@@ -49,7 +49,7 @@ export const useUpdatePrePath = () => {
 /* 路由过滤器 */
 const Fitter = class {
     /**
-     * 如果route具备route.meta.config.isAddNavBar属性且值为false，则返回true
+     * (是否需要增加到NavBar，默认true)如果route具备route.meta.config.isAddNavBar属性且值为false，则返回true
      * @param route
      */
     public isAddNavBar(route: RouteConfig) {

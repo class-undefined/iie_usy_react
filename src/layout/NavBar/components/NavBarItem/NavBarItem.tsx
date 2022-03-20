@@ -7,9 +7,9 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import './NavBarItem.scss'
-import {RouteConfig, RouteConfigArray} from '../../../../route/types';
-import {useJumpToView, useUpdatePrePath} from '../../config';
-import {useHistory} from 'react-router-dom';
+import { RouteConfig, RouteConfigArray } from '../../../../route/types';
+import { useJumpToView, useUpdatePrePath } from '../../config';
+import { useHistory } from 'react-router-dom';
 
 export const NavBarItem = (props: RouteConfig) => {
     const [open, setOpen] = React.useState(false)
@@ -23,14 +23,12 @@ export const NavBarItem = (props: RouteConfig) => {
     const updatePrePath = useUpdatePrePath()
     const handleToggle = (route: RouteConfig) => {
         /* 设置路由前缀，路由前缀 Example: /abc/def ,则/abc为前缀 /a/b/c/d/e 则/a/b/c/d是前缀 */
-        if (!open) {
-            updatePrePath(route)
-        }
+        if (!open) updatePrePath(route)
         setOpen((prevOpen) => !prevOpen);
     };
 
     const handleClick = (props: RouteConfig) => {
-        if (props.children && props.children.length !== 0) return () => {handleToggle(props)}
+        if (props.children && props.children.length !== 0) return () => { handleToggle(props) }
         return () => {
             jumpToView(props, true)
         }
@@ -69,7 +67,7 @@ export const NavBarItem = (props: RouteConfig) => {
         <div className={'nav-bar-item'}>
             <Button
                 ref={anchorRef}
-                style={{color: '#303133'}}
+                style={{ color: '#303133' }}
                 aria-controls={open ? 'composition-menu' : undefined}
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
@@ -85,7 +83,7 @@ export const NavBarItem = (props: RouteConfig) => {
                 transition
                 disablePortal
             >
-                {({TransitionProps, placement}) => (
+                {({ TransitionProps, placement }) => (
                     <Grow
                         {...TransitionProps}
                         style={{
@@ -103,12 +101,12 @@ export const NavBarItem = (props: RouteConfig) => {
                                 >
                                     {props.children && (props.children as RouteConfigArray).map((menuItem, index) => {
                                         return (
-                                            <MenuItem className={'menu-item'} style={{textAlign: 'center'}}
-                                                      sx={{width: 100}} key={index} onClick={(e) => {
-                                                handleClose(e)
-                                                jumpToView(menuItem)
-                                            }
-                                            }>
+                                            <MenuItem className={'menu-item'} style={{ textAlign: 'center' }}
+                                                sx={{ width: 100 }} key={index} onClick={(e) => {
+                                                    handleClose(e)
+                                                    jumpToView(menuItem)
+                                                }
+                                                }>
                                                 {menuItem.name}
                                             </MenuItem>
                                         )

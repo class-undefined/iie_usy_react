@@ -4,7 +4,7 @@ import './BreadCrumbs.scss'
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
-import { Chip, emphasize, styled } from '@mui/material';
+import { Chip, emphasize, styled, Link, Typography } from '@mui/material';
 import { splitRoutePath } from '../../../../utils/router';
 import { RouteUtils } from '../../../../route/utils';
 import { RouteConfig } from '../../../../route/types';
@@ -12,8 +12,8 @@ import { RouteConfig } from '../../../../route/types';
 const useTextStyle = makeStyles({
     li: {
         fontFamily: `"Roboto","Helvetica","Arial",sans-serif `,
-        fontWeight: 400,
-        fontSize: '1.895rem',
+        fontWeight: 500,
+        fontSize: '0.9rem',
         lineHeight: 1.75,
     },
 })
@@ -52,11 +52,9 @@ export const BreadCrumbs = () => {
     }, [pathname])
     console.log(pathLabels);
     const pathRoutes = RouteUtils.getRoutes(pathname)
-    const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, route: RouteConfig) => {
+    const handleClick = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>, route: RouteConfig) => {
         history.push(route.path)
-        console.log(route.path)
         event.preventDefault();
-        console.info('You clicked a breadcrumb.');
     }
     if (pathRoutes === null) return null
     if (pathRoutes.find(route => route.path === "/404")) return null
@@ -68,13 +66,14 @@ export const BreadCrumbs = () => {
                     className={textStyle.li}
                     aria-label="breadcrumb">
                     {
-                        pathRoutes.map((route) => {
-                            return (
-                                <StyledBreadcrumb className={'Breadcrumbs'}
-                                    onClick={(e) => handleClick(e, route)}
-                                    key={route.path}
-                                    label={route.name} />
-                            )
+                        pathRoutes.map((route, index) => {
+                            return index !== pathRoutes.length - 1 ? (<Link className={'Breadcrumbs'}
+                                underline="hover"
+                                color="inherit"
+                                onClick={(e) => handleClick(e, route)}
+                                href={route.path}
+                                key={route.path}>{route.name}</Link>)
+                                : <span key={route.path} className={'Breadcrumbs Breadcrumbs-now'} color="text.primary">{route.name}</span>
                         })
                     }
                 </MUIBreadcrumbs>
