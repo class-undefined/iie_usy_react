@@ -1,43 +1,44 @@
 @import "src/common/utils";
 .card-container {
-  @include block();
-  padding: 0 20px 20px 20px;
-  display: block;
-  vertical-align:top;
+	@include block();
+	padding: 0 20px 20px 20px;
+	display: block;
+	// vertical-align:top;
 
-  @media screen and (min-width: 769px){  /*>=769px*/
-    display: inline-block;
-    flex: 4 1;
-    width: 720px;
-    height: 267px;
-    .card-container-body-item:nth-child(2) {
-      margin-left: 10px;
-      margin-right: 10px;
-    }
-
-  }
-  @media screen and (max-width: 1024px) { /* <= 1023px*/
-    //width: 95.5%;
-    width: auto;
-  }
+	@media screen and (min-width: 769px) {
+		/*>=769px*/
+		display: inline-block;
+		flex: 4 1;
+		width: 720px;
+		height: 267px;
+		.card-container-body-item:nth-child(2) {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+	}
+	@media screen and (max-width: 1024px) {
+		/* <= 1023px*/
+		//width: 95.5%;
+		width: auto;
+	}
 }
 .card-container-title {
-  @include font();
-  margin-left: 20px;
+	@include font();
+	margin-left: 20px;
 }
 .card-container-body {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  @media screen and (max-width: 769px){
-    flex-direction: column;
-    padding: 0 20px;
-  }
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	@media screen and (max-width: 769px) {
+		flex-direction: column;
+		padding: 0 20px;
+	}
 }
 .card-container-body-item {
-  flex: 1 1 !important;
-  @media screen and (max-width: 769px){
-    max-width: none !important;
-    margin-top: 20px;
-  }
+	flex: 1 1 !important;
+	@media screen and (max-width: 769px) {
+		max-width: none !important;
+		margin-top: 20px;
+	}
 }

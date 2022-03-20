@@ -7,7 +7,7 @@ import { BaseLayout } from '../layout/BaseLayout/BaseLayout';
 import { RouteUtils } from './utils';
 import { PackView } from '../view/PackView/PackView';
 
-const isPass = (route: RouteConfig | undefined | null) => {
+export const isPass = (route: RouteConfig | undefined | null) => {
     if (route && route.component) return true
     return false
 }

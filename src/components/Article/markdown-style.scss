@@ -1,3 +1,4 @@
+@import "src/common/utils";
 .markdown-privew {
 	--bg-color: white;
 	--side-bar-bg-color: #f5f7f9;
@@ -411,6 +412,10 @@
 		font-weight: 300;
 		text-align: justify;
 		text-justify: inter-ideograph;
+
 		// word-break: keep-all;
+	}
+	strong {
+		@include font(1rem, #000);
 	}
 }
