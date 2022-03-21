@@ -35,3 +35,5 @@ export const createRouteTree = (routeConfigs: RouteConfig[]) => {
     }
     return root
 }
+// const routeNodeTree = createRouteTree(navBarConfig)
+// TODO: 重构RouteUtils工具类 
