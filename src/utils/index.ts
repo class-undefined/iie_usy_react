@@ -1,7 +1,6 @@
 import Notify from './Notify';
-import {RouterPathMap} from '../route/types';
 interface ReverseMap {
-    [key: string] : any
+    [key: string]: any
 }
 /**
  * 将一维数组升维，每 size 个元素为一组
@@ -21,7 +20,7 @@ export const packedArray = <T>(nDArray: Array<T>, size: number = 3) => {
     }
     /* 出现空白元素填充null */
     return ans.map(array => {
-        const {length} = array
+        const { length } = array
         if (size === 3) {
             if (length === 1) return [null, array[0], null]
             else if (length === 2) return [array[0], null, array[1]]
@@ -77,7 +76,7 @@ export const sort = <T>(items: Array<T>, compare: (a: T, b: T) => boolean) => {
     }
     items.forEach(item => insert(item))
     const ans = [] as Array<T>
-    const {length} = array
+    const { length } = array
     while (ans.length !== length) {
         ans.push(pop())
     }
@@ -136,4 +135,31 @@ export const reverseMap = (target: ReverseMap): ReverseMap => {
         ans[target[path]] = path
     }
     return ans
+}
+
+/**
+ * 
+ * @param target 欲深拷贝的对象
+ * @param skipKey 需要跳过的字段 不需要跳过则为null，默认为null
+ * @param deepSkip 是否深度跳过字段 在开启skip情况下，true为跳过每层skip字段，为false代表仅跳过第一层，默认false
+ * @returns 
+ */
+export const deepCopyObject = <T extends Object, K extends keyof T>(target: T, skipKey: K | null = null, deepSkip: boolean = false): Omit<T, K> => {
+    const _deepCopyObject = <T extends Object>(target: T, skipKey: string | null = null, deepSkip: boolean = false) => {
+        const obj = {} as any
+        for (const key in target) {
+            // deepSkip: true 深度跳过此字段
+            if (!deepSkip) deepSkip = false
+            const value = target[key]
+            if (skipKey === null || skipKey.toString() !== key) {
+                if (value === null || value === undefined || typeof value === "function" || typeof value === "symbol") obj[key] = value
+                /* object递归赋值 */
+                else if (typeof value === "object") obj[key] = _deepCopyObject(value, skipKey, deepSkip)
+                /* 基本类型直接赋值 */
+                else obj[key] = value
+            }
+        }
+        return obj
+    }
+    return _deepCopyObject(target, skipKey === null ? null : skipKey.toString(), deepSkip)
 }
