@@ -39,7 +39,7 @@ const Anchor = (props: AnchorProps) => {
             <span onClick={onClick} className={menuClassName}>
                 {text}
             </span>
-            <a className="toc-anchor-link" onClick={e => linkHandle(e, value)}>{value}</a>
+            <a className="toc-anchor-link" onClick={e => linkHandle(e, depth, value)}>{value}</a>
         </div>
     )
 }
