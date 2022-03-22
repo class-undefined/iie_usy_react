@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { Chip, emphasize, styled, Link, Typography } from '@mui/material';
 import { splitRoutePath } from '../../../../utils/router';
-import { RouteUtils } from '../../../../route/utils';
-import { RouteConfig } from '../../../../route/types';
+import { RouteUtil } from '../../../../route/utils';
+import { RouteNode } from '../../../../route/node/node';
 
 const useTextStyle = makeStyles({
     li: {
@@ -51,13 +51,14 @@ export const BreadCrumbs = () => {
         setPathLabels(pathLabels)
     }, [pathname])
     console.log(pathLabels);
-    const pathRoutes = RouteUtils.getRoutes(pathname)
-    const handleClick = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>, route: RouteConfig) => {
-        history.push(route.path)
+    const routeNode = RouteUtil.getRoute(pathname)
+    if (routeNode === null) return null
+    if (routeNode.getFullPath() === "/404") return null
+    const routePaths = routeNode.getFullPathNodes()
+    const handleClick = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>, route: Readonly<RouteNode>) => {
+        history.push(route.getFullPath())
         event.preventDefault();
     }
-    if (pathRoutes === null) return null
-    if (pathRoutes.find(route => route.path === "/404")) return null
     return (
         <div className={'BreadCrumbs-container'} role="presentation">
             <div className={'BreadCrumbs-container-children'}>
@@ -66,14 +67,14 @@ export const BreadCrumbs = () => {
                     className={textStyle.li}
                     aria-label="breadcrumb">
                     {
-                        pathRoutes.map((route, index) => {
-                            return index !== pathRoutes.length - 1 ? (<Link className={'Breadcrumbs'}
+                        routePaths.map((route, index) => {
+                            return index !== routePaths.length - 1 ? (<Link className={'Breadcrumbs'}
                                 underline="hover"
                                 color="inherit"
                                 onClick={(e) => handleClick(e, route)}
-                                href={route.path}
-                                key={route.path}>{route.name}</Link>)
-                                : <span key={route.path} className={'Breadcrumbs Breadcrumbs-now'} color="text.primary">{route.name}</span>
+                                href={route.getFullPath()}
+                                key={route.getFullPath()}>{route.getName()}</Link>)
+                                : <span key={route.getFullPath()} className={'Breadcrumbs Breadcrumbs-now'} color="text.primary">{route.getName()}</span>
                         })
                     }
                 </MUIBreadcrumbs>

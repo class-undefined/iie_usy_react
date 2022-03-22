@@ -168,6 +168,9 @@ class _RouteUtils {
 
 }
 
+/** 已被废弃，推荐使用RouteUtil
+ * @deprecated
+ */
 export const RouteUtils = new _RouteUtils()
 
 // 准备一次Route数据结构重构，根据RouteConfig构建一颗RouteNode
@@ -203,7 +206,7 @@ export class RouteUtil {
     }
 
     /** 判断是否为一个RouteNode节点 */
-    public static isRouteNode = (node: RouteNode | null | undefined): node is RouteNode => {
+    public static isRouteNode = (node: RouteNode | Readonly<RouteNode> | null | undefined): node is Readonly<RouteNode> => {
         if (!node || node.$$routeNodetype === undefined) return false
         return node.$$routeNodetype === RouteNodeType
     }
