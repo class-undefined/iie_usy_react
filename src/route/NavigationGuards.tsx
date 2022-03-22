@@ -5,6 +5,7 @@ import { setTitle } from '../utils';
 import { BaseLayout } from '../layout/BaseLayout/BaseLayout';
 import { RouteUtil } from './utils';
 import { PackView } from '../view/PackView/PackView';
+import Notify from '../utils/Notify';
 
 export const routePath = (route: RouteConfig | undefined | null) => {
     if (!route) return "/404"
@@ -35,7 +36,8 @@ export const NavigationGuards = () => {
     if (route.redirect) return <Redirect to={route.redirect} />
     /* 如果当前路由既无重定向，又无component，说明暂未开发 */
     if (!route.component) {
-        console.log(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`)
+        // console.log(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`)
+        Notify.error(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`)
         return <Redirect to="/" />
     }
 

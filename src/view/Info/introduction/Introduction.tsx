@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { Article } from '../../components/Article'
-import { createAction, ICard, ICardProps } from '../../components/Card/ICard'
-import { createArticle } from '../../mock/article'
+import { getIntroductionData } from '../../../api/Info/introduction'
+import { Article } from '../../../components/Article'
+import { createAction, ICard, ICardProps } from '../../../components/Card/ICard'
 import "./Introduction.scss"
 export const Introduction = () => {
     // const action = createAction('SHARE')
@@ -14,7 +14,7 @@ export const Introduction = () => {
     useEffect(() => { }, [])
     return (
         <div>
-            <Article className='introduction-article' article={createArticle(1)} />
+            <Article className='introduction-article' article={getIntroductionData()} />
             {/* <ICard {...iCardProps}/>
             
             Introduction */}

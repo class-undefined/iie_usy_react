@@ -1,7 +1,8 @@
 import { Home } from '../view/Home/Home';
-import { Introduction } from '../view/Info/Introduction';
+import { Introduction } from '../view/Info/introduction/Introduction';
 import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
 import { NotFind } from '../view/404/NotFind';
+import { Structure } from '../view/Info/structure/Structure';
 
 
 /* 路由组合对应路由name的映射表 */
@@ -35,6 +36,7 @@ export const navBarConfig: RouteConfig[] = [
                 name: '专业介绍',
                 path: '/structure',
                 exact: true,
+                component: Structure
             },
             {
                 name: '领导团队',

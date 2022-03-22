@@ -1,5 +1,9 @@
-import { Random } from "mockjs"
-import { ArticleId, IArticle } from "../../type/article"
+import { createArticle } from "../../mock/article"
+
+export const getIntroductionData = () => {
+    return createArticle(markdown)
+}
+
 const markdown = `
 # Function
 
@@ -329,13 +333,3 @@ objectSayColor()    //blue
 
 > 每个函数继承的\`toLocaleString()\`和\`toString()\`方法始终都返回函数的代码。返回代码的格式则因浏览器而异——有的返回的代码与源代码中的函数代码一样，而有的则返回函数代码的内部表示，即由解析器删除了注释并对某些代码作了改动后的代码。由于存在这些差异，我们无法根据这两个方法返回的结果来实现任何重要功能；不过，这些信息在调试代码时倒是很有用。另外一个继承的\`valueOf()\`方法同样也只返回函数代码。
 `
-export const createArticle = (content: string): IArticle => {
-    return {
-        id: Random.id(),
-        content,//Random.cparagraph(10),
-        title: Random.title(),
-        releaseTime: Random.date(),
-        updateTime: Random.date(),
-        pv: Random.integer(0, 10000)
-    }
-}
