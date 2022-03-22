@@ -8,11 +8,8 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import { MouseEventHandler } from 'react';
 import { Logo } from '../../../../components/Logo/Logo';
-import { navBarConfig } from '../../../../route/config';
 import ExtendGroup from '../../../../components/ExtendGroup/ExtendGroup';
 import './MediaNavBar.scss'
-import { RouteConfig } from '../../../../route/types';
-import { RouteConfigFitter } from '../../config';
 import { RouteUtil } from '../../../../route/utils';
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 

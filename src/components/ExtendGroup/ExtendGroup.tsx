@@ -30,7 +30,6 @@ export default function ExtendGroup(props: ExtendGroupProps) {
     }
     const MenuItem = () => {
         /* 是否为需要扩展的元素 */
-        // 拓展元素有一个bug，应该在展开状态栏时将上一级route.path加入当前path
         const isExtend = children && children.length !== 0
         if (isExtend) {
             return (

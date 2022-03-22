@@ -2,18 +2,6 @@ import { RouteConfig } from '../../route/types';
 import * as H from 'history';
 import { RouteNode } from '../../route/node/node';
 
-const PreRoutePath = class {
-    private prePath: string = ''
-    public getPrePath = () => this.prePath
-    public setPrePath = (path: string) => {
-        this.prePath = path
-    }
-    public clear = () => {
-        this.prePath = ''
-    }
-}
-const preRoutePath = new PreRoutePath()
-
 /**
  * 使用页面跳转函数
  * @param history useHistory
@@ -26,15 +14,6 @@ export const useJumpToView = (history: H.History) => {
          */
         history.push(route.getFullPath())
         return
-    }
-}
-/**
- * 适用于二级导航栏，更新路由前缀
- */
-export const useUpdatePrePath = () => {
-    return (route: RouteConfig) => {
-        preRoutePath.clear()
-        preRoutePath.setPrePath(route.path)
     }
 }
 

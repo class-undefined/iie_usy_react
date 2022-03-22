@@ -3,7 +3,7 @@ import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
 import { reverseMap } from '../utils';
 import { trim } from '../utils/StringUtils';
 import { spliceRoutePath } from '../utils/router';
-import { createRouteTree, IRouteNode, RouteNode, RouteNodeType } from './node/node';
+import { createRouteTree, RouteNode, RouteNodeType } from './node/node';
 
 /* 路由各路径与名称的映射表 */
 class _RouteUtils {
