@@ -19,15 +19,15 @@ interface TocItemProps {
 
 interface AnchorProps {
     className?: string,
-    depth: NodeLevel | RootLevel,
-    value: string,
+    node: TocNode,
     control: boolean,
     isClose?: boolean,
     onClick?: () => void
 }
 // http://localhost:3000/info/introduction#bravo
 const Anchor = (props: AnchorProps) => {
-    const { depth, value, control, isClose } = props
+    const { control, isClose, node } = props
+    const { value, depth, count } = node
     const onClick = props.onClick ? props.onClick : undefined
     let text = isClose ? "+" : "-"
     text = control ? text : ""
@@ -39,7 +39,7 @@ const Anchor = (props: AnchorProps) => {
             <span onClick={onClick} className={menuClassName}>
                 {text}
             </span>
-            <a className="toc-anchor-link" onClick={e => linkHandle(e, depth, value)}>{value}</a>
+            <a className="toc-anchor-link" onClick={e => linkHandle(e, `${value}-${count}`)}>{value}</a>
         </div>
     )
 }
@@ -56,7 +56,7 @@ const TocItem: React.FC<TocItemProps> = (props: TocItemProps) => {
     if (node.children.length === 0) {
         return (
             <li className="toc-li">
-                <Anchor control={control} depth={depth} value={value} />
+                <Anchor control={control} node={node} />
             </li>
         )
     }
@@ -67,7 +67,7 @@ const TocItem: React.FC<TocItemProps> = (props: TocItemProps) => {
     }
     return (
         <li className="toc-li">
-            {depth === 0 ? null : <Anchor onClick={handle} isClose={isClose} control={control} depth={depth} value={value} />}
+            {depth === 0 ? null : <Anchor onClick={handle} isClose={isClose} control={control} node={node} />}
             <ul className={listClassName}>
                 {
                     node.children.map((nodeProps, index) => (<TocItem key={index} node={nodeProps} />))
@@ -78,7 +78,7 @@ const TocItem: React.FC<TocItemProps> = (props: TocItemProps) => {
 }
 
 export const Toc = (props: TocProps) => {
-    const [tocNode, setTocNode] = useState({ depth: 0, value: "", children: [], parent: null } as TocNode)
+    const [tocNode, setTocNode] = useState({ depth: 0, value: "", children: [], parent: null, count: 0 } as TocNode)
     const { markdown } = props
     const className = props.className ? props.className : ""
     const processor = unified()
@@ -89,6 +89,7 @@ export const Toc = (props: TocProps) => {
         processor.process(markdown).then(vfile => {
             const headings = (vfile.data.headings as unknown) as VFileData[]
             const root = createTocNodeTree(headings)
+            console.log(root)
             setTocNode(root)
         })
     }, [tocNode.children.length])

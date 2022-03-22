@@ -6,7 +6,7 @@ import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomOneDark as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import "./index.scss"
 import { useEffect } from "react";
-import { dummyAnchorPrefix, HeadingBlock, idPrefix, toc } from "./Heading/Heading";
+import { dummyAnchorPrefix, HeadingBlock, HeadingBlockHOC, HeadingBlockProps, idPrefix, toc } from "./Heading/Heading";
 import { scrollToAnchor } from "../../utils/dom";
 import "./markdown-style.scss"
 import { Toc } from "./Toc/Toc";
@@ -27,6 +27,7 @@ export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
             scrollToAnchor(dummyAnchorPrefix + idPrefix + anchor)
         }
     }, [])
+    const map = new Map()
     return (
         <article key={id} className={className ? "article " + className : "article"}>
             <header>
@@ -62,12 +63,12 @@ export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
                                     </code>
                                 )
                             },
-                            h1: HeadingBlock,
-                            h2: HeadingBlock,
-                            h3: HeadingBlock,
-                            h4: HeadingBlock,
-                            h5: HeadingBlock,
-                            h6: HeadingBlock,
+                            h1: HeadingBlockHOC(map),
+                            h2: HeadingBlockHOC(map),
+                            h3: HeadingBlockHOC(map),
+                            h4: HeadingBlockHOC(map),
+                            h5: HeadingBlockHOC(map),
+                            h6: HeadingBlockHOC(map),
                         }}
                         // allowedElements={['iframe', 'code']}
                         linkTarget='_blank'

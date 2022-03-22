@@ -8,28 +8,33 @@ export interface VFileData {
 
 export interface TocNode extends VFileData {
     children: TocNode[],
-    parent: TocNode | null
+    parent: TocNode | null,
+    count: number // 记录第count次相同的value
 }
 /** 构建一颗tocNodeTree */
 export const createTocNodeTree = (heading: VFileData[]): TocNode => {
-    const createNode = (depth: NodeLevel | RootLevel, value: string, parent: TocNode | null): TocNode => {
+    const createNode = (depth: NodeLevel | RootLevel, value: string, parent: TocNode | null, valueCount: number): TocNode => {
         return {
-            depth, value, parent, children: []
+            depth, value, parent, children: [], count: valueCount
         }
     }
-    const root = createNode(0, "", null)
+    const map: Map<string, number> = new Map()
+    const root = createNode(0, "", null, 0)
     let cursor = root
     for (let i = 0; i < heading.length; i++) {
         const { depth, value } = heading[i]
+        if (map.has(value) === false) map.set(value, 0)
+        map.set(value, map.get(value) as number + 1)
+        const valueCount = map.get(value) as number
         if (cursor.depth < depth) {
-            const node = createNode(depth, value, cursor)
+            const node = createNode(depth, value, cursor, valueCount * 2)
             cursor.children.push(node)
             cursor = node
         }
         else {
             // 回到上层找父节点
             while (cursor.parent !== null && cursor.depth >= depth) cursor = cursor.parent
-            const node = createNode(depth, value, cursor)
+            const node = createNode(depth, value, cursor, valueCount * 2)
             cursor.children.push(node)
             cursor = node
         }
