@@ -6,11 +6,6 @@ import { BaseLayout } from '../layout/BaseLayout/BaseLayout';
 import { RouteUtil } from './utils';
 import { PackView } from '../view/PackView/PackView';
 
-export const isPass = (route: RouteConfig | undefined | null) => {
-    if (route && route.component) return true
-    return false
-}
-
 export const routePath = (route: RouteConfig | undefined | null) => {
     if (!route) return "/404"
     if (route.component) return route.path
@@ -38,6 +33,12 @@ export const NavigationGuards = () => {
     if (route === null) throw new Error("what? value is rootNode?")
     /* 如果有重定向元素，则优先重定向 */
     if (route.redirect) return <Redirect to={route.redirect} />
+    /* 如果当前路由既无重定向，又无component，说明暂未开发 */
+    if (!route.component) {
+        console.log(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`)
+        return <Redirect to="/" />
+    }
+
     /* 获取routeNode的完整url路径 */
     const path = routeNode.getFullPath()
     /* 如果路径为404则跳转至404页面 */
