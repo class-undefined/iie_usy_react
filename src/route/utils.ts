@@ -175,6 +175,15 @@ export const RouteUtils = new _RouteUtils()
 export class RouteUtil {
     private static routeNodeTree: RouteNode = createRouteTree(navBarConfig)
     private constructor() { }
+
+    /**
+     * 获取RouteNode根节点（root节点本身不附带route数据，数据在root.children里面）
+     * @returns RouteRootNode
+     */
+    public static getRootRoute = (): Readonly<RouteNode> => {
+        return RouteUtil.routeNodeTree
+    }
+
     /**
      * 获取指定url的RouteNode
      * @param pathname url
@@ -198,4 +207,5 @@ export class RouteUtil {
         if (!node || node.$$routeNodetype === undefined) return false
         return node.$$routeNodetype === RouteNodeType
     }
+
 }

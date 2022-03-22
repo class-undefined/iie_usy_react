@@ -45,6 +45,28 @@ export class RouteNode implements IRouteNode {
         return pathNodes.reverse()
     }
 
+    /** 是否需要将路由增加到NavBar上 不设置meta.config.isAddNavBar属性则默认为true */
+    public isAddNavBar() {
+        if (!this.value) return false
+        const data = this.value
+        if (data.meta && data.meta.config && data.meta.config.isAddNavBar === false) return false
+        return true
+    }
+
+    /** 是否需要将路由增加到Layout上 不设置meta.config.isShowLayout属性则默认为true*/
+    public isShowLayout() {
+        if (!this.value) return false
+        const data = this.value
+        if (data.meta && data.meta.config && data.meta.config.isShowLayout === false) return false
+        return true
+    }
+
+    /** 获取name */
+    public getName() {
+        if (!this.value) throw new Error("该节点可能是根节点RouteRootNode，不应该直接操作根节点。")
+        return this.value.name
+    }
+
 }
 /** 创建RouteNode */
 export const createRouteNode = (parent: IRouteNode | null, value: RouteNodeData | null, children: IRouteNode[] | null): IRouteNode => {

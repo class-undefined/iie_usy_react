@@ -10,27 +10,25 @@ import './NavBarItem.scss'
 import { RouteConfig, RouteConfigArray } from '../../../../route/types';
 import { useJumpToView, useUpdatePrePath } from '../../config';
 import { useHistory } from 'react-router-dom';
-
-export const NavBarItem = (props: RouteConfig) => {
+import { RouteNode } from '../../../../route/node/node';
+interface NavBarItemProps {
+    route: RouteNode
+}
+export const NavBarItem = (props: NavBarItemProps) => {
+    const { route } = props
+    const { children } = route
     const [open, setOpen] = React.useState(false)
     const anchorRef = React.useRef<HTMLButtonElement>(null)
-    /**
-     * 页面跳转
-     * @param route 导航栏的RouteConfig
-     * @param isTop 是否为一级路由
-     */
     const jumpToView = useJumpToView(useHistory())
-    const updatePrePath = useUpdatePrePath()
-    const handleToggle = (route: RouteConfig) => {
+    const handleToggle = () => {
         /* 设置路由前缀，路由前缀 Example: /abc/def ,则/abc为前缀 /a/b/c/d/e 则/a/b/c/d是前缀 */
-        if (!open) updatePrePath(route)
         setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClick = (props: RouteConfig) => {
-        if (props.children && props.children.length !== 0) return () => { handleToggle(props) }
+    const handleClick = (route: RouteNode) => {
+        if (children && children.length !== 0) return () => { handleToggle() }
         return () => {
-            jumpToView(props, true)
+            jumpToView(route)
         }
     }
 
@@ -71,9 +69,9 @@ export const NavBarItem = (props: RouteConfig) => {
                 aria-controls={open ? 'composition-menu' : undefined}
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
-                onClick={handleClick(props)}
+                onClick={handleClick(route)}
             >
-                {props.name}
+                {route.getName()}
             </Button>
             <Popper
                 open={open}
@@ -99,15 +97,15 @@ export const NavBarItem = (props: RouteConfig) => {
                                     aria-labelledby="composition-button"
                                     onKeyDown={handleListKeyDown}
                                 >
-                                    {props.children && (props.children as RouteConfigArray).map((menuItem, index) => {
+                                    {children && children.map((node, index) => {
                                         return (
                                             <MenuItem className={'menu-item'} style={{ textAlign: 'center' }}
                                                 sx={{ width: 100 }} key={index} onClick={(e) => {
                                                     handleClose(e)
-                                                    jumpToView(menuItem)
+                                                    jumpToView(node)
                                                 }
                                                 }>
-                                                {menuItem.name}
+                                                {node.getName()}
                                             </MenuItem>
                                         )
                                     })}

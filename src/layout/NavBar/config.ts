@@ -1,5 +1,6 @@
 import { RouteConfig } from '../../route/types';
 import * as H from 'history';
+import { RouteNode } from '../../route/node/node';
 
 const PreRoutePath = class {
     private prePath: string = ''
@@ -18,21 +19,12 @@ const preRoutePath = new PreRoutePath()
  * @param history useHistory
  */
 export const useJumpToView = (history: H.History) => {
-    return (route: RouteConfig, isTop: boolean = false) => {
+    return (route: RouteNode) => {
         /**
          * 页面跳转
-         * @param route 导航栏的RouteConfig
-         * @param isTop 是否为一级路由
+         * @param route RouteNoe
          */
-        /* 如果是顶级元素，则清空前缀路由并跳转 */
-        if (isTop) {
-            preRoutePath.clear()
-            history.push(route.path)
-            return
-        }
-        preRoutePath.setPrePath(preRoutePath.getPrePath() + route.path)
-        history.push(preRoutePath.getPrePath())
-        preRoutePath.clear()
+        history.push(route.getFullPath())
         return
     }
 }

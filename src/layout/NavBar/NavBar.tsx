@@ -5,9 +5,12 @@ import { navBarConfig } from '../../route/config';
 import MediaNavBar from './components/MediaNavBar/MediaNavBar';
 import { NavBarItem } from './components/NavBarItem/NavBarItem';
 import { RouteConfigFitter } from './config';
+import { RouteUtil } from '../../route/utils';
 
 export const NavBar = (props: any) => {
     const [media, setMedia] = useState(getMedia(window.outerWidth))
+    const routeNodeNode = RouteUtil.getRootRoute()
+    const children = routeNodeNode.children === null ? [] : routeNodeNode.children
     useEffect(() => {
         window.addEventListener('resize', (e: Event) => {
             const { currentTarget } = e
@@ -21,8 +24,8 @@ export const NavBar = (props: any) => {
         <nav className={'nav'}>
             {media === OS.pc || <MediaNavBar />}
             {
-                media !== OS.pc || navBarConfig.filter(route => !RouteConfigFitter.isAddNavBar(route)).map((barItem, key) => (
-                    <NavBarItem key={key} {...barItem} />)
+                media !== OS.pc || children.filter(route => route.isAddNavBar()).map((route, key) => (
+                    <NavBarItem key={key} route={route} />)
                 ).reverse()
             }
         </nav>

@@ -1,26 +1,27 @@
-import {IconButton} from '@mui/material';
-import {Menu} from '@mui/icons-material';
+import { IconButton } from '@mui/material';
+import { Menu } from '@mui/icons-material';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import {MouseEventHandler} from 'react';
-import {Logo} from '../../../../components/Logo/Logo';
-import {navBarConfig} from '../../../../route/config';
+import { MouseEventHandler } from 'react';
+import { Logo } from '../../../../components/Logo/Logo';
+import { navBarConfig } from '../../../../route/config';
 import ExtendGroup from '../../../../components/ExtendGroup/ExtendGroup';
 import './MediaNavBar.scss'
-import {RouteConfig} from '../../../../route/types';
-import {RouteConfigFitter} from '../../config';
+import { RouteConfig } from '../../../../route/types';
+import { RouteConfigFitter } from '../../config';
+import { RouteUtil } from '../../../../route/utils';
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-const MenuBtn = (props: {onClick: MouseEventHandler<any>}) => {
+const MenuBtn = (props: { onClick: MouseEventHandler<any> }) => {
     return (
         <div className={'nav-bar-menu'}>
             <IconButton onClick={props.onClick} className={'nav-bar-menu-btn'}
-                        size={'medium'}>
-                <Menu/>
+                size={'medium'}>
+                <Menu />
             </IconButton>
         </div>
     )
@@ -32,8 +33,8 @@ export default function MediaNavBar() {
         left: false,
         bottom: false,
         right: false,
-    });
-
+    })
+    const routeRootNode = RouteUtil.getRootRoute()
     const toggleDrawer =
         (anchor: Anchor, open: boolean) =>
             (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -51,15 +52,14 @@ export default function MediaNavBar() {
         <Box
             sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
             role="presentation"
-            onKeyDown={toggleDrawer(anchor, false)}
-        >
-            <Logo/>
+            onKeyDown={toggleDrawer(anchor, false)}>
+            <Logo />
             <Divider />
             <List>
-                {navBarConfig.filter(route => !RouteConfigFitter.isAddNavBar(route)).map((route, index) => {
+                {routeRootNode.children?.filter(route => route.isAddNavBar()).map((route, index) => {
                     return (
-                        <ListItem className={'mui-list-item'} button key={route.name}>
-                            <ExtendGroup {...route} onClick={toggleDrawer(anchor, false)}/>
+                        <ListItem className={'mui-list-item'} button key={route.getName()}>
+                            <ExtendGroup route={route} onClick={toggleDrawer(anchor, false)} />
                         </ListItem>
                     )
                 })}
@@ -70,7 +70,7 @@ export default function MediaNavBar() {
     return (
         <div className={'MediaNavBar-container'}>
             <React.Fragment key={anchor}>
-                <MenuBtn onClick={toggleDrawer(anchor, true)}/>
+                <MenuBtn onClick={toggleDrawer(anchor, true)} />
                 <Drawer
                     anchor={anchor}
                     open={state[anchor]}
