@@ -3,6 +3,7 @@ import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
 import { reverseMap } from '../utils';
 import { trim } from '../utils/StringUtils';
 import { spliceRoutePath } from '../utils/router';
+import { createRouteTree, IRouteNode } from './node/node';
 
 /* 路由各路径与名称的映射表 */
 class _RouteUtils {
@@ -170,3 +171,25 @@ class _RouteUtils {
 export const RouteUtils = new _RouteUtils()
 
 // 准备一次Route数据结构重构，根据RouteConfig构建一颗RouteNode
+
+export class RouteUtil {
+    private static routeNodeTree: IRouteNode = createRouteTree(navBarConfig)
+    private constructor() { }
+    /**
+     * 获取指定url的RouteNode
+     * @param pathname url
+     * @returns RouteNode
+     */
+    public static getRoute = (pathname: string): IRouteNode | null => {
+        const paths = spliceRoutePath(pathname) // 作为队列使用
+        // bfs
+        let cursor = RouteUtil.routeNodeTree
+        while (paths.length !== 0) {
+            const path = paths.shift()
+            const node = cursor.children?.find(route => route.value?.path === path)
+            if (!node) return null
+            cursor = node
+        }
+        return cursor
+    }
+}

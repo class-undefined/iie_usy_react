@@ -2,20 +2,30 @@ import { deepCopyObject } from "../../utils"
 import { RouteMeta, RouteConfig } from "../types"
 export interface RouteNodeData extends Omit<RouteConfig, "children"> {
 }
-export interface RouteNode {
-    parent: RouteNode | null,
+export interface IRouteNode {
+    parent: IRouteNode | null,
     value: RouteNodeData | null,
-    children: RouteNode[] | null
+    children: IRouteNode[] | null
 }
-
-export const createRouteNode = (parent: RouteNode | null, value: RouteNodeData | null, children: RouteNode[] | null): RouteNode => {
+class RouteNode implements IRouteNode {
+    public parent: IRouteNode | null
+    public value: RouteNodeData | null
+    public children: IRouteNode[] | null
+    constructor(parent: RouteNode, value: RouteNodeData | null, children: RouteNode[] | null) {
+        this.parent = parent
+        this.value = value
+        this.children = children
+    }
+}
+/** 创建RouteNode */
+export const createRouteNode = (parent: IRouteNode | null, value: RouteNodeData | null, children: IRouteNode[] | null): IRouteNode => {
     return { parent, value, children }
 }
 
 /** 构建RouteNodeTree */
 export const createRouteTree = (routeConfigs: RouteConfig[]) => {
     /** 前序遍历创建RouteNode */
-    const dfs = (config: RouteConfig, parent: RouteNode) => {
+    const dfs = (config: RouteConfig, parent: IRouteNode) => {
         const value = deepCopyObject(config, "children")
         if (!config.children || config.children.length === 0) return createRouteNode(parent, value, null)
         parent.value = value

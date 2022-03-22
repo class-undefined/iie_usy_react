@@ -1,6 +1,6 @@
 import { ArrayEqual } from '../../utils';
 import { trim } from '../../utils/StringUtils';
-import { RouteUtils } from '../../route/utils';
+import { RouteUtil, RouteUtils } from '../../route/utils';
 import { spliceRoutePath } from '../../utils/router';
 
 const test1 = () => {
@@ -64,9 +64,32 @@ const test7 = (isLog: boolean = false) => {
 const test8 = (isLog: boolean = true) => {
     const param = '/info/1'
     const target = RouteUtils.getRoutes(param)
-    if (isLog) console.log(target);
+    console.assert(target === null)
+    // if (isLog) console.log(target);
 }
 
+const test9 = (isLog: boolean = true) => {
+    const param = '/info/introduction'
+    const target = RouteUtil.getRoute(param)
+    if (isLog) console.log(target)
+}
+
+const test10 = (isLog: boolean = true) => {
+    const param = '/info/introduction'
+    let start = new Date().getTime()
+    for (let i = 0; i < 100000; i++) RouteUtils.getRoute(param)
+    if (isLog) console.log(new Date().getTime() - start)
+
+    start = new Date().getTime()
+    for (let i = 0; i < 100000; i++) RouteUtil.getRoute(param)
+    if (isLog) console.log(new Date().getTime() - start)
+}
+
+const test11 = (isLog: boolean = false) => {
+    const param = '/info/'
+    const target = RouteUtil.getRoute(param)
+    if (isLog) console.log(target)
+}
 
 export const routeExample = () => {
     test1()
@@ -78,4 +101,7 @@ export const routeExample = () => {
     test6()
     test7()
     test8()
+    test9()
+    test10(false)
+    test11()
 }
