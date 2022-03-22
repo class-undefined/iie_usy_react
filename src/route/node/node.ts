@@ -8,27 +8,42 @@ export interface IRouteNode {
     children: IRouteNode[] | null
 }
 
+export const RouteNodeType = Symbol("ROUTE_NODE_TYPE")
+
 /** 路由节点 */
 export class RouteNode implements IRouteNode {
     public parent: RouteNode | null
     public value: RouteNodeData | null
     public children: RouteNode[] | null
+    public $$routeNodetype: Symbol
     constructor(parent: RouteNode | null, value: RouteNodeData | null, children: RouteNode[] | null) {
         this.parent = parent
         this.value = value
         this.children = children
+        this.$$routeNodetype = RouteNodeType
     }
+
     /** 获取当前Node的完整path */
-    public getfullPath(): string {
+    public getFullPath(): string {
         let cursor: RouteNode | null = this
         let path = ""
-        while (cursor !== null) {
+        while (cursor.parent !== null) {
             path = cursor.value?.path + path
             cursor = cursor.parent
         }
         return path
     }
 
+    /** 获取根路由到当前路由的路径 */
+    public getFullPathNodes(): Readonly<RouteNode>[] {
+        let cursor: RouteNode | null = this
+        const pathNodes = []
+        while (cursor.parent !== null) {
+            pathNodes.push(cursor)
+            cursor = cursor.parent
+        }
+        return pathNodes.reverse()
+    }
 
 }
 /** 创建RouteNode */
@@ -59,5 +74,3 @@ export const createRouteTree = (routeConfigs: RouteConfig[]) => {
     }
     return root
 }
-// const routeNodeTree = createRouteTree(navBarConfig)
-// TODO: 重构RouteUtils工具类 
