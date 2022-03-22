@@ -34,7 +34,7 @@ export const createTocNodeTree = (heading: VFileData[]): TocNode => {
         else {
             // 回到上层找父节点
             while (cursor.parent !== null && cursor.depth >= depth) cursor = cursor.parent
-            const node = createNode(depth, value, cursor, valueCount * 2)
+            const node = createNode(depth, value, cursor, valueCount * 2) // 应对react-markdown回调会同时调用两次的bug
             cursor.children.push(node)
             cursor = node
         }
