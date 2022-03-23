@@ -3,9 +3,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import {Button, CardActionArea, CardActions} from '@mui/material';
-import {OverridableStringUnion} from '@mui/types';
-import {ButtonPropsColorOverrides} from '@mui/material/Button/Button';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import { OverridableStringUnion } from '@mui/types';
+import { ButtonPropsColorOverrides } from '@mui/material/Button/Button';
 import './ICard.scss'
 
 type ColorType = OverridableStringUnion<'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
@@ -33,7 +33,7 @@ export const createAction = (_name: string, _color?: ColorType, _onClick?: (prop
         console.log('createActionOnclick')
     }
     const onClick = _onClick || f
-    return {name: _name, color, onClick}
+    return { name: _name, color, onClick }
 }
 const defaultProps = {
     className: '',
@@ -42,9 +42,9 @@ const defaultProps = {
 
 
 export const ICard = (props: ICardProps) => {
-    const {image, actions, title, content} = props
+    const { image, actions, title, content } = props
     return (
-        <Card sx={{maxWidth: 345}} className={'ICard'}>
+        <Card sx={{ maxWidth: 345 }} className={'ICard'}>
             <CardActionArea>
                 <CardMedia
                     component="img"
@@ -61,22 +61,22 @@ export const ICard = (props: ICardProps) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
+            {actions.length === 0 ? null : (<CardActions>
                 {
                     actions.map((action, index) => {
                         return (
                             <Button key={index}
-                                    size="small"
-                                    color={action.color || 'primary'}
-                                    onClick={(event) => {
-                                        if (action.onClick) action.onClick()
-                                    }}>
+                                size="small"
+                                color={action.color || 'primary'}
+                                onClick={(event) => {
+                                    if (action.onClick) action.onClick()
+                                }}>
                                 {action.name}
                             </Button>
                         )
                     })
                 }
-            </CardActions>
+            </CardActions>)}
         </Card>
     )
 }
