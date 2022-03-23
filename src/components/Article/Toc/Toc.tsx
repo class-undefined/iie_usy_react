@@ -3,11 +3,11 @@ import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import remarkHeadings from '@vcarl/remark-headings';
 import "./Toc.scss"
-import { createTocNodeTree, cutParent, NodeLevel, RootLevel, TocNode, VFileData } from "../../../utils/markdown";
+import { createTocNodeTree, TocNode, VFileData } from "../../../utils/markdown";
 import { useEffect, useState } from "react";
 import { linkHandle } from "../Heading/Heading";
-import Link from "@mui/material/Link";
 import { useKTooltip } from "../../KTooltip/KTooltip";
+import Fade from "@mui/material/Fade/Fade";
 interface TocProps {
     markdown: string,
     className?: string
@@ -37,14 +37,16 @@ const Anchor = (props: AnchorProps) => {
     let menuClassName = control ? "toc-anchor" : "toc-expander"
     if (control && isClose) menuClassName += " toc-anchor-close"
     return (
-        <div className={className}>
-            <span onClick={onClick} className={menuClassName}>
-                {text}
-            </span>
-            <ToolTip title={value} placement="left">
-                <a className="toc-anchor-link" onClick={e => linkHandle(e, `${value}-${count}`)}>{value}</a>
-            </ToolTip>
-        </div>
+        <Fade in={true} timeout={1000}>
+            <div className={className}>
+                <span onClick={onClick} className={menuClassName}>
+                    {text}
+                </span>
+                <ToolTip title={value} placement="left">
+                    <a className="toc-anchor-link" onClick={e => linkHandle(e, `${value}-${count}`)}>{value}</a>
+                </ToolTip>
+            </div>
+        </Fade>
     )
 }
 
