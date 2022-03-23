@@ -16,9 +16,14 @@
 
 .toc-anchor-link {
 	color: #74818d;
-	font-size: 15px;
+	font-size: 0.8rem;
 	font-weight: 500;
 	cursor: pointer;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-right: 20px;
+	box-sizing: border-box;
 }
 .toc-anchor-link:hover {
 	color: #3884ff;

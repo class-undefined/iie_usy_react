@@ -7,6 +7,7 @@ import { createTocNodeTree, cutParent, NodeLevel, RootLevel, TocNode, VFileData 
 import { useEffect, useState } from "react";
 import { linkHandle } from "../Heading/Heading";
 import Link from "@mui/material/Link";
+import { useKTooltip } from "../../KTooltip/KTooltip";
 interface TocProps {
     markdown: string,
     className?: string
@@ -27,7 +28,8 @@ interface AnchorProps {
 // http://localhost:3000/info/introduction#bravo
 const Anchor = (props: AnchorProps) => {
     const { control, isClose, node } = props
-    const { value, depth, count } = node
+    const { value, count } = node
+    const ToolTip = useKTooltip("light")
     const onClick = props.onClick ? props.onClick : undefined
     let text = isClose ? "+" : "-"
     text = control ? text : ""
@@ -39,7 +41,9 @@ const Anchor = (props: AnchorProps) => {
             <span onClick={onClick} className={menuClassName}>
                 {text}
             </span>
-            <a className="toc-anchor-link" onClick={e => linkHandle(e, `${value}-${count}`)}>{value}</a>
+            <ToolTip title={value} placement="left">
+                <a className="toc-anchor-link" onClick={e => linkHandle(e, `${value}-${count}`)}>{value}</a>
+            </ToolTip>
         </div>
     )
 }
@@ -50,7 +54,7 @@ const tocListSwitch = (isClose: boolean) => {
 
 const TocItem: React.FC<TocItemProps> = (props: TocItemProps) => {
     const { className, node } = props
-    const { depth, value } = node
+    const { depth } = node
     const [isClose, setClose] = useState(false)
     const control = node.children.length !== 0
     if (node.children.length === 0) {
