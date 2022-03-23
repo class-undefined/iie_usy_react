@@ -50,8 +50,8 @@ const defaultProps = {
     divider: false
 }
 
-export const KCardListItem = (props: KCardListItemProps) => {
-    const { src, foot } = props
+export const KCardListItem: React.FC<KCardListItemProps> = (props: KCardListItemProps) => {
+    const { src, foot, title } = props
     const width = props.width || defaultProps.width
     const height = props.height || defaultProps.height
     const className = props.className ? defaultProps.className + " " + props.className : defaultProps.className
@@ -61,18 +61,17 @@ export const KCardListItem = (props: KCardListItemProps) => {
             <CardActionArea>
                 <CardMedia
                     component="img"
-                    height={height - 120}
+                    height={height - 100}
                     image={src}
                     alt="green iguana"
                 />
                 <CardContent>
                     <Typography variant="subtitle2" color="text.first">
-                        三亚学院信息与智能工程学院教师招聘公告
+                        {title}
                     </Typography>
                     {divider ? <Divider className="k-card-list-item-hr" /> : null}
                     {foot ? foot : null}
                 </CardContent>
-
             </CardActionArea>
         </Card>
     )

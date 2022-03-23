@@ -3,6 +3,7 @@ import { Introduction } from '../view/Info/introduction/Introduction';
 import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
 import { NotFind } from '../view/404/NotFind';
 import { Structure } from '../view/Info/structure/Structure';
+import { Management } from '../view/Education/management/Management';
 
 
 /* 路由组合对应路由name的映射表 */
@@ -86,6 +87,7 @@ export const navBarConfig: RouteConfig[] = [
                 name: '管理制度',
                 path: '/management',
                 exact: true,
+                component: Management
             },
             {
                 name: '专业建设',
