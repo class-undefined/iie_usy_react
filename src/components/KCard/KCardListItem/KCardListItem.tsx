@@ -44,7 +44,7 @@ export interface KCardListItemProps {
 
 }
 const defaultProps = {
-    width: 240,
+    width: 260,
     height: 250,
     className: "k-card-list-item-container",
     divider: false
@@ -57,22 +57,24 @@ export const KCardListItem: React.FC<KCardListItemProps> = (props: KCardListItem
     const className = props.className ? defaultProps.className + " " + props.className : defaultProps.className
     const divider = props.divider === false ? false : (!!foot || defaultProps.divider)
     return (
-        <Card className={className} sx={{ width, height }} onClick={props.onClick}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height={height - 100}
-                    image={src}
-                    alt="green iguana"
-                />
-                <CardContent>
-                    <Typography variant="subtitle2" color="text.first">
-                        {title}
-                    </Typography>
-                    {divider ? <Divider className="k-card-list-item-hr" /> : null}
-                    {foot ? foot : null}
-                </CardContent>
-            </CardActionArea>
-        </Card>
+        <li className={className}>
+            <Card sx={{ width, height }} onClick={props.onClick}>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        height={height - 100}
+                        image={src}
+                        alt="green iguana"
+                    />
+                    <CardContent>
+                        <Typography variant="subtitle2" color="text.first">
+                            {title}
+                        </Typography>
+                        {divider ? <Divider className="k-card-list-item-hr" /> : null}
+                        {foot ? foot : null}
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        </li>
     )
 }

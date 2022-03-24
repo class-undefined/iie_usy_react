@@ -1,7 +1,13 @@
 .k-card-list-item-container {
 	flex: 0 0 240px;
-	// flex-basis: 240px;
+	padding: 20px 50px;
+	display: inline-block;
+	// float: left;
+	// flex-basis: 240px; clear: both;
 }
+// .k-card-list-item-container:nth-child(3) {
+// 	clear: both;
+// }
 .k-card-list-item-hr {
 	height: 4px;
 }

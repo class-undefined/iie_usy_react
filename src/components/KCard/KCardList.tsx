@@ -17,8 +17,8 @@ export const KCardList = (props: KCardListProps) => {
     const rootClass = props.className ? defalutProps.className + " " + props.className : defalutProps.className
     const { children } = props
     return (
-        <div className={rootClass}>
+        <ul className={rootClass}>
             {children}
-        </div>
+        </ul>
     )
 } 
