@@ -42,7 +42,6 @@ export const HeadingBlock = (props: HeadingBlockProps) => {
         const count = map.get(value) as number
         const id = value + "-" + count
         const nodeValue = createAnchorId(id)
-        console.log(nodeValue)
         return (
             <Heading type={element} className={`md-heading`}>
                 <a onClick={e => linkHandle(e, id)} target="_self" className={`md-anchor md-anchor-${element}`}>
