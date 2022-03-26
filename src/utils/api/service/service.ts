@@ -3,9 +3,9 @@
  */
 import axios from "axios"
 import Notify from "../../Notify"
-import { Response } from "../response/type"
+import { Response, StatusCode } from "../response/type"
 const config = {
-  baseUrl: "/",
+  baseUrl: "https://console-mock.apipost.cn/app/mock/project/8668987d-5730-467c-86d1-52bf09e9d76a/",
 }
 // create an axios instance
 const service = axios.create({
@@ -42,12 +42,12 @@ service.interceptors.response.use(
     const res = response.data; // 请求的data数据，由于封装了Result层，数据类型为Response
 
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.code !== StatusCode.SUCCESS) {
       Notify.error(`Request error! - code: ${res.code}`)
       console.error(res); // 出错后用于debug
       return Promise.reject(new Error(res.message || "Error"))
     } else {
-      return res;
+      return res
     }
   },
   (error) => {

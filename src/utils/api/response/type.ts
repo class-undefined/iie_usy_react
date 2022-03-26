@@ -7,9 +7,9 @@ export interface ResultCodeType {
 }
 
 export enum StatusCode {
-    SUCCESS=20000, // 成功
-    ERROR=20001, // 失败
-    Example=50001, // 用于示例演示
+    SUCCESS = 20000, // 成功
+    ERROR = 20001, // 失败
+    Example = 50001, // 用于示例演示
 }
 
 export interface Response {
