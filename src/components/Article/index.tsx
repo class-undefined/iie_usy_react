@@ -40,7 +40,7 @@ const ArticleSkeleton = (props: { width?: number | string }) => {
     const width = props.width || "80%"
     const count = Math.floor(100 / 20)
     const elements = []
-    for (let i = 0; i < count; i++) elements.push(<Skeleton animation="wave" width={width} height={20} style={{ marginTop: "0.8rem", }} />)
+    for (let i = 0; i < count; i++) elements.push(<Skeleton animation="wave" key={i} width={width} height={20} style={{ marginTop: "0.8rem", }} />)
     return (
         <Box>
             <Skeleton animation="wave" width={200} height={40} />

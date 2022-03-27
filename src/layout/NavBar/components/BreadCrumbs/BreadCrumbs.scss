@@ -2,7 +2,9 @@
 .BreadCrumbs-container {
 	display: inline-block;
 	height: 100%;
-	// margin-left: 20px;
+	@media screen and (max-width: 1024px){
+		margin-left: 2px;
+	}
 	// padding: 10px 0;
 	@media screen and (max-width: 293px) {
 		//设备宽度小于293像素的话就不显示面包屑
