@@ -11,6 +11,7 @@ import QueryBuilderOutlinedIcon from '@mui/icons-material/QueryBuilderOutlined';
 import "./KCardListItem.scss"
 import { useEffect, useState } from "react"
 import Skeleton from "@mui/material/Skeleton/Skeleton"
+import { ImageLoading } from "../../ImageLoading/ImageLoading"
 
 /** 默认页脚，渲染pv与发布时间信息 */
 export const KCardListItemDefaultFoot = (props: { pv: number, time: string | number }) => {
@@ -58,13 +59,7 @@ export const KCardListItem: React.FC<KCardListItemProps> = (props: KCardListItem
     const height = props.height || defaultProps.height
     const className = props.className ? defaultProps.className + " " + props.className : defaultProps.className
     const divider = props.divider === false ? false : (!!foot || defaultProps.divider)
-    const Loading = (
-        <Box>
-            <Skeleton animation="wave" width={width} height={height - 100} />
-            <Skeleton animation="wave" width={width * 0.8} style={{ marginBottom: 6 }} height={15} />
-            <Skeleton animation="wave" width={width * 0.8} style={{ marginBottom: 6 }} height={15} />
-        </Box>
-    )
+    const Loading = <ImageLoading width={width} height={height - 100} />
     const Self = (
         <Card sx={{ width, height }} onClick={props.onClick}>
             <CardActionArea>
