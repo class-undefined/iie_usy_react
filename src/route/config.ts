@@ -4,6 +4,7 @@ import { RouteConfig, RouteConfigArray, RouterPathMap } from './types';
 import { NotFind } from '../view/404/NotFind';
 import { Structure } from '../view/Info/structure/Structure';
 import { Management } from '../view/Education/management/Management';
+import { ArticlePage } from '../view/Article/ArticlePage';
 
 
 /* 路由组合对应路由name的映射表 */
@@ -219,6 +220,15 @@ export const navBarConfig: RouteConfig[] = [
         path: '/404',
         exact: true,
         component: NotFind,
+        meta: {
+            config: { isAddNavBar: false, isShowLayout: false }
+        }
+    },
+    {
+        name: "Article",
+        path: "/article",
+        exact: true,
+        component: ArticlePage,
         meta: {
             config: { isAddNavBar: false, isShowLayout: false }
         }

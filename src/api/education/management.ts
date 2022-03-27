@@ -8,5 +8,4 @@ export const getArticleCardDesc = (page: number) => {
         method: "POST",
         data: { page }
     }) as unknown as Promise<Response>
-
 }

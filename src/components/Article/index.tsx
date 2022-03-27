@@ -61,7 +61,7 @@ const ArticleSkeleton = (props: { width?: number | string }) => {
 
 export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
     const { className, article } = props
-    const loading = props.loading || false
+    const loading = props.loading || false || !article
     const { title, content, updateTime, releaseTime, id, pv } = article
     const [checked, setChecked] = useState(false)
     useEffect(() => {
