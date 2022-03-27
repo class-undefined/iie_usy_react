@@ -1,3 +1,5 @@
+import { CssUnit } from "../type/css"
+
 /**
  * 从后往前遍历，仅保留数字 + 大小写字母
  * @param s
@@ -58,7 +60,7 @@ export const clearSpace = (str: string) => {
  * const result = getCssUnit(width)
  * // result: {value: 100, unit: "px"}
  */
-export const getCssUnit = (unitStr: string) => {
+export const getCssUnit = (unitStr: string): { value: number, unit: CssUnit } => {
     let right = unitStr.length - 1
     const num = '0'.charCodeAt(0)
     const isNumber = (s: string) => {
@@ -70,6 +72,6 @@ export const getCssUnit = (unitStr: string) => {
     while (isNumber(unitStr[right]) === false) right--
     return {
         value: parseFloat(unitStr.substring(0, right + 1)),
-        unit: unitStr.substring(right + 1, unitStr.length)
+        unit: unitStr.substring(right + 1, unitStr.length) as CssUnit
     }
 }
