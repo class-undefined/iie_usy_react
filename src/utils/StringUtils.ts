@@ -55,10 +55,10 @@ export const clearSpace = (str: string) => {
  * @returns obj: { value: number, unit: string }
  * @example
  * const width = "100px"
- * const result = getUnit(width)
+ * const result = getCssUnit(width)
  * // result: {value: 100, unit: "px"}
  */
-export const getUnit = (unitStr: string) => {
+export const getCssUnit = (unitStr: string) => {
     let right = unitStr.length - 1
     const num = '0'.charCodeAt(0)
     const isNumber = (s: string) => {
