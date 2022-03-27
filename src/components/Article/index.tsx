@@ -11,7 +11,6 @@ import { scrollToAnchor } from "../../utils/dom";
 import "./markdown-style.scss"
 import { Toc } from "./Toc/Toc";
 import { Divider } from "../Divider/Divider";
-import Collapse from "@mui/material/Collapse/Collapse";
 import { setTimeout } from "timers";
 import Box from "@mui/system/Box/Box";
 import Skeleton from "@mui/material/Skeleton/Skeleton";
@@ -128,13 +127,11 @@ export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
                 <aside className="toc">
                     {loading ? <TocSkeleton /> : <Toc markdown={content} />}
                 </aside>
-                <Collapse in={checked} collapsedSize={1000} timeout={1000}>
-                    <main className="markdown-view-content">
-                        {loading ? <ArticleSkeleton /> :
-                            <MarkDown />
-                        }
-                    </main>
-                </Collapse>
+                <main className="markdown-view-content">
+                    {loading ? <ArticleSkeleton /> :
+                        <MarkDown />
+                    }
+                </main>
             </div>
         </article>
     )
