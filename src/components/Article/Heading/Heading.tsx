@@ -1,3 +1,4 @@
+import { SvgIcon } from "@mui/material"
 import React, { ReactElement, MouseEvent } from "react"
 import ReactDOM from "react-dom"
 import { HeadingProps as HeadingType } from "react-markdown/lib/ast-to-react"
@@ -46,9 +47,10 @@ export const HeadingBlock = (props: HeadingBlockProps) => {
             <Heading type={element} className={`md-heading`}>
                 <a onClick={e => linkHandle(e, id)} target="_self" className={`md-anchor md-anchor-${element}`}>
                     <div className="anchor">
-                        🔥
+                        <SvgIcon htmlColor="#8000FF">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"></path></svg>
+                        </SvgIcon>
                     </div>
-                    {/* <svg className="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fillRule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg> */}
                 </a>
                 <a id={nodeValue} style={{ position: "relative", top: "-70px" }}></a>
                 <span className={`md-title md-title-${element}`}>{children}</span>

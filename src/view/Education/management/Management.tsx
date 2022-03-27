@@ -14,9 +14,8 @@ export const Management = () => {
     const history = useHistory()
     const param = new URLSearchParams(history.location.search)
     const pageIndex = parseInt(param.get("page") || "1")
-    const onClickHandle = (path: string, articleId: string) => {
-        console.log(path + "?articleId=" + articleId)
-        history.push(path + "?articleId=" + articleId)
+    const onClickHandle = (articleId: string) => {
+        history.push("/article" + "?id=" + articleId)
     }
     const [page, setPage] = useState([] as { src: string, title: string, pv: number, time: string, articleId: string }[])
     const [loading, setLoading] = useState(true)
@@ -35,11 +34,10 @@ export const Management = () => {
                 {
                     page.map((item, index) => {
                         const { src, title, pv, time, articleId } = item
-                        return <KCardListItem onClick={() => onClickHandle("/education/management", articleId)} key={index} src={src} title={title} foot={<KCardListItemDefaultFoot pv={pv} time={time} />} />
+                        return <KCardListItem onClick={() => onClickHandle(articleId)} key={index} src={src} title={title} foot={<KCardListItemDefaultFoot pv={pv} time={time} />} />
                     })
                 }
             </KCardList>}
-
         </div>
     )
 }
