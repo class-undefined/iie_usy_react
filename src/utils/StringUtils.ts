@@ -49,3 +49,27 @@ export const clearSpace = (str: string) => {
     }
     return s
 }
+
+/**获取css尺寸的值以及其单位
+ * @param unitStr css尺寸
+ * @returns obj: { value: number, unit: string }
+ * @example
+ * const width = "100px"
+ * const result = getUnit(width)
+ * // result: {value: 100, unit: "px"}
+ */
+export const getUnit = (unitStr: string) => {
+    let right = unitStr.length - 1
+    const num = '0'.charCodeAt(0)
+    const isNumber = (s: string) => {
+        if (s === '.') return true
+        console.assert(s.length === 1)
+        const ascii = s.charCodeAt(0)
+        return (ascii <= (num + 9) && (ascii >= num))
+    }
+    while (isNumber(unitStr[right]) === false) right--
+    return {
+        value: parseFloat(unitStr.substring(0, right + 1)),
+        unit: unitStr.substring(right + 1, unitStr.length)
+    }
+}
