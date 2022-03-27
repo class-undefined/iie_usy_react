@@ -11,6 +11,8 @@ export interface TocNode extends VFileData {
     parent: TocNode | null,
     count: number // 记录第count次相同的value
 }
+const env = 1 as 1 | 2 // dev环境为2 生产环境为1
+
 /** 构建一颗tocNodeTree */
 export const createTocNodeTree = (heading: VFileData[]): TocNode => {
     const createNode = (depth: NodeLevel | RootLevel, value: string, parent: TocNode | null, valueCount: number): TocNode => {
@@ -27,14 +29,14 @@ export const createTocNodeTree = (heading: VFileData[]): TocNode => {
         map.set(value, map.get(value) as number + 1)
         const valueCount = map.get(value) as number
         if (cursor.depth < depth) {
-            const node = createNode(depth, value, cursor, valueCount * 2)
+            const node = createNode(depth, value, cursor, valueCount * env)
             cursor.children.push(node)
             cursor = node
         }
         else {
             // 回到上层找父节点
             while (cursor.parent !== null && cursor.depth >= depth) cursor = cursor.parent
-            const node = createNode(depth, value, cursor, valueCount * 2) // 应对react-markdown回调会同时调用两次的bug
+            const node = createNode(depth, value, cursor, valueCount * env) // 应对react-markdown回调会同时调用两次的bug
             cursor.children.push(node)
             cursor = node
         }
