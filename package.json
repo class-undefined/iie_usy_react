@@ -23,6 +23,8 @@
     "@types/redux": "^3.6.0",
     "@vcarl/remark-headings": "0.0.1",
     "axios": "^0.26.1",
+    "embla-carousel-autoplay": "^6.2.0",
+    "embla-carousel-react": "^6.2.0",
     "mockjs": "^1.1.0",
     "notistack": "^2.0.2",
     "react": "^17.0.2",
