@@ -17,6 +17,8 @@
     overflow: hidden;
     width: 100%;
     border-radius: 5px;
+    position: relative;
+    z-index: 1;
 }
 
 .embla__viewport.is-draggable {
@@ -47,8 +49,9 @@
 .embla__slide__inner {
     position: relative;
     overflow: hidden;
-    height: 320px;
+    height: 220px;
     border-radius: 5px;
+    z-index: 1;
 }
 
 .embla__slide__img {
