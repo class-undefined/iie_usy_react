@@ -1,13 +1,13 @@
-import {CarouselComponent} from '../../components/Carousel/CarouselComponent';
-import {CardContainer, CardContainerProps} from './CardContainer/CardContainer';
-import {SummerDream} from './SummerDream/SummerDream';
+import { CarouselComponent } from './Carousel/CarouselComponent';
+import { CardContainer, CardContainerProps } from './CardContainer/CardContainer';
+import { SummerDream } from './SummerDream/SummerDream';
 import './Home.scss'
-import {MoreActivity} from './MoreActivity/MoreActivity';
-import {SloganDivider} from './SloganDivider/SloganDivider';
-import {HomeData} from './data';
-import {ListCard} from '../../components/ListCard/ListCard';
+import { MoreActivity } from './MoreActivity/MoreActivity';
+import { SloganDivider } from './SloganDivider/SloganDivider';
+import { HomeData } from './data';
+import { ListCard } from '../../components/ListCard/ListCard';
 import Divider from '@mui/material/Divider';
-import {Info} from './Info/Info';
+import { Info } from './Info/Info';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -28,28 +28,28 @@ const cardContainerProps: CardContainerProps = {
 export const Home = () => {
     return (
         <div>
-            <CarouselComponent/>
+            <CarouselComponent />
             <div className={'home-group'}>
-                <CardContainer {...cardContainerProps}/>
-                <SummerDream height={267}/>
-                <MoreActivity/>
+                <CardContainer {...cardContainerProps} />
+                <SummerDream height={267} />
+                <MoreActivity />
             </div>
             {/* 带图标的分割线 */}
-            <SloganDivider/>
+            <SloganDivider />
             {/* 通知公告 - 教学科研 - 学生风采 */}
             <div className={'home-group home-cards'}>
                 {
                     HomeData.map((card, index) => {
                         return (
-                            <ListCard className={'home-cards-items'} key={card.title} {...card}/>
+                            <ListCard className={'home-cards-items'} key={card.title} {...card} />
                         )
                     })
                 }
             </div>
             <div className={'home-group-top'}>
-                <Divider/>
+                <Divider />
             </div>
-            <Info/>
+            <Info />
         </div>
     )
 }
