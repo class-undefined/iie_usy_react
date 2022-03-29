@@ -28,8 +28,12 @@ const cardContainerProps: CardContainerProps = {
 export const Home = () => {
     return (
         <div>
-            <CarouselComponent />
-            <div className={'home-group'}>
+
+            <div className={"home-carousel-logo-container"}>
+                <div className="home-carousel-logo"></div>
+                <CarouselComponent className="home-carousel-container" />
+            </div>
+            <div className={"home-group"}>
                 <CardContainer {...cardContainerProps} />
                 <SummerDream height={267} />
                 <MoreActivity />

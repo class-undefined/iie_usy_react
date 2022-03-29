@@ -15,7 +15,12 @@ export interface CarouselItemProps {
     description?: string
 }
 
-export const CarouselComponent = (props: any) => {
+interface CarouselComponentProps {
+    className?: string
+}
+
+export const CarouselComponent = (props: CarouselComponentProps) => {
+    const className = props.className ? "carousel-container " + props.className : "carousel-container"
     const items = [
         {
             name: 'Random Name #1',
@@ -49,7 +54,7 @@ export const CarouselComponent = (props: any) => {
         } as CarouselImage
     })
     return (
-        <Box className={'carousel-container'}>
+        <Box className={className}>
             <EmblaCarousel images={demos} />
         </Box>
     )

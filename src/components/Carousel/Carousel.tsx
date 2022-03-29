@@ -10,6 +10,7 @@ interface EmblaCarouselProps {
 export const EmblaCarousel = (props: EmblaCarouselProps) => {
     const { images } = props
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollProgress, setScrollProgress] = useState(0);
     const [mainViewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
     const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
         containScroll: "keepSnaps",
@@ -24,17 +25,26 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
         [embla, emblaThumbs]
     );
 
+    const onScroll = useCallback(() => {
+        if (!embla) return
+        const progress = Math.max(0, Math.min(1, embla.scrollProgress()))
+        setScrollProgress(progress * 100)
+    }, [embla, setScrollProgress])
+
     const onSelect = useCallback(() => {
-        if (!embla || !emblaThumbs) return;
-        setSelectedIndex(embla.selectedScrollSnap());
-        emblaThumbs.scrollTo(embla.selectedScrollSnap());
-    }, [embla, emblaThumbs, setSelectedIndex]);
+        if (!embla || !emblaThumbs) return
+        setSelectedIndex(embla.selectedScrollSnap())
+        emblaThumbs.scrollTo(embla.selectedScrollSnap())
+    }, [embla, emblaThumbs, setSelectedIndex])
+
 
     useEffect(() => {
-        if (!embla) return;
-        onSelect();
-        embla.on("select", onSelect);
-    }, [embla, onSelect]);
+        if (!embla) return
+        onSelect()
+        onScroll()
+        embla.on("select", onSelect)
+        embla.on("scroll", onScroll)
+    }, [embla, onSelect, onScroll])
 
     return (
         <>
@@ -46,7 +56,16 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
                         ))}
                     </div>
                 </div>
+                <div className={"embla__progress__container"}>
+                    <div className="embla__progress">
+                        <div
+                            className="embla__progress__bar"
+                            style={{ transform: `translateX(${scrollProgress}%)` }}
+                        />
+                    </div>
+                </div>
             </div>
+
 
             <div className="embla embla--thumb">
                 <div className="embla__viewport" ref={thumbViewportRef}>
