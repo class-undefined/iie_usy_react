@@ -8,9 +8,8 @@ interface EmblaCarouselProps {
     images: CarouselImage[]
 }
 
-let scrollTask = null as null | NodeJS.Timeout
 const scrollProgressShow = "embla__progress__container"
-const scrollProgressHidden = "embla__progress__container hidden"
+const scrollProgressHidden = "embla__progress__container embla__progress__container__hidden"
 export const EmblaCarousel = (props: EmblaCarouselProps) => {
     const { images } = props
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -40,16 +39,24 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
         if (!embla || !emblaThumbs) return
         setSelectedIndex(embla.selectedScrollSnap())
         emblaThumbs.scrollTo(embla.selectedScrollSnap())
+        setScrollProgressClassName(scrollProgressShow)
     }, [embla, emblaThumbs, setSelectedIndex])
+
+    const onSettle = useCallback(() => {
+        if (!embla || !emblaThumbs) return
+        setScrollProgressClassName(scrollProgressHidden)
+    }, [embla])
 
 
     useEffect(() => {
         if (!embla) return
         onSelect()
         onScroll()
+        onSettle()
         embla.on("select", onSelect)
         embla.on("scroll", onScroll)
-    }, [embla, onSelect, onScroll])
+        embla.on("settle", onSettle)
+    }, [embla, onSelect, onScroll, onSettle])
 
     return (
         <>

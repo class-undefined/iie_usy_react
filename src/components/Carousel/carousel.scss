@@ -130,11 +130,10 @@
     margin-top: auto;
     pointer-events: none;
     opacity: 1;
-
+    transition: 0.5s opacity;
 }
 
-.hidden {
-    transition: 0.5s;
+.embla__progress__container__hidden {
     opacity: 0;
 }
 
