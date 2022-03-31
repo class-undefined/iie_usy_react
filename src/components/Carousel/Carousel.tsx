@@ -7,7 +7,7 @@ import { CarouselImage, CarouselItem } from "./CarouselItem/CarouselItem";
 interface EmblaCarouselProps {
     images: CarouselImage[]
 }
-
+const options = { loop: true, speed: 15 }
 const scrollProgressShow = "embla__progress__container"
 const scrollProgressHidden = "embla__progress__container embla__progress__container__hidden"
 export const EmblaCarousel = (props: EmblaCarouselProps) => {
@@ -15,6 +15,7 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollProgress, setScrollProgress] = useState(0);
     const [scrollProgressClassName, setScrollProgressClassName] = useState(scrollProgressShow)
+    useEmblaCarousel.globalOptions = options
     const [mainViewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
     const [thumbViewportRef, emblaThumbs] = useEmblaCarousel({
         containScroll: "keepSnaps",
