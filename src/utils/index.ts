@@ -1,3 +1,4 @@
+import { S } from 'mockjs';
 import Notify from './Notify';
 interface ReverseMap {
     [key: string]: any
@@ -170,7 +171,7 @@ export const deepCopyObject = <T, K extends keyof T>(target: T, skipKey: K | nul
  * 成功交付则继续返回传递进来的图片路径
  */
 export const loadImage = (src: string, timeout: number = 5000) => {
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<string>((resolve, reject: (reason: string) => void) => {
         let img = new Image() as HTMLImageElement | null
         if (!img) return
         img.src = src

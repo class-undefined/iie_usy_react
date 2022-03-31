@@ -12,6 +12,8 @@ import "./KCardListItem.scss"
 import { useEffect, useState } from "react"
 import Skeleton from "@mui/material/Skeleton/Skeleton"
 import { ImageLoading } from "../../ImageLoading/ImageLoading"
+import { loadImage } from "../../../utils"
+import Notify from "../../../utils/Notify"
 
 /** 默认页脚，渲染pv与发布时间信息 */
 export const KCardListItemDefaultFoot = (props: { pv: number, time: string | number }) => {
@@ -82,11 +84,9 @@ export const KCardListItem: React.FC<KCardListItemProps> = (props: KCardListItem
     const [ImageCard, setImageCard] = useState(Loading)
     useEffect(() => {
         /** 利用相同图片浏览器只会请求一次的特点进行骨架条的loading */
-        const image = new Image();
-        image.src = src
-        image.onload = () => {
+        loadImage(src).then(_ => {
             setImageCard(Self)
-        }
+        }).catch(e => Notify.error(e))
     }, [ImageCard])
     return (
         <li className={className}>

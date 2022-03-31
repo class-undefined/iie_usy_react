@@ -12,12 +12,15 @@
   display: flex;
 
   .home-carousel-container {
-    flex: 4;
+    flex: 2;
   }
 
   .home-carousel-logo {
     flex: 1;
 
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 }
 

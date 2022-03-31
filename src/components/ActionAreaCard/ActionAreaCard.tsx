@@ -7,6 +7,8 @@ import { CardActionArea } from '@mui/material';
 import '../../common/utils.scss'
 import './ActionAreaCard.scss'
 import { ImageLoading } from '../ImageLoading/ImageLoading';
+import { loadImage } from '../../utils';
+import Notify from '../../utils/Notify';
 export interface ActionAreaCardProps {
     maxWidth?: number, //默认345
     height?: number, // 默认140
@@ -51,11 +53,11 @@ export const ActionAreaCard = (props: ActionAreaCardProps) => {
     )
     const [ImageCard, setImageCard] = React.useState(Loading)
     React.useEffect(() => {
-        const image = new Image();
-        image.src = props.src
-        image.onload = () => {
+        loadImage(props.src).then(_ => {
             setImageCard(Self)
-        }
+        }).catch(e => {
+            Notify.error(e)
+        })
     }, [ImageCard])
     return ImageCard
 }
