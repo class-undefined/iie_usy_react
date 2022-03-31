@@ -144,8 +144,8 @@ export const reverseMap = (target: ReverseMap): ReverseMap => {
  * @param deepSkip 是否深度跳过字段 在开启skip情况下，true为跳过每层skip字段，为false代表仅跳过第一层，默认false
  * @returns 
  */
-export const deepCopyObject = <T extends Object, K extends keyof T>(target: T, skipKey: K | null = null, deepSkip: boolean = false): Omit<T, K> => {
-    const _deepCopyObject = <T extends Object>(target: T, skipKey: string | null = null, deepSkip: boolean = false) => {
+export const deepCopyObject = <T, K extends keyof T>(target: T, skipKey: K | null = null, deepSkip: boolean = false): Omit<T, K> => {
+    const _deepCopyObject = <T>(target: T, skipKey: string | null = null, deepSkip: boolean = false) => {
         const obj = {} as any
         for (const key in target) {
             // deepSkip: true 深度跳过此字段
@@ -162,4 +162,23 @@ export const deepCopyObject = <T extends Object, K extends keyof T>(target: T, s
         return obj
     }
     return _deepCopyObject(target, skipKey === null ? null : skipKey.toString(), deepSkip)
+}
+
+/** 发起欲加载，利用浏览器的图片缓存机制（相同url资源只会请求服务器加载一次）
+ * @param src: 图片路径
+ * @param timeout: 等待时间 default: 5000
+ * 成功交付则继续返回传递进来的图片路径
+ */
+export const loadImage = (src: string, timeout: number = 5000) => {
+    return new Promise<string>((resolve, reject) => {
+        let img = new Image() as HTMLImageElement | null
+        if (!img) return
+        img.src = src
+        img.onload = () => {
+            img = null
+            resolve(src)
+        }
+        if (img) img.onerror = () => reject("Image loading fail!")
+        setTimeout(() => reject("Image loading timeout!"), timeout)
+    })
 }
