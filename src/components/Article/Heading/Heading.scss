@@ -4,11 +4,14 @@
 		color: #8000FF;
 		font-size: 1em;
 		opacity: 0;
-		margin-left: -1.5em;
-		// padding-right: 4px;
+		margin-left: -1em;
 		height: 100%;
 		display: inline-block;
-		user-select: none;
+		user-select: none;          /* Likely future */      
+		-webkit-user-select: none;  /* Chrome all / Safari all */
+		-moz-user-select: none;     /* Firefox all */
+		-ms-user-select: none;      /* IE 10+ */
+		
 	}
 	.md-title {
 		code {
@@ -19,7 +22,6 @@
 		// text-indent: 1em;
 	}
 	.anchor {
-		display: inline-flex;
 		cursor: pointer;
 	}
 	.octicon {

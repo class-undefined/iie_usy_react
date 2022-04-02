@@ -418,4 +418,10 @@
 	strong {
 		@include font(1rem, #000);
 	}
+	.linenumber {
+		user-select: none;          /* Likely future */      
+		-webkit-user-select: none;  /* Chrome all / Safari all */
+		-moz-user-select: none;     /* Firefox all */
+		-ms-user-select: none;      /* IE 10+ */
+	}
 }
