@@ -10,6 +10,7 @@
 
 .home-carousel-logo-container {
   display: flex;
+  margin-top: 5px;
 
   .home-carousel-container {
     flex: 2;
@@ -17,7 +18,7 @@
 
   .home-carousel-logo {
     flex: 1;
-
+    padding: 20px;
     @media screen and (max-width: 768px) {
       display: none;
     }
