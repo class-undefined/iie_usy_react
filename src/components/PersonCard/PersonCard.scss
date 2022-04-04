@@ -1,3 +1,95 @@
+$imageWidth: 80px;
+$imageHeight: 80px;
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: true;
+}
+@import "../../common/utils.scss";
+@keyframes spin {
+    0% {
+      --rotate: 0deg;
+    }
+    100% {
+      --rotate: 360deg;
+    }
+}
 .person-card-container {
+    width: 300px;
+    height: 400px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+}
+
+.person-card-image-container {
+    position: relative;
+    border-radius: 5px;
+}
+
+.person-card-image-sub-container {
+    position: relative;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    vertical-align: middle;
+    height: 250px;
+    // transform: translateY(calc(50%));
+}
+.person-card-img-box {
+    position: relative;
+    border-radius: 50%;
+    margin-top: $imageHeight;
+    width: $imageWidth;
+    height: $imageHeight;
+    cursor: pointer;
+    transition: all .3s ease-in-out,translateY .3s ease-in-out;
+}
+.person-card-image {
+    border-radius: 50%;
+    width: $imageWidth;
+    height: $imageHeight;
     
 }
+.person-card-img-bgc {
+    border-radius: 60%;
+    background-color: #000;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: $imageWidth;
+    height: $imageHeight;
+    position: absolute;
+    top: 0px;
+    left: -4px;
+    transform: scale(0);
+    filter: blur(20px) opacity(70%);
+    -webkit-filter: blur(20px) opacity(70%);
+    opacity: 0;
+    transition: all .4s ease-in-out,translateY .3s ease-in-out;
+    z-index: -1;
+    // transition: transform .3s ease-in-out;
+}
+
+.person-card-img-box:hover {
+    transform: scale(1.2) ;
+    .person-card-img-bgc {
+        transform: scale(1.1);
+        opacity: 1;
+        animation: spin 2.5s linear infinite;
+    }
+}
+// .person-card-img-box::before {
+//     // opacity: 0;
+//     // z-index: -2;
+//     content: "";
+// }
+// .person-card-img-box:hover {
+//     // filter: drop-shadow(10px #5ddcff, #3c67e3 43%, #4e00c2);
+//     // filter: blur(calc(#{$imageHeight} / 6));
+//     // background-image: linear-gradient(
+//     //   0deg
+//     //   , #5ddcff, #3c67e3 43%, #4e00c2);
+//     //   opacity: 1;
+//     // transition: opacity .5s;
+//     // animation: spin 2.5s linear infinite;
+// }

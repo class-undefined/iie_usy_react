@@ -31,7 +31,7 @@ export const CarouselItem = (props: CarouselItemProps) => {
         loadImage(src).then(_ => {
             setImageCard(Self)
         }).catch(e => Notify.error(e))
-    }, [ImageCard])
+    }, [src])
     return (
         <div className="embla__slide">
             {ImageCard}

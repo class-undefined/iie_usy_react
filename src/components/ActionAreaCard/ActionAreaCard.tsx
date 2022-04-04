@@ -9,6 +9,7 @@ import './ActionAreaCard.scss'
 import { ImageLoading } from '../ImageLoading/ImageLoading';
 import { loadImage } from '../../utils';
 import Notify from '../../utils/Notify';
+import Box from '@mui/system/Box/Box';
 export interface ActionAreaCardProps {
     maxWidth?: number, //默认345
     height?: number, // 默认140
@@ -36,20 +37,18 @@ export const ActionAreaCard = (props: ActionAreaCardProps) => {
         <ImageLoading width={(props.maxWidth && props.maxWidth * 0.8) || 345} height={props.height || 130} />
     )
     const Self = (
-        <Card sx={{ maxWidth: props.maxWidth || 345 }} className={props.className}>
-            <CardActionArea>
-                <div style={{ overflow: 'hidden' }}>
-                    <CardMedia
-                        className={'img'}
-                        component="img"
-                        height={props.height || 140}
-                        image={props.src}
-                        alt="green iguana"
-                    />
-                </div>
-                <TextComponent />
-            </CardActionArea>
-        </Card>
+        <CardActionArea>
+            <div style={{ overflow: 'hidden' }}>
+                <CardMedia
+                    className={'img'}
+                    component="img"
+                    height={props.height || 140}
+                    image={props.src}
+                    alt="green iguana"
+                />
+            </div>
+            <TextComponent />
+        </CardActionArea>
     )
     const [ImageCard, setImageCard] = React.useState(Loading)
     React.useEffect(() => {
@@ -58,6 +57,10 @@ export const ActionAreaCard = (props: ActionAreaCardProps) => {
         }).catch(e => {
             Notify.error(e)
         })
-    }, [ImageCard])
-    return ImageCard
+    }, [props.src])
+    return (
+        <Box sx={{ maxWidth: props.maxWidth || 345 }} className={props.className}>
+            {ImageCard}
+        </Box>
+    )
 }

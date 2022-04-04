@@ -25,6 +25,7 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
 
     const onThumbClick = useCallback(
         (index) => {
+            console.log(!embla, !emblaThumbs)
             if (!embla || !emblaThumbs) return;
             if (emblaThumbs.clickAllowed()) embla.scrollTo(index);
         },
@@ -40,8 +41,9 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
     const onSelect = useCallback(() => {
         if (!embla || !emblaThumbs) return
         setSelectedIndex(embla.selectedScrollSnap())
-        emblaThumbs.scrollTo(embla.selectedScrollSnap())
         setScrollProgressClassName(scrollProgressShow)
+        emblaThumbs.scrollTo(embla.selectedScrollSnap())
+
     }, [embla, emblaThumbs, setSelectedIndex])
 
     const onSettle = useCallback(() => {

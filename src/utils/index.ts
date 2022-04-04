@@ -172,12 +172,14 @@ export const deepCopyObject = <T, K extends keyof T>(target: T, skipKey: K | nul
  */
 export const loadImage = (src: string, timeout: number = 5000) => {
     return new Promise<string>((resolve, reject: (reason: string) => void) => {
-        let img = new Image() as HTMLImageElement | null
+        const img = new Image() as HTMLImageElement | null
         if (!img) return
         img.src = src
-        img.onload = () => {
-            img = null
+        img.onload = (e) => {
+            e.preventDefault()
+            e.stopPropagation()
             resolve(src)
+
         }
         if (img) img.onerror = () => reject("Image loading fail!")
         setTimeout(() => reject("Image loading timeout!"), timeout)

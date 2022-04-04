@@ -9,6 +9,7 @@ import { ListCard } from '../../components/ListCard/ListCard';
 import Divider from '@mui/material/Divider';
 import { Info } from './Info/Info';
 import { Logo } from './Logo/Logo';
+import { PersonCard } from '../../components/PersonCard/PersonCard';
 const cardContainerProps: CardContainerProps = {
     title: '新闻速递',
     images: [
@@ -32,6 +33,7 @@ export const Home = () => {
 
             <div className={"home-carousel-logo-container"}>
                 <div className="home-carousel-logo">
+                    <PersonCard />
                     {/* <Logo /> */}
                 </div>
                 <CarouselComponent className="home-carousel-container" />
