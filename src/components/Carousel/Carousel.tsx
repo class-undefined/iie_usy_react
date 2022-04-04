@@ -3,6 +3,9 @@ import useEmblaCarousel from "embla-carousel-react";
 import { Thumb } from "./Thumb/EmblaCarouselThumb";
 import "./Carousel.scss";
 import { CarouselImage, CarouselItem } from "./CarouselItem/CarouselItem";
+import { ImageLoading } from "../ImageLoading/ImageLoading";
+import Skeleton from "@mui/material/Skeleton/Skeleton";
+import { loadImage } from "../../utils";
 
 interface EmblaCarouselProps {
     images: CarouselImage[]
@@ -11,6 +14,8 @@ interface EmblaCarouselProps {
 const options = { loop: true, speed: 15 }
 const scrollProgressShow = "embla__progress__container"
 const scrollProgressHidden = "embla__progress__container embla__progress__container__hidden"
+
+
 export const EmblaCarousel = (props: EmblaCarouselProps) => {
     const { images } = props
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -22,10 +27,8 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
         containScroll: "keepSnaps",
         dragFree: true
     });
-
     const onThumbClick = useCallback(
         (index) => {
-            console.log(!embla, !emblaThumbs)
             if (!embla || !emblaThumbs) return;
             if (emblaThumbs.clickAllowed()) embla.scrollTo(index);
         },
@@ -51,7 +54,6 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
         setScrollProgressClassName(scrollProgressHidden)
     }, [embla])
 
-
     useEffect(() => {
         if (!embla) return
         onSelect()
@@ -61,7 +63,6 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
         embla.on("scroll", onScroll)
         embla.on("settle", onSettle)
     }, [embla, onSelect, onScroll, onSettle])
-
     return (
         <>
             <div className="embla carousel-container">
@@ -98,7 +99,7 @@ export const EmblaCarousel = (props: EmblaCarouselProps) => {
                 </div>
             </div>
         </>
-    );
+    )
 };
 
 export default EmblaCarousel;

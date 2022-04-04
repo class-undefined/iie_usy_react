@@ -1,7 +1,5 @@
-import { ImageLoading } from "../../ImageLoading/ImageLoading";
 import "../Carousel.scss"
 export const Thumb = ({ selected, onClick, imgSrc }: { selected: boolean, onClick: () => void, imgSrc: string }) => {
-    const Loading = <ImageLoading width={"100%"} height={100} />
     return (
         <div
             className={`embla__slide embla__slide--thumb ${selected ? "is-selected" : ""

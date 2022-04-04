@@ -6,7 +6,7 @@ import img3 from '../../../img/c4594b90050984601f0e44b9d286bfb1.jpg'
 import img4 from '../../../img/e02f5dd454704d3006a7c9d858db1ec0.jpg'
 import img5 from '../../../img/ee6521226e4d4438b42a7b0da5058c68.jpg'
 import { VideoDialog } from '../../../components/VideoDialog/VideoDialog';
-import { EmblaCarousel } from '../../../components/Carousel/Carousel';
+import Carousel from '../../../components/Carousel/index';
 import { CarouselImage } from '../../../components/Carousel/CarouselItem/CarouselItem';
 
 export interface CarouselItemProps {
@@ -55,7 +55,7 @@ export const CarouselComponent = (props: CarouselComponentProps) => {
     })
     return (
         <Box className={className}>
-            <EmblaCarousel images={demos} />
+            <Carousel images={demos} />
         </Box>
     )
 }

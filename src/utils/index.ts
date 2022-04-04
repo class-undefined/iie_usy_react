@@ -170,7 +170,7 @@ export const deepCopyObject = <T, K extends keyof T>(target: T, skipKey: K | nul
  * @param timeout: 等待时间 default: 5000
  * 成功交付则继续返回传递进来的图片路径
  */
-export const loadImage = (src: string, timeout: number = 5000) => {
+export const loadImage = (src: string, timeout: number = 10000) => {
     return new Promise<string>((resolve, reject: (reason: string) => void) => {
         const img = new Image() as HTMLImageElement | null
         if (!img) return
