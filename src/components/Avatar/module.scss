@@ -26,10 +26,14 @@
 }
 
 .avatar-container:hover {
-    transform: scale(1.2) ;
+    transform: scale(1.1) ;
     .avatar-shadow {
         transform: scale(1.1);
         opacity: 1;
         animation: spin 2.5s linear infinite;
     }
+}
+.avatar-container:active {
+    transition: all .1s ease-in-out,translateY .3s ease-in-out;
+    transform: scale(0.9);
 }
