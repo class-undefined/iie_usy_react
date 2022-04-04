@@ -1,0 +1,35 @@
+.avatar-container {
+    position: relative;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s ease-in-out,translateY .3s ease-in-out;
+}
+.avatar-image {
+    border-radius: 50%;
+}
+
+.avatar-shadow {
+    border-radius: 60%;
+    background-color: #000;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    left: -4px;
+    transform: scale(0);
+    filter: blur(20px) opacity(70%);
+    -webkit-filter: blur(20px) opacity(70%);
+    opacity: 0;
+    transition: all .4s ease-in-out,translateY .3s ease-in-out;
+    z-index: -1;
+    // transition: transform .3s ease-in-out;
+}
+
+.avatar-container:hover {
+    transform: scale(1.2) ;
+    .avatar-shadow {
+        transform: scale(1.1);
+        opacity: 1;
+        animation: spin 2.5s linear infinite;
+    }
+}
