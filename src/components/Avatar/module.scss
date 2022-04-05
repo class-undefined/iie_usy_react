@@ -2,8 +2,9 @@
     position: relative;
     border-radius: 50%;
     cursor: pointer;
-    transition: all .3s ease-in-out,translateY .3s ease-in-out;
+    transition: all .3s ease-in-out, translateY .3s ease-in-out;
 }
+
 .avatar-image {
     border-radius: 50%;
 }
@@ -16,24 +17,26 @@
     position: absolute;
     top: 0px;
     left: -4px;
-    transform: scale(0);
+    transform: scale(1);
     filter: blur(20px) opacity(70%);
     -webkit-filter: blur(20px) opacity(70%);
-    opacity: 0;
-    transition: all .4s ease-in-out,translateY .3s ease-in-out;
+    opacity: 0.7;
+    transition: all .4s ease-in-out, translateY .3s ease-in-out;
     z-index: -1;
     // transition: transform .3s ease-in-out;
 }
 
 .avatar-container:hover {
-    transform: scale(1.1) ;
+    transform: scale(1.2);
+
     .avatar-shadow {
-        transform: scale(1.1);
+        transform: scale(1.2);
         opacity: 1;
         animation: spin 2.5s linear infinite;
     }
 }
+
 .avatar-container:active {
-    transition: all .1s ease-in-out,translateY .3s ease-in-out;
+    transition: all .1s ease-in-out, translateY .3s ease-in-out;
     transform: scale(0.9);
 }
