@@ -10,9 +10,10 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    // box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     transition: transform 1s;
     transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -30,14 +31,15 @@
     width: 100%;
     color: #03446A;
     text-align: center;
-    // font-size: 60px;
     border-radius: 5px;
     backface-visibility: hidden;
-    // transform: rotateY(180deg);
+}
+
+.person-card-front {
+    height: unset;
+    width: unset;
 }
 
 .person-card-back {
-    // background: #03446A;
-    // color: white;
     transform: rotateY(180deg);
 }
