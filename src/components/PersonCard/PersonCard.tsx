@@ -45,6 +45,13 @@ export const PersonCard = (props: PersonCardProps) => {
             <Avatar onClick={() => flip()} className="person-card-avatar" src={src} width={80} height={80} style={{ marginTop: 80 }} />
         </div>
     )
+    let task = null as (NodeJS.Timeout | null)
+    const recover = () => {
+        task = setTimeout(flip, 2000)
+    }
+    const clearTask = () => {
+        if (task) clearTimeout(task)
+    }
     return (
         <div style={{ position: "relative", width, height }}>
             <div className={rootStyle} style={{ width, height }}>
@@ -52,7 +59,7 @@ export const PersonCard = (props: PersonCardProps) => {
                     <div className="person-card-front" >
                         {front}
                     </div>
-                    <div onMouseLeave={() => setTimeout(flip, 2000)} className="person-card-back" >
+                    <div onMouseEnter={clearTask} onMouseLeave={recover} className="person-card-back" >
                         {<PersonDesc teacher={teacher} />}
                     </div>
                 </div>
