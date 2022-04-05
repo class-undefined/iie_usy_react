@@ -15,6 +15,7 @@
     transform-style: preserve-3d;
 }
 
+
 .card-flip-container:hover .card-flip-content {
     transform: rotateY(180deg);
     transition: transform 0.6s;
