@@ -4,9 +4,18 @@ import { PersonCard } from "../../../components/PersonCard/PersonCard"
 import { Teacher } from "../../../type"
 
 const useStyles = makeStyles({
+    root: {
+        width: "100%",
+        height: "100%"
+    },
+    cardBox: {
+        width: "80%",
+        height: "100%",
+        margin: "0 auto"
+    },
     card: {
         width: "140px",
-        height: "300px",
+        height: "350px",
         display: "inline-block",
         padding: "0 20px 0",
         marginLeft: "20px",
@@ -15,7 +24,7 @@ const useStyles = makeStyles({
         // boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2)",
         "&:hover": {
             width: "200px",
-            height: "300px"
+            height: "350px"
             // marginBottom: "20px"
         }
     }
@@ -33,11 +42,11 @@ const teachers = new Array(6).fill(teacher) as Teacher[]
 export const Teachers = () => {
     const styles = useStyles()
     return (
-        <Box>
-            <div>{teachers.map((teacher, index) => {
+        <Box className={styles.root}>
+            <div className={styles.cardBox}>{teachers.map((teacher, index) => {
                 return (
                     <div className={styles.card}>
-                        <PersonCard key={index} teacher={teacher} back={{ width: 200, height: 300 }} />
+                        <PersonCard key={index} teacher={teacher} back={{ width: 200, height: 350 }} />
                     </div>
                 )
             })}</div>
