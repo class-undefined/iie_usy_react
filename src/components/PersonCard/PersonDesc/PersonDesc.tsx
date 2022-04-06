@@ -91,21 +91,6 @@ export const PersonDesc = (props: PersonDescProps) => {
     const descTextBoxRef = useRef<null | HTMLDivElement>(null)
     const descTextRef = useRef<null | HTMLParagraphElement>(null)
     const [open, setOpen] = useState(false)
-    useEffect(() => {
-        if (!descTextBoxRef.current || !descTextRef.current) return
-        console.log(descTextBoxRef)
-        console.log(descTextRef)
-        console.log(descTextBoxRef.current?.clientHeight)
-        console.log(descTextRef.current?.clientHeight)
-        const range = document.createRange()
-        const cellChild = descTextRef.current
-        range.setStart(cellChild, 0)
-        range.setEnd(cellChild, cellChild.childNodes.length)
-        const rangeWidth = range.getBoundingClientRect().width
-        const padding = (parseInt(cellChild.style.paddingLeft, 10) || 0) +
-            (parseInt(cellChild.style.paddingRight, 10) || 0);
-        console.log((rangeWidth + padding > cellChild.offsetWidth || cellChild.scrollWidth > cellChild.offsetWidth))
-    }, [])
     return (
         <div className={styles.root}>
             <div className={`person-desc-name`}>
