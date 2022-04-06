@@ -5,6 +5,7 @@ import { NotFind } from '../view/404/NotFind';
 import { Structure } from '../view/Info/structure/Structure';
 import { Management } from '../view/Education/management/Management';
 import { ArticlePage } from '../view/Article/ArticlePage';
+import { Teachers } from '../view/Info/teachers/Teachers';
 
 
 /* 路由组合对应路由name的映射表 */
@@ -49,6 +50,7 @@ export const navBarConfig: RouteConfig[] = [
                 name: '师资力量',
                 path: '/teachers',
                 exact: true,
+                component: Teachers
             },
         ],
     },

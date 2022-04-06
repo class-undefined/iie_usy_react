@@ -8,6 +8,8 @@ interface PersonCardProps {
     className?: string,
     width?: number | string,
     height?: number | string,
+    back?: { width: number | string, height: number | string },
+    teacher: Teacher
 }
 
 const defaultProps = {
@@ -15,16 +17,8 @@ const defaultProps = {
     height: "100%",
 }
 
-const teacher: Teacher = {
-    name: "杨涛",
-    sex: 0,
-    level: "执行院长",
-    tag: "博士，教授，博士生导师".split("，"),
-    profession: "大数据、人工智能、高性能计算、农业领域".split("、"),
-    describe: "主持国家自然科学基金项目一项、国家科技支撑项目子课题一项、辽宁省科学计划项目课题一项。参加国家自然科学基金课题两项、国家科技支撑项目一项及辽宁省自然科学基金、国家电力公司科技部课题等省部级以上课题十余项。在《International Journal Agricultural Biological Engineering》、《农业工程学报》及国际会议等发表学术论文40余篇，其中SCI检索2篇，EI检索20余篇。获辽宁省科技进步三等奖一项（2017）、沈阳市科技进步一等奖一项（2010）、二等奖一项（2006）。主编全国高等院校通用教材4部，副主编2部。"
-}
-
 export const PersonCard = (props: PersonCardProps) => {
+    const { teacher } = props
     const src = "https://u-pic.oss-cn-beijing.aliyuncs.com/uPic/WOBSmg.jpg"
     const width = props.width || defaultProps.width
     const height = props.height || defaultProps.height
@@ -32,6 +26,8 @@ export const PersonCard = (props: PersonCardProps) => {
     const [rootStyle, setRootStyle] = useState("person-card-container")
     const [contentStyle, setContentStyle] = useState("person-card-content")
     const [imageSubStyle, setImageSubStyle] = useState("person-card-image-sub-container")
+    const backWidth = props.back ? props.back.width : undefined
+    const backHeight = props.back ? props.back.height : undefined
     const flip = () => {
         // 如果已经翻转了，那么翻回来
         if (isFlip) setContentStyle("person-card-content")
@@ -59,7 +55,7 @@ export const PersonCard = (props: PersonCardProps) => {
                     <div className="person-card-front" >
                         {front}
                     </div>
-                    <div onMouseEnter={clearTask} onMouseLeave={recover} className="person-card-back" >
+                    <div style={{ width: backWidth, height: backHeight }} onMouseEnter={clearTask} onMouseLeave={recover} className="person-card-back" >
                         {<PersonDesc teacher={teacher} />}
                     </div>
                 </div>
