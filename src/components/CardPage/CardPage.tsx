@@ -18,6 +18,7 @@ export const CardPage = (props: CardPageProps) => {
     const param = new URLSearchParams(history.location.search)
     const pageIndex = parseInt(param.get("page") || "1")
     const [page, setPage] = useState([] as { src: string, title: string, pv: number, time: string, articleId: string }[])
+    const [size, setSize] = useState(1) // 总页数
     const [loading, setLoading] = useState(true)
     const onClickHandle = (articleId: string) => {
         history.push("/article" + "?id=" + articleId)
@@ -31,7 +32,10 @@ export const CardPage = (props: CardPageProps) => {
             const response = res
             const { code, message, data } = response
             if (code !== StatusCode.SUCCESS) Notify.error(message || "请求错误")
-            else setPage(data.page)
+            else {
+                setPage(data.page)
+                setSize(data.size)
+            }
             console.log(data)
             setLoading(false)
         }).catch(e => setLoading(false))
@@ -53,7 +57,7 @@ export const CardPage = (props: CardPageProps) => {
                 </KCardList>}
             </div>
             <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
-                <Pagination onChange={pageSelected} count={10} page={pageIndex} showFirstButton showLastButton />
+                <Pagination onChange={pageSelected} count={size} page={pageIndex} showFirstButton showLastButton />
             </Box>
         </Box>
     )

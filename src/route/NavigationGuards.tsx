@@ -37,7 +37,7 @@ export const NavigationGuards = () => {
     /* 如果当前路由既无重定向，又无component，说明暂未开发 */
     if (!route.component) {
         // console.log(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`)
-        Notify.error(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`)
+        Notify.error(`当前路由:[${routeNode.getFullPath()}]视图暂未实现`, { anchorOrigin: { vertical: "top", horizontal: "right" } })
         return <Redirect to="/" />
     }
 
