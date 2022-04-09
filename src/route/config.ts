@@ -46,6 +46,9 @@ export const navBarConfig: RouteConfig[] = [
                 name: '领导团队',
                 path: '/leadership',
                 exact: true,
+                meta: {
+                    config: { isAddNavBar: false, isShowLayout: false }
+                }
             },
             {
                 name: '师资力量',

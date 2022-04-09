@@ -21,7 +21,7 @@ export default function ExtendGroup(props: ExtendGroupProps) {
         return (
             <AccordionDetails>
                 {
-                    children && children.map(node => {
+                    children && children.filter(node => node.isAddNavBar()).map(node => {
                         return <Button key={node.getName()} className={'typography-detail-btn'} onClick={() => { jumpToView(node) }}>{node.getName()}</Button>
                     })
                 }

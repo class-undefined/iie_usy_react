@@ -96,7 +96,7 @@ export const NavBarItem = (props: NavBarItemProps) => {
                                     aria-labelledby="composition-button"
                                     onKeyDown={handleListKeyDown}
                                 >
-                                    {children && children.map((node, index) => {
+                                    {children && children.filter(node => node.isAddNavBar()).map((node, index) => {
                                         return (
                                             <MenuItem className={'menu-item'} style={{ textAlign: 'center' }}
                                                 sx={{ width: 100 }} key={index} onClick={(e) => {
