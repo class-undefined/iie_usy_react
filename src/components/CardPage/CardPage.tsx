@@ -12,7 +12,7 @@ export interface CardPageProps {
     callback: (page: number) => Promise<Response>,
 
 }
-export const CardPage = (props: CardPageProps) => {
+export const CardPage: React.FC<CardPageProps> = (props: CardPageProps) => {
     const { callback } = props
     const history = useHistory()
     const param = new URLSearchParams(history.location.search)
@@ -61,4 +61,13 @@ export const CardPage = (props: CardPageProps) => {
             </Box>
         </Box>
     )
+}
+
+/**
+ * 方便路由注入的高阶组件CardPage
+ * @param callback 获取数据的api
+ * @returns 返回注入callback的CardPage组件
+ */
+export const CardPageHoc = (callback: (page: number) => Promise<Response>): React.FC => {
+    return () => <CardPage callback={callback} />
 }

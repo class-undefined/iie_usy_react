@@ -6,6 +6,8 @@ import { Structure } from '../view/Info/structure/Structure';
 import { Management } from '../view/Education/management/Management';
 import { ArticlePage } from '../view/Article/ArticlePage';
 import { Teachers } from '../view/Info/teachers/Teachers';
+import { CardPageHoc } from '../components/CardPage/CardPage';
+import { getArticleCardDesc } from '../api/education/management';
 
 
 /* 路由组合对应路由name的映射表 */
@@ -63,21 +65,25 @@ export const navBarConfig: RouteConfig[] = [
                 name: '科研管理',
                 path: '/management',
                 exact: true,
+                component: CardPageHoc(getArticleCardDesc)
             },
             {
                 name: '科研动态',
                 path: '/dynamic',
                 exact: true,
+                component: CardPageHoc(getArticleCardDesc)
             },
             {
                 name: '学科前沿',
                 path: '/advanced',
                 exact: true,
+                component: CardPageHoc(getArticleCardDesc)
             },
             {
                 name: '科研成果',
                 path: '/achievement',
                 exact: true,
+                component: CardPageHoc(getArticleCardDesc)
             },
         ],
     },
@@ -90,7 +96,7 @@ export const navBarConfig: RouteConfig[] = [
                 name: '管理制度',
                 path: '/management',
                 exact: true,
-                component: Management
+                component: CardPageHoc(getArticleCardDesc)
             },
             {
                 name: '专业建设',
