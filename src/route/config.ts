@@ -6,7 +6,6 @@ import { Structure } from '../view/Info/structure/Structure';
 import { ArticlePage } from '../view/Article/ArticlePage';
 import { Teachers } from '../view/Info/teachers/Teachers';
 import { CardPageHoc } from '../components/CardPage/CardPage';
-import { getArticleCardDesc } from '../api/education/management';
 import { viewApi } from '../api/view';
 const { education, scientific, organization, zsjy, student, build } = viewApi
 
