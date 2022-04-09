@@ -1,26 +1,21 @@
 .k-card-list-item-container {
-	flex: 0 0 240px;
-	padding: 20px 50px;
-	display: inline-block;
-	// float: left;
-	// flex-basis: 240px; clear: both;
+    padding: 0 50px 20px;
+    display: inline-block;
 }
-// .k-card-list-item-container:nth-child(3) {
-// 	clear: both;
-// }
+
 .k-card-list-item-hr {
-	height: 4px;
+    height: 4px;
 }
 
 .k-card-list-item-icon {
-	font-size: 15px;
-	color: rgba(0, 0, 0, 0.7);
-	padding-bottom: 1px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.7);
+    padding-bottom: 1px;
 }
 
 .k-card-list-item-icon-value {
-	font-size: 14px;
-	color: rgba(0, 0, 0, 0.7);
-	font-weight: 300;
-	padding-top: 10px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 300;
+    padding-top: 10px;
 }

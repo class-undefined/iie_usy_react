@@ -1,9 +1,20 @@
 .k-card-list-container {
-	min-height: 600px;
-	list-style: none;
-	padding: 0;
-	// display: flex;
-	// flex-direction: row;
-	// flex-wrap: wrap;
-	// justify-content: space-around;
+    min-height: 400px;
+    list-style: none;
+    padding: 0;
+    width: 400px;
+
+    @media screen and (min-width: 768px) {
+        width: 600pxpx;
+    }
+
+    @media screen and (min-width: 1024px) {
+        width: 900px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 1100px;
+    }
+
+
 }
