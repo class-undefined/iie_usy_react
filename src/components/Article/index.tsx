@@ -5,13 +5,12 @@ import { IArticle } from "../../type/article";
 import { LightAsync as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomOneDark as theme } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import "./index.scss"
-import { useEffect, useState } from "react";
-import { dummyAnchorPrefix, HeadingBlock, HeadingBlockHOC, HeadingBlockProps, idPrefix, toc } from "./Heading/Heading";
+import { useEffect } from "react";
+import { dummyAnchorPrefix, HeadingBlockHOC, idPrefix } from "./Heading/Heading";
 import { scrollToAnchor } from "../../utils/dom";
 import "./markdown-style.scss"
 import { Toc } from "./Toc/Toc";
 import { Divider } from "../Divider/Divider";
-import { setTimeout } from "timers";
 import Box from "@mui/system/Box/Box";
 import Skeleton from "@mui/material/Skeleton/Skeleton";
 interface ArticleProps {
@@ -60,18 +59,18 @@ const ArticleSkeleton = (props: { width?: number | string }) => {
 
 export const Article: React.FC<ArticleProps> = (props: ArticleProps) => {
     const { className, article } = props
-    const loading = props.loading || false || !article
+    const loading = props.loading
     const { title, content, updateTime, releaseTime, id, pv } = article
-    const [checked, setChecked] = useState(false)
+
     useEffect(() => {
         /* 根据hash更新定位锚点 */
         // console.log(toc.length)
-        setTimeout(() => setChecked(true), 0)
+        // setTimeout(() => setChecked(true), 0)
         if (document.location.hash.length >= 1) {
             const anchor = decodeURI(document.location.hash.substring(1, document.location.hash.length))
             scrollToAnchor(dummyAnchorPrefix + idPrefix + anchor)
         }
-    }, [])
+    }, [id])
     const map = new Map()
     const MarkDown = () => (
         <>

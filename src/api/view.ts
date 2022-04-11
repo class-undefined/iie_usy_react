@@ -1,7 +1,7 @@
 import { service } from "../utils/api/service/service"
 import { Response } from "../utils/api/response/type"
 
-// 注入url生成对于hoc的api
+// 注入url生成对于hoc的api，必须确保apiUrl对应的后端接口返回的是Article的Response
 const generate = (apiUrl: string) => {
     return (page: number) => {
         return service({

@@ -9,3 +9,13 @@ export interface IArticle {
     pv: number, //浏览量
     content: string, // 正文
 }
+
+/**  表示空article */
+export const INullArticle = {
+    id: "null",
+    title: "",
+    releaseTime: "null",
+    updateTime: "null",
+    pv: -1,
+    content: ""
+} as IArticle
